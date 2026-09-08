@@ -30,21 +30,14 @@ export const TEACHER = {
 
   credentialLine: 'More than 10 years teaching economics · AP® Micro and AP® Macro',
 
+  /** Одно предложение. Длинная биография на экране результатов только мешает
+   *  добраться до контактов — подробности живут на её сайте. */
   bio:
-    'I have spent more than ten years teaching economics and preparing students for AP® Microeconomics and ' +
-    'AP® Macroeconomics, and have helped hundreds of students build real economic thinking rather than memorised answers.',
+    'Hundreds of students prepared for the AP® exams — built on understanding rather than memorisation.',
 
-  /** Её собственная формулировка подхода. */
-  approach:
-    'My teaching combines clear explanations, structured preparation, continuous support and proven exam strategies — ' +
-    'understanding rather than memorisation.',
-
-  /** Что получает человек на бесплатном звонке. Конкретика вместо «обсудим». */
-  consultationPromise: [
-    'We go through the topics this test flagged, one by one',
-    'You get a plain-English explanation of what went wrong and why',
-    'You leave with a specific plan for the next two weeks',
-  ],
+  /** Предложение звонка. И/или родитель: решение о занятиях принимают вместе. */
+  sessionOffer:
+    'Free 15-minute session to go through these results — on your own, with a parent, or both together.',
 
   /** Для родительского блока — её язык с её сайта. */
   parentHeadline: 'Strengthen your child’s path to top universities',
