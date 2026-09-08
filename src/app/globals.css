@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Палитра из ТЗ: чернильно-синий, тёплый белый, охра.
+   Светлая тема определена полностью на :root, тёмная переопределяет только токены. */
+:root {
+  /* Фолбэки на случай, если next/font не загрузился: без них вся
+     font-family становится невалидной и браузер уходит в Times. */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
+
+  --ground: #fbfaf7;
+  --surface: #f3f0ea;
+  --surface-alt: #eae6dd;
+  --ink: #12203a;
+  --ink-soft: #46536b;
+  --ink-mute: #7a8399;
+  --ochre: #a9721e;
+  --ochre-soft: #c2872b;
+  --rule: #dfdacf;
+  --rule-strong: #c8c1b2;
+  --good: #1f6a43;
+  --good-bg: #e7f0e9;
+  --bad: #a33a2a;
+  --bad-bg: #f7e9e6;
+  --warn: #8c6a2f;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --ground: #0e1826;
+    --surface: #162335;
+    --surface-alt: #1d2c41;
+    --ink: #e9e5dc;
+    --ink-soft: #b3baca;
+    --ink-mute: #7f8899;
+    --ochre: #e0a548;
+    --ochre-soft: #c2872b;
+    --rule: #26344a;
+    --rule-strong: #35455e;
+    --good: #6bc08d;
+    --good-bg: #12301f;
+    --bad: #e08872;
+    --bad-bg: #2c1713;
+    --warn: #d3a055;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --ground: #0e1826;
+  --surface: #162335;
+  --surface-alt: #1d2c41;
+  --ink: #e9e5dc;
+  --ink-soft: #b3baca;
+  --ink-mute: #7f8899;
+  --ochre: #e0a548;
+  --ochre-soft: #c2872b;
+  --rule: #26344a;
+  --rule-strong: #35455e;
+  --good: #6bc08d;
+  --good-bg: #12301f;
+  --bad: #e08872;
+  --bad-bg: #2c1713;
+  --warn: #d3a055;
+  color-scheme: dark;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--ochre);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
