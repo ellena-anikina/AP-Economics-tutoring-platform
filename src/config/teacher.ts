@@ -22,8 +22,11 @@ export const TEACHER = {
   photo: '/olga.jpg',
   photoAlt: 'Dr. Olga Shalamai',
   siteUrl: 'https://olgashalamaiwba.wixsite.com/my-site-1',
+  // Instagram — для школьников, Facebook — для родителей. Разные аудитории
+  // сидят в разных местах, и на экране результатов они разведены так же.
   instagram: '@olganomics5',
   instagramUrl: 'https://www.instagram.com/olganomics5/',
+  facebookUrl: 'https://www.facebook.com/um.naji.37',
 
   credentialLine: 'More than 10 years teaching economics · AP® Micro and AP® Macro',
 

@@ -57,7 +57,7 @@ export function parentMailto(test: TestDefinition, result: TestResult): string {
     ...TEACHER.outcomes.slice(0, 4).map((o) => `  • ${o}`),
     '',
     `Her email: ${CTA.email}`,
-    `Instagram: ${TEACHER.instagramUrl}`,
+    `Facebook: ${TEACHER.facebookUrl}`,
     `More about her work: ${TEACHER.siteUrl}`,
   ].join('\n');
   return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

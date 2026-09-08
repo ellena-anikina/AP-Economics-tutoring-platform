@@ -32,6 +32,16 @@ function InstagramIcon() {
   );
 }
 
+function FacebookIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <path d="M15.8 7.7h-1c-1 0-1.7.7-1.7 1.7v8.9" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10.9 12.3h4.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 const primaryButton =
   'inline-flex w-fit items-center gap-2 rounded bg-ink px-6 py-3.5 text-sm font-semibold text-ground hover:opacity-90';
 const secondaryButton =
@@ -152,9 +162,22 @@ export default function ResultsCta({
             </button>
           )
         ) : (
-          <a href={parentMailto(test, result)} className={secondaryButton}>
-            Send these results to a parent
-          </a>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <a href={parentMailto(test, result)} className={secondaryButton}>
+              Send these results to a parent
+            </a>
+            {/* Родители сидят в Facebook, а не в Instagram — поэтому здесь
+                он, а не тот же значок, что в блоке для школьника. */}
+            <a
+              href={TEACHER.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={secondaryButton}
+            >
+              <FacebookIcon />
+              Parents: message on Facebook
+            </a>
+          </div>
         )}
       </div>
 
@@ -178,6 +201,15 @@ export default function ResultsCta({
         >
           <InstagramIcon />
           {TEACHER.instagram}
+        </a>
+        <a
+          href={TEACHER.facebookUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 font-medium text-ochre underline underline-offset-2"
+        >
+          <FacebookIcon />
+          Facebook
         </a>
       </div>
     </section>
