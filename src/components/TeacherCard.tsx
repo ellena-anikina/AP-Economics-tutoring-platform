@@ -10,7 +10,7 @@ import { TEACHER } from '@/config/teacher';
  */
 function Avatar({ size }: { size: 'sm' | 'lg' }) {
   const [failed, setFailed] = useState(false);
-  const box = size === 'lg' ? 'h-24 w-24 text-2xl' : 'h-11 w-11 text-sm';
+  const box = size === 'lg' ? 'h-20 w-20 text-2xl' : 'h-11 w-11 text-sm';
 
   if (TEACHER.photo && !failed) {
     return (
@@ -48,26 +48,15 @@ export function TeacherByline() {
   );
 }
 
-/** Полная карточка — рядом с предложением записаться. */
+/** Компактная карточка: кто это и одна фраза. Подробности — на её сайте. */
 export default function TeacherCard() {
   return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:gap-5">
+    <div className="flex items-start gap-4">
       <Avatar size="lg" />
-      <div className="flex flex-col gap-2">
-        <div>
-          <p className="font-serif text-lg font-semibold">{TEACHER.name}</p>
-          <p className="text-[13px] text-ink-mute">{TEACHER.credentialLine}</p>
-        </div>
-        <p className="max-w-measure text-[14px] leading-relaxed text-ink-soft">{TEACHER.bio}</p>
-        <p className="max-w-measure text-[14px] leading-relaxed text-ink-soft">{TEACHER.approach}</p>
-        <a
-          href={TEACHER.instagramUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-fit text-[13px] font-medium text-ochre underline underline-offset-2"
-        >
-          {TEACHER.instagram} on Instagram
-        </a>
+      <div className="flex flex-col gap-1">
+        <p className="font-serif text-lg font-semibold leading-tight">{TEACHER.name}</p>
+        <p className="text-[13px] leading-snug text-ink-mute">{TEACHER.credentialLine}</p>
+        <p className="mt-1 max-w-measure text-[14px] leading-relaxed text-ink-soft">{TEACHER.bio}</p>
       </div>
     </div>
   );

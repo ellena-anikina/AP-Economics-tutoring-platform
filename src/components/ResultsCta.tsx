@@ -24,7 +24,7 @@ function summarise(test: TestDefinition, result: TestResult): ResultSummary {
 
 function InstagramIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+    <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8">
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
@@ -34,7 +34,7 @@ function InstagramIcon() {
 
 function FacebookIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+    <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8">
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <path d="M15.8 7.7h-1c-1 0-1.7.7-1.7 1.7v8.9" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M10.9 12.3h4.5" strokeLinecap="round" />
@@ -42,10 +42,17 @@ function FacebookIcon() {
   );
 }
 
-const primaryButton =
-  'inline-flex w-fit items-center gap-2 rounded bg-ink px-6 py-3.5 text-sm font-semibold text-ground hover:opacity-90';
-const secondaryButton =
-  'inline-flex w-fit items-center gap-2 rounded border border-rule-strong px-6 py-3.5 text-sm font-medium hover:bg-surface';
+function MailIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <path d="M3.8 6.8 12 12.6l8.2-5.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+const contactLink =
+  'flex items-center gap-2 rounded border border-rule-strong bg-ground px-3.5 py-2.5 text-[14px] font-medium hover:bg-surface';
 
 export default function ResultsCta({
   test,
@@ -54,7 +61,6 @@ export default function ResultsCta({
   test: TestDefinition;
   result: TestResult;
 }) {
-  const [parentOpen, setParentOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const weak = topicNumbers(result, 2);
   const summary = summarise(test, result);
@@ -75,24 +81,14 @@ export default function ResultsCta({
   }
 
   return (
-    <section className="flex flex-col gap-6 rounded border border-ochre-soft bg-surface-alt p-5 sm:p-7">
+    <section className="flex flex-col gap-5 rounded border border-ochre-soft bg-surface-alt p-5 sm:p-7">
       <TeacherCard />
 
-      <div className="flex flex-col gap-3 border-t border-rule pt-5">
+      <div className="flex flex-col gap-2 border-t border-rule pt-5">
         <h2 className="font-serif text-2xl font-semibold leading-snug">{headline}</h2>
         <p className="max-w-measure text-[15px] leading-relaxed text-ink-soft">
-          The first session is free and takes fifteen minutes. In it:
+          {TEACHER.sessionOffer}
         </p>
-        <ul className="flex flex-col gap-1.5">
-          {TEACHER.consultationPromise.map((line) => (
-            <li key={line} className="flex gap-2.5 text-[15px] leading-relaxed text-ink-soft">
-              <span aria-hidden className="text-ochre">
-                —
-              </span>
-              <span>{line}</span>
-            </li>
-          ))}
-        </ul>
       </div>
 
       {CTA.mode === 'form' ? (
@@ -108,110 +104,58 @@ export default function ResultsCta({
           disclosure={`Your score and the flagged topics are included so ${TEACHER.shortName} can prepare before the call.`}
         />
       ) : (
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            {/* Инстаграм первым: подростку написать в директ проще, чем
-                составить письмо, и порог здесь важнее формальности. */}
+        <div className="flex flex-col gap-3.5">
+          {/* Три равноправных контакта одной строкой. Раньше они повторялись
+              трижды по всему блоку, и до сути приходилось листать. */}
+          <div className="flex flex-wrap gap-2.5">
+            <a href={studentMailto(test, result)} className={contactLink}>
+              <MailIcon />
+              Email my results
+            </a>
             <a
               href={TEACHER.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={primaryButton}
+              className={contactLink}
             >
               <InstagramIcon />
-              Message on Instagram
+              Instagram
             </a>
-            <a href={studentMailto(test, result)} className={secondaryButton}>
-              Email my results
-            </a>
-          </div>
-          <p className="text-[13px] leading-relaxed text-ink-mute">
-            The email comes with your score and flagged topics already filled in, so{' '}
-            {TEACHER.shortName} can prepare before the call.
-          </p>
-        </div>
-      )}
-
-      {/* Тест проходит школьник, а решение о занятиях принимает родитель.
-          Поэтому у родителя отдельный путь, а не приписка «покажи маме». */}
-      <div className="flex flex-col gap-4 border-t border-rule pt-5">
-        <div className="flex flex-col gap-1.5">
-          <h3 className="font-serif text-lg font-semibold">Need a parent on board?</h3>
-          <p className="max-w-measure text-[14px] leading-relaxed text-ink-soft">
-            Tutoring is usually a parent’s decision. Send them this and they get the whole picture in
-            one email — your score, what to work on, and who wrote the test.
-          </p>
-        </div>
-
-        {CTA.mode === 'form' ? (
-          parentOpen ? (
-            <ContactForm
-              kind="parent"
-              result={summary}
-              submitLabel="Send the results"
-              noteLabel="Add a note for them (optional)"
-              notePlaceholder="Can we talk about getting some help before the exam?"
-              successTitle="Sent."
-              successBody={`They have your results and can reply straight to ${TEACHER.shortName}.`}
-              mailtoFallback={parentMailto(test, result)}
-              disclosure={`${TEACHER.shortName} is told that you sent this, so she knows to expect a reply.`}
-            />
-          ) : (
-            <button type="button" onClick={() => setParentOpen(true)} className={secondaryButton}>
-              Send these results to a parent
-            </button>
-          )
-        ) : (
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <a href={parentMailto(test, result)} className={secondaryButton}>
-              Send these results to a parent
-            </a>
-            {/* Родители сидят в Facebook, а не в Instagram — поэтому здесь
-                он, а не тот же значок, что в блоке для школьника. */}
             <a
               href={TEACHER.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={secondaryButton}
+              className={contactLink}
             >
               <FacebookIcon />
-              Parents: message on Facebook
+              Facebook
             </a>
           </div>
-        )}
-      </div>
 
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-rule pt-4 text-[13px] text-ink-mute">
-        <span className="flex flex-wrap items-center gap-2">
-          <span>Or write to</span>
-          <code className="font-mono text-ink-soft">{CTA.email}</code>
-          <button
-            type="button"
-            onClick={copyEmail}
-            className="rounded border border-rule-strong px-2 py-1 text-[12px] font-medium hover:bg-surface"
-          >
-            {copied ? 'Copied' : 'Copy'}
-          </button>
-        </span>
-        <a
-          href={TEACHER.instagramUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 font-medium text-ochre underline underline-offset-2"
-        >
-          <InstagramIcon />
-          {TEACHER.instagram}
-        </a>
-        <a
-          href={TEACHER.facebookUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 font-medium text-ochre underline underline-offset-2"
-        >
-          <FacebookIcon />
-          Facebook
-        </a>
-      </div>
+          <div className="flex flex-col gap-2 text-[13px] text-ink-mute">
+            <p className="flex flex-wrap items-center gap-2">
+              <code className="font-mono text-ink-soft">{CTA.email}</code>
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="rounded border border-rule-strong px-2 py-0.5 text-[12px] font-medium hover:bg-surface"
+              >
+                {copied ? 'Copied' : 'Copy'}
+              </button>
+            </p>
+            {/* Решение о занятиях чаще принимает родитель, поэтому у него есть
+                свой готовый текст письма — но одной строкой, а не блоком. */}
+            <p>
+              <a
+                href={parentMailto(test, result)}
+                className="font-medium text-ochre underline underline-offset-2"
+              >
+                Send these results to a parent
+              </a>
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
