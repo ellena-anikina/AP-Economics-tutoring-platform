@@ -22,6 +22,8 @@ export const TEACHER = {
   photo: '/olga.jpg',
   photoAlt: 'Dr. Olga Shalamai',
   siteUrl: 'https://olgashalamaiwba.wixsite.com/my-site-1',
+  instagram: '@olganomics5',
+  instagramUrl: 'https://www.instagram.com/olganomics5/',
 
   credentialLine: 'More than 10 years teaching economics · AP® Micro and AP® Macro',
 

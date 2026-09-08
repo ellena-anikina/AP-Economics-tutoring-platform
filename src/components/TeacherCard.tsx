@@ -60,6 +60,14 @@ export default function TeacherCard() {
         </div>
         <p className="max-w-measure text-[14px] leading-relaxed text-ink-soft">{TEACHER.bio}</p>
         <p className="max-w-measure text-[14px] leading-relaxed text-ink-soft">{TEACHER.approach}</p>
+        <a
+          href={TEACHER.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-fit text-[13px] font-medium text-ochre underline underline-offset-2"
+        >
+          {TEACHER.instagram} on Instagram
+        </a>
       </div>
     </div>
   );

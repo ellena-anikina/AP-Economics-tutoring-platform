@@ -1,23 +1,22 @@
 /**
- * Куда ведёт кнопка на экране результатов.
+ * Как человек связывается с преподавателем с экрана результатов.
  *
- * 'mailto'  — работает сегодня, ничего настраивать не нужно. Тема и текст
- *             письма подставляются из результата, преподаватель сразу видит,
- *             кто написал и с чем.
- * 'booking' — ссылка на Calendly или другой сервис записи.
- * 'form'    — форма с email. НЕ включать, пока адреса некуда складывать:
- *             форма, которая ничего не сохраняет, хуже, чем её отсутствие.
+ * 'contact' — без форм: письмо с подставленным результатом и Instagram.
+ *             Ничего не требует и работает всегда. Текущий режим, пока не
+ *             настроена отправка писем.
+ * 'form'     — формы записи и отправки родителю через /api/contact. Включать
+ *             только когда в окружении есть SMTP или Resend (см. .env.example),
+ *             иначе форма будет молча упираться в запасной путь.
+ * 'booking'  — прямая ссылка на Calendly или другой сервис записи.
  */
-export type CtaMode = 'mailto' | 'booking' | 'form';
+export type CtaMode = 'contact' | 'form' | 'booking';
 
 export const CTA: {
   mode: CtaMode;
   email: string;
   bookingUrl: string;
-  teacherName: string;
 } = {
-  mode: 'mailto',
-  email: 'REPLACE_ME@example.com',
+  mode: 'contact',
+  email: 'olgashalamaiwba@gmail.com',
   bookingUrl: '',
-  teacherName: 'your instructor',
 };
