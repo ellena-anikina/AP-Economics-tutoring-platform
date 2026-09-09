@@ -22,11 +22,22 @@ export default {
         warn: 'var(--warn)',
       },
       fontFamily: {
-        serif: ['var(--font-serif)', 'Georgia', 'serif'],
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        /* Фолбэк стоит ВНУТРИ var(): если переменной нет, подставится
+           ui-serif и остаток списка сохранится. Без него объявление
+           целиком становится невалидным и браузер уходит в Times. */
+        serif: ['var(--font-serif, ui-serif)', 'Georgia', 'serif'],
+        sans: ['var(--font-sans, ui-sans-serif)', 'system-ui', 'sans-serif'],
         mono: ['ui-monospace', 'Menlo', 'monospace'],
       },
-      maxWidth: { measure: '42rem' },
+      maxWidth: {
+        /* Ширины по роли, а не на глаз.
+           measure — комфортная строка прозы, около 68 знаков.
+           reading — колонка теста и разбора: вопрос и варианты ответа.
+           content — страницы с двухколоночной вёрсткой и карточками. */
+        measure: '42rem',
+        reading: '48rem',
+        content: '68rem',
+      },
     },
   },
   plugins: [],

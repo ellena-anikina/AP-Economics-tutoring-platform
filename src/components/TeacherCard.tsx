@@ -1,44 +1,11 @@
-'use client';
-
-import { useState } from 'react';
+import Portrait from '@/components/Portrait';
 import { TEACHER } from '@/config/teacher';
 
-/**
- * Фото подключается само, как только файл появится в public/. Если файла нет
- * или он не загрузился — показывается монограмма. Битой картинки не будет
- * ни при каком раскладе.
- */
-function Avatar({ size }: { size: 'sm' | 'lg' }) {
-  const [failed, setFailed] = useState(false);
-  const box = size === 'lg' ? 'h-20 w-20 text-2xl' : 'h-11 w-11 text-sm';
-
-  if (TEACHER.photo && !failed) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={TEACHER.photo}
-        alt={TEACHER.photoAlt}
-        onError={() => setFailed(true)}
-        className={`${box} shrink-0 rounded-full border border-rule object-cover object-top`}
-      />
-    );
-  }
-
-  return (
-    <span
-      aria-hidden
-      className={`${box} flex shrink-0 items-center justify-center rounded-full border border-ochre-soft bg-surface font-serif font-semibold text-ochre`}
-    >
-      {TEACHER.initials}
-    </span>
-  );
-}
-
-/** Одна строка авторства — для экрана до начала теста и для главной. */
+/** Одна строка авторства — экран до начала теста. */
 export function TeacherByline() {
   return (
     <div className="flex items-center gap-3">
-      <Avatar size="sm" />
+      <Portrait size="xs" />
       <p className="text-[14px] leading-snug text-ink-soft">
         Written by <span className="font-medium text-ink">{TEACHER.name}</span>
         <br />
@@ -48,16 +15,25 @@ export function TeacherByline() {
   );
 }
 
-/** Компактная карточка: кто это и одна фраза. Подробности — на её сайте. */
+/** Карточка рядом с предложением записаться: кто это и одна фраза.
+ *  Подробности живут на её сайте — здесь они только уводят от контактов. */
 export default function TeacherCard() {
   return (
-    <div className="flex items-start gap-4">
-      <Avatar size="lg" />
-      <div className="flex flex-col gap-1">
-        <p className="font-serif text-lg font-semibold leading-tight">{TEACHER.name}</p>
-        <p className="text-[13px] leading-snug text-ink-mute">{TEACHER.credentialLine}</p>
-        <p className="mt-1 max-w-measure text-[14px] leading-relaxed text-ink-soft">{TEACHER.bio}</p>
+    // На телефоне фраза уходит под фотографию во всю ширину: рядом с портретом
+    // ей остаётся сантиметр текста и она рассыпается на семь строк.
+    // grid-rows-[auto_1fr]: портрет выше двух строк текста, и без этого лишняя
+    // высота делится между строками — под регалиями появляется дыра.
+    <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-4 gap-y-2.5 sm:grid-rows-[auto_1fr] sm:gap-x-5">
+      <div className="sm:row-span-2">
+        <Portrait size="sm" />
       </div>
+      <div className="flex flex-col gap-1 self-center sm:self-start sm:pt-0.5">
+        <p className="font-serif text-lg font-semibold leading-tight sm:text-xl">{TEACHER.name}</p>
+        <p className="text-[13px] leading-snug text-ink-mute">{TEACHER.credentialLine}</p>
+      </div>
+      <p className="col-span-2 max-w-measure text-pretty text-[14px] leading-relaxed text-ink-soft sm:col-span-1 sm:col-start-2">
+        {TEACHER.bio}
+      </p>
     </div>
   );
 }

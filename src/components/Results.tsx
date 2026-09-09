@@ -152,7 +152,7 @@ export default function Results({
           </span>
           <span className="font-serif text-2xl text-ink-soft">out of {result.total} correct</span>
         </div>
-        <p className="max-w-measure text-[15px] leading-relaxed text-ink-soft">
+        <p className="max-w-measure text-pretty text-[15px] leading-relaxed text-ink-soft">
           This test covers Unit 1 only, so it is not a prediction of your AP® score — it shows which
           topics in this unit are costing you points right now.
           {skipped > 0 ? ` You left ${skipped} ${skipped === 1 ? 'question' : 'questions'} blank.` : ''}
@@ -161,7 +161,7 @@ export default function Results({
 
       {result.weakestTopics.length > 0 ? (
         <section className="flex flex-col gap-4">
-          <h2 className="font-serif text-xl font-semibold">What is costing you the most</h2>
+          <h2 className="text-balance font-serif text-xl font-semibold tracking-[-0.01em]">What is costing you the most</h2>
           <ol className="flex flex-col gap-3">
             {result.weakestTopics.map((topic, i) => (
               <li
@@ -186,7 +186,7 @@ export default function Results({
       ) : null}
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-serif text-xl font-semibold">Every topic in this unit</h2>
+        <h2 className="text-balance font-serif text-xl font-semibold tracking-[-0.01em]">Every topic in this unit</h2>
         <ul className="flex flex-col gap-4">
           {result.topics.map((t) => (
             <TopicRow key={t.topicId} topic={t} />
@@ -196,7 +196,7 @@ export default function Results({
 
       {result.skills.length > 1 ? (
         <section className="flex flex-col gap-4">
-          <h2 className="font-serif text-xl font-semibold">By skill</h2>
+          <h2 className="text-balance font-serif text-xl font-semibold tracking-[-0.01em]">By skill</h2>
           <ul className="flex flex-col gap-4">
             {result.skills.map((s) => (
               <li key={s.skill} className="flex flex-col gap-1.5">
@@ -216,7 +216,7 @@ export default function Results({
       <ResultsCta test={test} result={result} />
 
       <section className="flex flex-col gap-2">
-        <h2 className="font-serif text-xl font-semibold">Every question explained</h2>
+        <h2 className="text-balance font-serif text-xl font-semibold tracking-[-0.01em]">Every question explained</h2>
         <p className="text-[14px] text-ink-soft">
           Questions you missed are open by default. Tap any question to expand it.
         </p>

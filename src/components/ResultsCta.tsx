@@ -85,8 +85,10 @@ export default function ResultsCta({
       <TeacherCard />
 
       <div className="flex flex-col gap-2 border-t border-rule pt-5">
-        <h2 className="font-serif text-2xl font-semibold leading-snug">{headline}</h2>
-        <p className="max-w-measure text-[15px] leading-relaxed text-ink-soft">
+        <h2 className="text-balance font-serif text-2xl font-semibold leading-snug tracking-[-0.01em]">
+          {headline}
+        </h2>
+        <p className="max-w-measure text-pretty text-[15px] leading-relaxed text-ink-soft">
           {TEACHER.sessionOffer}
         </p>
       </div>

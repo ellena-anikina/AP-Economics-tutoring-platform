@@ -4,12 +4,12 @@
 
 /* Палитра из ТЗ: чернильно-синий, тёплый белый, охра.
    Светлая тема определена полностью на :root, тёмная переопределяет только токены. */
+/* Здесь НЕТ --font-sans и --font-serif. Их задаёт next/font классом на
+   <html>, и специфичность у класса такая же, как у :root, — объявление
+   здесь просто перебивало бы подключённый шрифт (и перебивало: Inter и
+   Source Serif 4 не применялись вовсе). Запасные варианты живут внутри
+   var() в tailwind.config.ts. */
 :root {
-  /* Фолбэки на случай, если next/font не загрузился: без них вся
-     font-family становится невалидной и браузер уходит в Times. */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
-
   --ground: #fbfaf7;
   --surface: #f3f0ea;
   --surface-alt: #eae6dd;

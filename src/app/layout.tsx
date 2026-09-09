@@ -1,17 +1,35 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Source_Serif_4 } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 
-const sans = Inter({
-  subsets: ['latin'],
+/**
+ * Шрифты лежат в репозитории, а не тянутся с Google при сборке.
+ *
+ * Файлы — латинские переменные подмножества из пакетов
+ * `@fontsource-variable/inter` и `@fontsource-variable/source-serif-4`
+ * (те же самые шрифты, лицензия SIL OFL). Обновить: поставить пакет,
+ * скопировать `files/*-latin-wght-normal.woff2` и удалить пакет.
+ *
+ * Почему так: сборка не должна зависеть от сети. `next/font/google`
+ * скачивает шрифт в момент build, и в любом окружении без доступа к
+ * fonts.gstatic.com — CI, контейнер, чужая машина — сборка падает или
+ * молча уезжает на Times. Плюс это разные шрифты в разных средах, то есть
+ * вёрстка, проверенная в одной, не проверена ни в одной.
+ */
+const sans = localFont({
+  src: '../fonts/inter-latin-wght-normal.woff2',
+  weight: '100 900',
   variable: '--font-sans',
   display: 'swap',
+  fallback: ['ui-sans-serif', 'system-ui', 'sans-serif'],
 });
 
-const serif = Source_Serif_4({
-  subsets: ['latin'],
+const serif = localFont({
+  src: '../fonts/source-serif-4-latin-wght-normal.woff2',
+  weight: '200 900',
   variable: '--font-serif',
   display: 'swap',
+  fallback: ['ui-serif', 'Georgia', 'serif'],
 });
 
 export const metadata: Metadata = {
@@ -30,9 +48,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body className="font-sans antialiased">
         {children}
-        <footer className="border-t border-rule px-5 py-6 text-center text-[11px] leading-relaxed text-ink-mute">
-          AP® and Advanced Placement® are trademarks registered by the College Board, which is not
-          affiliated with, and does not endorse, this website.
+        {/* Дисклеймер выровнен по той же колонке, что и содержимое страниц:
+            центрированная строка под левой вёрсткой выглядит случайной. */}
+        <footer className="border-t border-rule">
+          <p className="mx-auto max-w-content px-5 py-6 text-[11.5px] leading-relaxed text-ink-mute sm:px-8">
+            AP® and Advanced Placement® are trademarks registered by the College Board, which is
+            not affiliated with, and does not endorse, this website.
+          </p>
         </footer>
       </body>
     </html>

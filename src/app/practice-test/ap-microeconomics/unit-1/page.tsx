@@ -16,7 +16,7 @@ export default function Page() {
   if (!test) throw new Error(`Test definition missing: ${SLUG}`);
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col px-5 py-10 sm:py-14">
+    <main className="mx-auto flex w-full max-w-reading flex-col px-5 py-10 sm:px-8 sm:py-14">
       <TestRunner
         test={test}
         questions={microUnit1Questions}

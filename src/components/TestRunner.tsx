@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import QuestionView from '@/components/QuestionView';
+import Reg from '@/components/Reg';
 import { TeacherByline } from '@/components/TeacherCard';
 import Results from '@/components/Results';
 import { scoreAttempt } from '@/lib/scoring';
@@ -147,10 +148,12 @@ export default function TestRunner({
           <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-ink-mute">
             Free practice test · no account needed
           </p>
-          <h1 className="font-serif text-4xl font-semibold leading-tight sm:text-5xl">
-            {test.title}
+          <h1 className="text-balance font-serif text-[2rem] font-semibold leading-[1.1] tracking-[-0.015em] sm:text-[2.5rem]">
+            <Reg>{test.title}</Reg>
           </h1>
-          <p className="max-w-measure text-[17px] leading-relaxed text-ink-soft">{test.blurb}</p>
+          <p className="max-w-measure text-pretty text-[17px] leading-relaxed text-ink-soft">
+            {test.blurb}
+          </p>
           <div className="pt-1">
             <TeacherByline />
           </div>
@@ -233,7 +236,10 @@ export default function TestRunner({
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="sticky top-0 z-10 -mx-5 flex flex-col gap-2 border-b border-rule bg-ground px-5 py-3">
+      {/* Полоса прогресса и панель навигации выходят за колонку ровно на её
+          отступы, поэтому эти значения обязаны совпадать с padding страницы:
+          px-5 на телефоне, px-8 от sm. */}
+      <div className="sticky top-0 z-10 -mx-5 flex flex-col gap-2 border-b border-rule bg-ground px-5 py-3 sm:-mx-8 sm:px-8">
         <div className="flex items-baseline justify-between gap-4 text-[13px]">
           <span className="font-medium">
             Question {index + 1} of {questions.length}
@@ -257,7 +263,7 @@ export default function TestRunner({
 
       <QuestionView question={question} selected={selected} onSelect={select} />
 
-      <div className="sticky bottom-0 -mx-5 flex items-center justify-between gap-3 border-t border-rule bg-ground px-5 py-3">
+      <div className="sticky bottom-0 -mx-5 flex items-center justify-between gap-3 border-t border-rule bg-ground px-5 py-3 sm:-mx-8 sm:px-8">
         <button
           type="button"
           onClick={() => goTo(index - 1)}

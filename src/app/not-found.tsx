@@ -3,13 +3,13 @@ import { TESTS } from '@/config/tests';
 
 export default function NotFound() {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-5 py-20">
+    <main className="mx-auto flex w-full max-w-reading flex-col gap-8 px-5 py-20 sm:px-8">
       <div className="flex flex-col gap-3">
         <p className="font-mono text-[13px] text-ink-mute">404</p>
-        <h1 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl">
+        <h1 className="text-balance font-serif text-3xl font-semibold leading-tight tracking-[-0.01em] sm:text-4xl">
           That page isn’t here.
         </h1>
-        <p className="max-w-measure text-[16px] leading-relaxed text-ink-soft">
+        <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
           The link may be out of date, or the page may not exist yet. Everything that does exist is
           below.
         </p>
