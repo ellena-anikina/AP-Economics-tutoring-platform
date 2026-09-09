@@ -54,7 +54,18 @@ function bookingEmail(input: ContactPayload): { subject: string; text: string } 
   };
 }
 
-function parentEmail(input: ContactPayload): { subject: string; text: string } {
+/** Адрес этого сайта из заголовков запроса: за прокси Vercel настоящий
+ *  хост лежит в x-forwarded-*, а не в URL запроса. Хардкодить домен нельзя —
+ *  тихо неверная ссылка в письме хуже, чем её отсутствие. */
+function siteOrigin(request: Request): string {
+  const h = request.headers;
+  const host = h.get('x-forwarded-host') ?? h.get('host');
+  if (!host) return '';
+  const proto = h.get('x-forwarded-proto') ?? (/^(localhost|127\.|\[::1\])/.test(host) ? 'http' : 'https');
+  return `${proto}://${host}`;
+}
+
+function parentEmail(input: ContactPayload, origin: string): { subject: string; text: string } {
   const lines: string[] = [
       `${input.studentName} has just taken a free AP® Microeconomics practice test and asked for these results to be sent to you.`,
       '',
@@ -73,7 +84,7 @@ function parentEmail(input: ContactPayload): { subject: string; text: string } {
       ...TEACHER.outcomes.slice(0, 4).map((o) => `  • ${o}`),
       '',
       `Reply to this email to reach her, or write to ${CTA.email}`,
-      ...(TEACHER.siteUrl ? [`More about her work: ${TEACHER.siteUrl}`] : []),
+      ...(origin ? [`The test and more about her work: ${origin}`] : []),
       '',
       `You can reach ${input.studentName} at ${input.studentEmail}.`,
   ];
@@ -142,7 +153,7 @@ export async function POST(request: Request) {
       : NextResponse.json({ ok: false, error: sent.reason }, { status: 502 });
   }
 
-  const { subject, text } = parentEmail(input);
+  const { subject, text } = parentEmail(input, siteOrigin(request));
   const sent = await sendEmail({
     to: input.parentEmail!.trim(),
     subject,

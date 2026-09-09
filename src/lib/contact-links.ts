@@ -7,6 +7,17 @@ import type { TestDefinition, TestResult } from '@/types';
  * /api/contact, — чтобы при переключении режима человек получал одно и то же.
  */
 
+/**
+ * Адрес этого сайта. Раньше в письме стояла ссылка на её старый сайт на Wix —
+ * но сайт преподавателя теперь этот, и вести родителя на второй, более
+ * слабый, значит терять его на полпути. Origin берётся из браузера, а не из
+ * конфига: захардкоженный адрес разойдётся с реальностью при первом переезде
+ * домена, а тихо неверная ссылка в письме хуже, чем её отсутствие.
+ */
+function siteOrigin(): string {
+  return typeof window === 'undefined' ? '' : window.location.origin;
+}
+
 function scoreLines(test: TestDefinition, result: TestResult): string[] {
   const lines = [`Score: ${result.correct} out of ${result.total} on ${test.title}.`];
   if (result.weakestTopics.length > 0) {
@@ -58,7 +69,7 @@ export function parentMailto(test: TestDefinition, result: TestResult): string {
     '',
     `Her email: ${CTA.email}`,
     `Facebook: ${TEACHER.facebookUrl}`,
-    `More about her work: ${TEACHER.siteUrl}`,
+    ...(siteOrigin() ? [`The test and more about her work: ${siteOrigin()}`] : []),
   ].join('\n');
   return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
