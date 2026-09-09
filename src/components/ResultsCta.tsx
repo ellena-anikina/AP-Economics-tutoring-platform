@@ -65,10 +65,14 @@ export default function ResultsCta({
   const weak = topicNumbers(result, 2);
   const summary = summarise(test, result);
 
+  // Первое лицо, а не «with Dr. Shalamai»: её фотография, имя и регалии
+  // стоят строкой выше, представлять её ещё раз в третьем лице незачем.
+  // «together» вдобавок снимает у подростка ощущение, что его собираются
+  // экзаменовать ещё раз. Третье лицо на сайте осталось только в подписях.
   const headline =
     weak.length > 0
-      ? `Work through ${weak.join(' and ')} with ${TEACHER.shortName}`
-      : `Talk through this test with ${TEACHER.shortName}`;
+      ? `Let’s work through ${weak.join(' and ')} together`
+      : 'Let’s talk through this test together';
 
   async function copyEmail() {
     try {
@@ -101,9 +105,9 @@ export default function ResultsCta({
           noteLabel="Anything you want covered? (optional)"
           notePlaceholder="I keep mixing up comparative and absolute advantage…"
           successTitle="Sent."
-          successBody={`${TEACHER.shortName} has your results and will reply to arrange a time.`}
+          successBody="I have your results and will reply to arrange a time."
           mailtoFallback={studentMailto(test, result)}
-          disclosure={`Your score and the flagged topics are included so ${TEACHER.shortName} can prepare before the call.`}
+          disclosure="Your score and the flagged topics are included so I can prepare before the call."
         />
       ) : (
         <div className="flex flex-col gap-3.5">

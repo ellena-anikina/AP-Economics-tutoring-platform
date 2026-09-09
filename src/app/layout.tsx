@@ -48,10 +48,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body className="font-sans antialiased">
         {children}
-        {/* Дисклеймер выровнен по той же колонке, что и содержимое страниц:
-            центрированная строка под левой вёрсткой выглядит случайной. */}
+        {/* Дисклеймер центрирован, а не прижат к левому краю колонки.
+            Он обязан быть на каждой странице (требование College Board),
+            поэтому живёт в корневом layout — и не может знать, какой ширины
+            колонка у страницы под ним: 68rem на главной, 48rem на тесте.
+            Выровнять его по левому краю можно было бы только передавая
+            ширину из каждой страницы, а страницу легко забыть — и тогда
+            дисклеймера не будет вовсе. Центр же совпадает всегда: обе
+            колонки центрированы. */}
         <footer className="border-t border-rule">
-          <p className="mx-auto max-w-content px-5 py-6 text-[11.5px] leading-relaxed text-ink-mute sm:px-8">
+          <p className="mx-auto max-w-content px-5 py-6 text-center text-[11.5px] leading-relaxed text-ink-mute sm:px-8">
             AP® and Advanced Placement® are trademarks registered by the College Board, which is
             not affiliated with, and does not endorse, this website.
           </p>

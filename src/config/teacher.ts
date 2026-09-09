@@ -23,9 +23,6 @@ export const TEACHER = {
   /** Вертикальный портрет 3:4 для главной, где фото должно быть крупным. */
   photoPortrait: '/olga-portrait.jpg',
   photoAlt: 'Dr. Olga Shalamai',
-  siteUrl: 'https://olgashalamaiwba.wixsite.com/my-site-1',
-  // Instagram — для школьников, Facebook — для родителей. Разные аудитории
-  // сидят в разных местах, и на экране результатов они разведены так же.
   instagram: '@olganomics5',
   instagramUrl: 'https://www.instagram.com/olganomics5/',
   facebookUrl: 'https://www.facebook.com/um.naji.37',
@@ -48,15 +45,44 @@ export const TEACHER = {
     'Start with a free diagnostic. Fifteen exam-style questions show exactly which topics are costing you marks — ' +
     'then we go through them together.',
 
-  /** Предложение звонка. И/или родитель: решение о занятиях принимают вместе. */
+  /** Предложение звонка школьнику — на экране результатов. И/или родитель:
+   *  решение о занятиях принимают вместе, но первый звонок бесплатный,
+   *  поэтому школьник может записаться и один. */
   sessionOffer:
-    'Free 15-minute session to go through these results — on your own, with a parent, or both together.',
+    'The first 15-minute session is free — just you, or with a parent if you would like.',
 
-  /** Для родительского блока — её язык с её сайта. */
+  /* Родительский блок. Тексты отдельные, а не общие с экраном результатов:
+     там читает школьник, здесь — сам родитель. Из-за одной строки на двоих
+     в родительском блоке стояло «go through these results with a parent» —
+     родителю предлагали прийти с родителем, да ещё и обсудить результаты
+     теста, которого он не проходил. */
+
+  /** Её заголовок с её сайта. */
   parentHeadline: 'Strengthen your child’s path to top universities',
+
+  /** Её же текст: узнаваемая картина, названная её словами. */
   parentPitch:
     'Poor AP® preparation can quietly cost a strong student university opportunities. The pattern is familiar: ' +
     '“I’ll start tomorrow”, preparation postponed to the final weeks, then energy drinks and last-minute cramming.',
+
+  /** Возражение родителя — «а вдруг я зря волнуюсь». Без ответа на него
+   *  предыдущий абзац остаётся тревогой без выхода. */
+  parentBlindSpot:
+    'School marks rarely show it in time. AP® questions are built differently from classroom tests, and a student ' +
+    'who is comfortable in lessons can still be losing marks — without knowing on which topics.',
+
+  /** Предложение звонка родителю. «С вами, с ребёнком или вместе» —
+   *  решение о занятиях принимается вдвоём, и звать надо обоих.
+   *
+   *  ЛИЦО. Текст страниц — её прямая речь, первое лицо: «I have spent ten
+   *  years…», «we go through them together», «write to me». Третье лицо
+   *  («write to her») превращает сайт в рассказ о ней и ставит дистанцию
+   *  там, где родитель как раз выбирает человека. Третье лицо остаётся
+   *  только в подписях — «Written by Dr. Olga Shalamai» и имя в карточке:
+   *  там это знак объективности, как подпись автора в журнале. */
+  parentSessionOffer:
+    'If you would rather talk first, the first 15-minute session is free — with you, with your child, or with both ' +
+    'of you.',
 
   outcomesHeading: 'What students achieve with Olganomics',
 

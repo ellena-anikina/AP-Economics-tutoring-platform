@@ -120,15 +120,48 @@ export default function Home() {
         </ul>
       </Section>
 
-      {/* Её текст с сайта — он написан для родителей, поэтому и раздел
-          назван так прямо: подросток не должен читать про «своего ребёнка». */}
+      {/* Раздел адресован родителю прямо и назван так же прямо: подросток не
+          должен читать про «своего ребёнка». Построен как разговор, а не как
+          призыв: узнаваемая картина (её текст с её сайта) → почему её не
+          видно по школьным оценкам → бесплатный способ проверить → и только
+          потом разговор. Главное действие здесь — тест: он ничего не стоит
+          родителю, не требует решения и сам создаёт повод для звонка. */}
       <Section eyebrow="For parents" title={TEACHER.parentHeadline}>
         <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
-          {TEACHER.parentPitch}
+          <Reg>{TEACHER.parentPitch}</Reg>
         </p>
         <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
-          {TEACHER.sessionOffer}
+          <Reg>{TEACHER.parentBlindSpot}</Reg>
         </p>
+        {/* Числа берутся из определения теста, чтобы обещание в тексте не
+            разошлось с тем, что человек получит, когда тестов станет больше. */}
+        <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
+          The free diagnostic answers that in about {firstTest.estimatedMinutes} minutes:{' '}
+          {firstTest.questionCount} exam-style questions, then a breakdown of exactly which topics
+          are costing marks. No account, nothing to pay, and no call unless you ask for one.
+        </p>
+
+        <div className="flex flex-col gap-3 pt-1">
+          {/* Контурная кнопка, а не сплошная: главное действие на странице
+              одно, и оно в шапке. Здесь — тот же путь для того, кто дочитал
+              досюда и не хочет возвращаться наверх. */}
+          <Link
+            href={firstTest.href}
+            className="w-full rounded border border-ink px-5 py-3.5 text-center text-[15px] font-semibold transition-colors hover:bg-surface sm:w-fit"
+          >
+            Send the free test to your child
+          </Link>
+          <p className="max-w-measure text-[15px] leading-relaxed text-ink-soft">
+            {TEACHER.parentSessionOffer} Write to me at{' '}
+            <a
+              href={`mailto:${CTA.email}`}
+              className="font-medium text-ochre underline underline-offset-2"
+            >
+              {CTA.email}
+            </a>
+            .
+          </p>
+        </div>
       </Section>
 
       <Section title={`About ${TEACHER.name}`}>
@@ -164,14 +197,6 @@ export default function Home() {
             className="font-medium text-ochre underline underline-offset-2"
           >
             Facebook
-          </a>
-          <a
-            href={TEACHER.siteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-ochre underline underline-offset-2"
-          >
-            {TEACHER.brand}
           </a>
         </div>
       </Section>
