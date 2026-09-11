@@ -52,6 +52,10 @@ export interface TestDefinition {
   scope: TestScope;
   title: string;
   shortTitle: string;
+  /** «Unit 1», «Unit 2» — подставляется в оговорку на экране результатов.
+   *  Раньше та оговорка была вписана в компонент словами «Unit 1» и на
+   *  любом втором тесте начала бы врать. */
+  unitLabel: string;
   blurb: string;
   questionCount: number;
   estimatedMinutes: number;

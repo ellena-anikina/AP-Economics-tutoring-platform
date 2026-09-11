@@ -1,4 +1,5 @@
 import PPF, { type PPFProps } from '@/components/diagrams/PPF';
+import SupplyDemand, { type SupplyDemandProps } from '@/components/diagrams/SupplyDemand';
 import type { Stimulus as StimulusData } from '@/types';
 
 function StimulusTable({
@@ -55,6 +56,9 @@ function StimulusTable({
 /** Диаграммы подключаются по имени из данных вопроса. */
 const DIAGRAMS = {
   PPF: (props: Record<string, unknown>) => <PPF {...(props as PPFProps)} />,
+  SupplyDemand: (props: Record<string, unknown>) => (
+    <SupplyDemand {...(props as unknown as SupplyDemandProps)} />
+  ),
 } as const;
 
 export default function Stimulus({ stimulus }: { stimulus: StimulusData }) {

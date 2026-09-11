@@ -153,8 +153,8 @@ export default function Results({
           <span className="font-serif text-2xl text-ink-soft">out of {result.total} correct</span>
         </div>
         <p className="max-w-measure text-pretty text-[15px] leading-relaxed text-ink-soft">
-          This test covers Unit 1 only, so it is not a prediction of your AP® score — it shows which
-          topics in this unit are costing you points right now.
+          This test covers {test.unitLabel} only, so it is not a prediction of your AP® score — it
+          shows which topics in this unit are costing you points right now.
           {skipped > 0 ? ` You left ${skipped} ${skipped === 1 ? 'question' : 'questions'} blank.` : ''}
         </p>
       </header>

@@ -177,7 +177,10 @@ export default function TestRunner({
         <section className="flex flex-col gap-3">
           <h2 className="font-serif text-xl font-semibold">What you get at the end</h2>
           <ul className="flex flex-col gap-2 text-[15px] leading-relaxed text-ink-soft">
-            <li>— Your score, broken down across all six topics in the unit</li>
+            {/* Без числа: тем шесть в Unit 1 и девять в Unit 2, а обещание
+                на входе обязано совпадать с тем, что человек увидит на выходе.
+                Вшитое «six» на втором тесте уже врало. */}
+            <li>— Your score, broken down across every topic in the unit</li>
             <li>— The topics costing you the most marks, named specifically</li>
             <li>— Every question explained, including why the answer you picked looked right</li>
           </ul>
