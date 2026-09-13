@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
-import { Analytics } from '@vercel/analytics/next';
+import SiteHeader from '@/components/SiteHeader';
 import './globals.css';
 
 /**
@@ -48,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body className="font-sans antialiased">
+        <SiteHeader />
         {children}
         {/* Дисклеймер центрирован, а не прижат к левому краю колонки.
             Он обязан быть на каждой странице (требование College Board),
@@ -63,7 +64,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             not affiliated with, and does not endorse, this website.
           </p>
         </footer>
-        <Analytics />
       </body>
     </html>
   );

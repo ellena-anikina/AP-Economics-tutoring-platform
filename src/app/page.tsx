@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import BookButton from '@/components/BookButton';
 import Portrait from '@/components/Portrait';
 import Reg from '@/components/Reg';
 import Section from '@/components/Section';
@@ -6,6 +7,7 @@ import TestCard from '@/components/TestCard';
 import { CTA } from '@/config/cta';
 import { TEACHER } from '@/config/teacher';
 import { TESTS } from '@/config/tests';
+import { whatsappGeneral } from '@/lib/contact-links';
 
 export default function Home() {
   const firstTest = TESTS[0];
@@ -90,18 +92,22 @@ export default function Home() {
           are costing marks. No account, nothing to pay, and no call unless you ask for one.
         </p>
 
+        {/* Две кнопки — две степени готовности. Тест ничего не стоит и не
+            требует решения, поэтому он идёт первым и контурной кнопкой.
+            Запись — для родителя, который уже понял, что хочет поговорить;
+            зелёная заливка отделяет её от всего остального на сайте. */}
         <div className="flex flex-col gap-3 pt-1">
-          {/* Контурная кнопка, а не сплошная: главное действие на странице
-              одно, и оно в шапке. Здесь — тот же путь для того, кто дочитал
-              досюда и не хочет возвращаться наверх. */}
-          <Link
-            href={firstTest.href}
-            className="w-full rounded border border-ink px-5 py-3.5 text-center text-[15px] font-semibold transition-colors hover:bg-surface sm:w-fit"
-          >
-            Send the free test to your child
-          </Link>
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
+            <Link
+              href={firstTest.href}
+              className="w-full rounded border border-ink px-5 py-3.5 text-center text-[15px] font-semibold transition-colors hover:bg-surface sm:w-fit"
+            >
+              Send the free test to your child
+            </Link>
+            <BookButton href={whatsappGeneral()} size="md" full />
+          </div>
           <p className="max-w-measure text-[15px] leading-relaxed text-ink-soft">
-            {TEACHER.parentSessionOffer} Write to me at{' '}
+            {TEACHER.parentSessionOffer} You can also write to me at{' '}
             <a
               href={`mailto:${CTA.email}`}
               className="font-medium text-ochre underline underline-offset-2"

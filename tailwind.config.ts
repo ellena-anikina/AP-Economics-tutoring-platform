@@ -20,6 +20,7 @@ export default {
         bad: 'var(--bad)',
         'bad-bg': 'var(--bad-bg)',
         warn: 'var(--warn)',
+        wa: 'var(--wa)',
       },
       fontFamily: {
         /* Фолбэк стоит ВНУТРИ var(): если переменной нет, подставится

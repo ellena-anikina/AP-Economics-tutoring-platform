@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import ParentHandoff from '@/components/ParentHandoff';
 import ResultsCta from '@/components/ResultsCta';
 import Stimulus from '@/components/Stimulus';
 import { questionsLost } from '@/lib/scoring';
@@ -214,6 +215,8 @@ export default function Results({
       ) : null}
 
       <ResultsCta test={test} result={result} />
+
+      <ParentHandoff test={test} result={result} />
 
       <section className="flex flex-col gap-2">
         <h2 className="text-balance font-serif text-xl font-semibold tracking-[-0.01em]">Every question explained</h2>

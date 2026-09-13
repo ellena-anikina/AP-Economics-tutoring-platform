@@ -15,8 +15,15 @@ export const CTA: {
   mode: CtaMode;
   email: string;
   bookingUrl: string;
+  /** Только цифры, со страновым кодом и без «+» — так требует wa.me.
+   *  962 — Иордания, где WhatsApp основной способ связи для бизнеса. */
+  whatsapp: string;
+  /** Текст на кнопке. Формулировка преподавателя. */
+  bookLabel: string;
 } = {
   mode: 'contact',
   email: 'olgashalamaiwba@gmail.com',
   bookingUrl: '',
+  whatsapp: '962791655454',
+  bookLabel: 'Book your free consultation',
 };

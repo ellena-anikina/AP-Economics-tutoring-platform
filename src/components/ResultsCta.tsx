@@ -1,12 +1,10 @@
-'use client';
-
-import { useState } from 'react';
+import BookButton from '@/components/BookButton';
 import ContactForm from '@/components/ContactForm';
 import TeacherCard from '@/components/TeacherCard';
 import { CTA } from '@/config/cta';
 import { TEACHER } from '@/config/teacher';
 import type { ResultSummary } from '@/lib/contact-schema';
-import { parentMailto, studentMailto } from '@/lib/contact-links';
+import { studentMailto, whatsappResult } from '@/lib/contact-links';
 import type { TestDefinition, TestResult } from '@/types';
 
 function topicNumbers(result: TestResult, n: number): string[] {
@@ -22,38 +20,24 @@ function summarise(test: TestDefinition, result: TestResult): ResultSummary {
   };
 }
 
-function InstagramIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function FacebookIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <path d="M15.8 7.7h-1c-1 0-1.7.7-1.7 1.7v8.9" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M10.9 12.3h4.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function MailIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <rect x="3" y="5" width="18" height="14" rx="2.5" />
-      <path d="M3.8 6.8 12 12.6l8.2-5.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-const contactLink =
-  'flex items-center gap-2 rounded border border-rule-strong bg-ground px-3.5 py-2.5 text-[14px] font-medium hover:bg-surface';
-
+/**
+ * Призыв к действию на экране результатов — ровно одно действие.
+ *
+ * Здесь раньше жили пять кликабельных элементов: WhatsApp, письмо, Instagram,
+ * адрес с кнопкой «скопировать» и ссылка «отправить родителю». Называть это
+ * одним призывом было самообманом. Instagram убран: это второй мессенджер для
+ * того же намерения «написать ей», а два мессенджера рядом заставляют
+ * выбирать приложение вместо того, чтобы написать. Адрес с кнопкой копирования
+ * убран тоже — он делал ровно то же, что ссылка «Email my results», третьим
+ * способом.
+ *
+ * Осталось: кто это, что предлагается, зелёная кнопка и одна тихая строка на
+ * случай, если человек не пользуется WhatsApp.
+ *
+ * Путь к родителю отсюда вынесен — он адресован другому человеку и живёт
+ * отдельным блоком ниже (`ParentHandoff`). Внутри чужого призыва он и мешал
+ * записи, и сам не работал.
+ */
 export default function ResultsCta({
   test,
   result,
@@ -61,7 +45,6 @@ export default function ResultsCta({
   test: TestDefinition;
   result: TestResult;
 }) {
-  const [copied, setCopied] = useState(false);
   const weak = topicNumbers(result, 2);
   const summary = summarise(test, result);
 
@@ -73,16 +56,6 @@ export default function ResultsCta({
     weak.length > 0
       ? `Let’s work through ${weak.join(' and ')} together`
       : 'Let’s talk through this test together';
-
-  async function copyEmail() {
-    try {
-      await navigator.clipboard.writeText(CTA.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    } catch {
-      setCopied(false);
-    }
-  }
 
   return (
     <section className="flex flex-col gap-5 rounded border border-ochre-soft bg-surface-alt p-5 sm:p-7">
@@ -110,56 +83,22 @@ export default function ResultsCta({
           disclosure="Your score and the flagged topics are included so I can prepare before the call."
         />
       ) : (
-        <div className="flex flex-col gap-3.5">
-          {/* Три равноправных контакта одной строкой. Раньше они повторялись
-              трижды по всему блоку, и до сути приходилось листать. */}
-          <div className="flex flex-wrap gap-2.5">
-            <a href={studentMailto(test, result)} className={contactLink}>
-              <MailIcon />
-              Email my results
-            </a>
-            <a
-              href={TEACHER.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={contactLink}
-            >
-              <InstagramIcon />
-              Instagram
-            </a>
-            <a
-              href={TEACHER.facebookUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={contactLink}
-            >
-              <FacebookIcon />
-              Facebook
-            </a>
-          </div>
+        <div className="flex flex-col gap-3">
+          {/* В сообщение уже подставлены счёт и слабые темы: преподавателю
+              есть с чего начать, а ученику нечего сочинять. Отправляет
+              сообщение он сам — wa.me только заполняет поле ввода. */}
+          <BookButton href={whatsappResult(test, result)} size="lg" full />
 
-          <div className="flex flex-col gap-2 text-[13px] text-ink-mute">
-            <p className="flex flex-wrap items-center gap-2">
-              <code className="font-mono text-ink-soft">{CTA.email}</code>
-              <button
-                type="button"
-                onClick={copyEmail}
-                className="rounded border border-rule-strong px-2 py-0.5 text-[12px] font-medium hover:bg-surface"
-              >
-                {copied ? 'Copied' : 'Copy'}
-              </button>
-            </p>
-            {/* Решение о занятиях чаще принимает родитель, поэтому у него есть
-                свой готовый текст письма — но одной строкой, а не блоком. */}
-            <p>
-              <a
-                href={parentMailto(test, result)}
-                className="font-medium text-ochre underline underline-offset-2"
-              >
-                Send these results to a parent
-              </a>
-            </p>
-          </div>
+          <p className="text-[13px] leading-relaxed text-ink-mute">
+            Not on WhatsApp?{' '}
+            <a
+              href={studentMailto(test, result)}
+              className="font-medium text-ochre underline underline-offset-2"
+            >
+              Email these results to {TEACHER.shortName}
+            </a>{' '}
+            instead.
+          </p>
         </div>
       )}
     </section>
