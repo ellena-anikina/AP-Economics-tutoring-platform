@@ -35,7 +35,7 @@ function summarise(test: TestDefinition, result: TestResult): ResultSummary {
  * случай, если человек не пользуется WhatsApp.
  *
  * Путь к родителю отсюда вынесен — он адресован другому человеку и живёт
- * отдельным блоком ниже (`ParentHandoff`). Внутри чужого призыва он и мешал
+ * отдельным блоком ниже (`ShareResults`). Внутри чужого призыва он и мешал
  * записи, и сам не работал.
  */
 export default function ResultsCta({

@@ -46,7 +46,30 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
+    /* suppressHydrationWarning нужен из-за скрипта ниже и только из-за него.
+       Скрипт дописывает на <html> атрибут data-shared ДО того, как React
+       оживит разметку, — а React сравнивает пришедшее с сервера с тем, что
+       видит в браузере, и лишний атрибут считает расхождением. Ругань в
+       консоли была честной: разметка правда разная. Подавление действует
+       ровно на один элемент и только на его собственные атрибуты; на <html>
+       их всего два, оба вычисляются на сервере и меняться не могут. Так же
+       устроены все скрипты «не мигнуть темой при загрузке». */
+    <html lang="en" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Результат теста ездит в адресе после «#». Сервер о нём не знает и
+            отдаёт разметку заставки теста — поэтому пришедший по ссылке
+            родитель увидел бы на долю секунды «Start the test» и только потом
+            результат. Этот скрипт выполняется до первой отрисовки и помечает
+            документ; правило в globals.css прячет заставку, а TestRunner
+            снимает пометку, как только оживает. Пустой экран на время
+            загрузки читается как «грузится», чужой — как «сломалось». */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(location.hash.slice(0,3)==='#r=')document.documentElement.setAttribute('data-shared','')",
+          }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <SiteHeader />
         {children}

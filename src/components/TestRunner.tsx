@@ -6,6 +6,7 @@ import Reg from '@/components/Reg';
 import { TeacherByline } from '@/components/TeacherCard';
 import Results from '@/components/Results';
 import { scoreAttempt } from '@/lib/scoring';
+import { SHARE_HASH, decodeAttempt, encodeAttempt } from '@/lib/share-link';
 import { clearAttempt, loadAttempt, newId, saveAttempt, visitorId } from '@/lib/storage';
 import type { Attempt, ChoiceId, Question, TestDefinition } from '@/types';
 
@@ -39,13 +40,42 @@ export default function TestRunner({
   // запуска — иначе на следующей итерации нечем будет считать тайминг.
   const enteredAt = useRef<number>(Date.now());
 
+  /**
+   * Первое, что делаем на клиенте, — смотрим, не результат ли у нас в адресе.
+   *
+   * Сервер отдаёт разметку заставки теста и знать про хэш не может (после «#»
+   * браузер серверу ничего не отправляет), поэтому разбор возможен только
+   * здесь. Атрибут data-shared ставит крошечный скрипт в layout: пока
+   * страница не ожила, он прячет заставку, чтобы пришедший по ссылке родитель
+   * не увидел на долю секунды «Start the test». Снимаем его в любом случае —
+   * иначе заставка останется скрытой и для того, кто захочет пройти тест.
+   */
   useEffect(() => {
+    document.documentElement.removeAttribute('data-shared');
+
+    const hash = window.location.hash;
+    if (hash.startsWith(SHARE_HASH)) {
+      const incoming = decodeAttempt(hash.slice(SHARE_HASH.length), questions, test.slug);
+      if (incoming) {
+        // Показываем тот же экран результатов, что и после своего теста:
+        // по адресу нельзя отличить родителя от школьника, открывшего
+        // собственный результат из закладки или после обновления страницы.
+        setAttempt(incoming);
+        setPhase('done');
+        return;
+      }
+      // Ссылка испорчена при пересылке или ведёт на другой юнит. Показывать
+      // выдуманный результат нельзя, поэтому просто убираем мусор из адреса
+      // и открываем страницу как обычно.
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+
     visitorId();
     const saved = loadAttempt(test.slug);
     if (saved && !saved.finishedAt && Object.keys(saved.answers).length > 0) {
       setResumable(saved);
     }
-  }, [test.slug]);
+  }, [questions, test.slug]);
 
   const commitTime = useCallback(
     (draft: Attempt, questionId: string): Attempt => {
@@ -109,17 +139,27 @@ export default function TestRunner({
 
   function finish() {
     const q = questions[index];
-    setAttempt((prev) => {
-      const updated = { ...commitTime(prev, q.id), finishedAt: Date.now() };
-      saveAttempt(updated);
-      return updated;
-    });
+    const updated: Attempt = { ...commitTime(attempt, q.id), finishedAt: Date.now() };
+    setAttempt(updated);
+    saveAttempt(updated);
+
+    // Результат уезжает в адрес страницы сразу, а не по нажатию «поделиться».
+    // Тогда ссылка в адресной строке уже верная: её можно скопировать оттуда,
+    // положить в закладки или просто обновить страницу и снова увидеть разбор.
+    window.history.replaceState(
+      null,
+      '',
+      window.location.pathname + SHARE_HASH + encodeAttempt(updated, questions),
+    );
+
     setPhase('done');
-    if (typeof window !== 'undefined') window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0 });
   }
 
   function retake() {
     clearAttempt(test.slug);
+    // Без этого обновление страницы вернуло бы старый результат из адреса.
+    window.history.replaceState(null, '', window.location.pathname);
     start(emptyAttempt(test.slug));
   }
 
@@ -143,7 +183,7 @@ export default function TestRunner({
   if (phase === 'idle') {
     const answeredCount = resumable ? Object.values(resumable.answers).filter((a) => a.choiceId).length : 0;
     return (
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8" data-test-idle>
         <header className="flex flex-col gap-4">
           <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-ink-mute">
             Free practice test · no account needed
