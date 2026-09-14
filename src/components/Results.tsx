@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import ParentHandoff from '@/components/ParentHandoff';
 import ResultsCta from '@/components/ResultsCta';
+import StayInTouch from '@/components/StayInTouch';
 import Stimulus from '@/components/Stimulus';
 import { questionsLost } from '@/lib/scoring';
 import type { Attempt, ChoiceId, Question, TestDefinition, TestResult, TopicResult } from '@/types';
@@ -234,6 +235,8 @@ export default function Results({
           ))}
         </ul>
       </section>
+
+      <StayInTouch />
 
       <div className="border-t border-rule pt-6">
         <button

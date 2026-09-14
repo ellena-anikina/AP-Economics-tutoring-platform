@@ -20,10 +20,24 @@ export const CTA: {
   whatsapp: string;
   /** Текст на кнопке. Формулировка преподавателя. */
   bookLabel: string;
+  /**
+   * Куда звать тех, кто прошёл тест, но записываться сегодня не готов.
+   * Instagram и Facebook берутся из teacher.ts — здесь только WhatsApp.
+   *
+   * `kind` — не мелочь. В КАНАЛЕ подписка односторонняя, и ни админ, ни
+   * другие подписчики не видят ничьих номеров. В ГРУППЕ номер каждого
+   * участника виден всем остальным, а участники здесь — школьники. От этого
+   * зависит подпись под кнопкой: обещать приватность, которой нет, нельзя.
+   *
+   * Пока url пустой, кнопка WhatsApp просто не выводится: ссылка в никуда
+   * хуже, чем её отсутствие.
+   */
+  whatsappFollow: { url: string; kind: 'channel' | 'group' };
 } = {
   mode: 'contact',
   email: 'olgashalamaiwba@gmail.com',
   bookingUrl: '',
   whatsapp: '962791655454',
   bookLabel: 'Book your free consultation',
+  whatsappFollow: { url: '', kind: 'channel' },
 };

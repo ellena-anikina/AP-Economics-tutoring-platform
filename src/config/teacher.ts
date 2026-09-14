@@ -34,6 +34,26 @@ export const TEACHER = {
   instagramUrl: 'https://www.instagram.com/olganomics5/',
   facebookUrl: 'https://www.facebook.com/um.naji.37',
 
+  /* ЧЕМ ПОЛЕЗЕН КАЖДЫЙ АККАУНТ — её словами, и только её.
+   *
+   * Пустая строка — подпись не выводится, остаётся одно название. Так и
+   * должно быть по умолчанию: мы не знаем, что и где она публикует. Здесь
+   * уже стояло выдуманное «Where I post for students» / «for parents» —
+   * оно выросло из нашего же решения, какой канал кому показывать, и было
+   * принято за знание о её аккаунтах. Обещание на сайте, которое некому
+   * сдержать, хуже отсутствия подписи. */
+  instagramNote: '',
+  facebookNote: '',
+
+  /** Что она выкладывает в соцсетях — одной фразой, её словами. Пусто —
+   *  на экране результатов остаётся только то, за что отвечаем мы сами:
+   *  новые тесты по юнитам.
+   *
+   *  Знак ® ставится прямо в строке: её пропускают через Reg, который сам
+   *  сделает его надстрочным и привяжет к «AP» неразрывно. */
+  socialBlurb:
+    'AP® Economics tips, practice questions, exam advice, and useful resources to help you stay on track with your preparation.',
+
   credentialLine: 'More than 10 years teaching economics · AP® Micro and AP® Macro',
 
   /** Одно предложение. Длинная биография на экране результатов только мешает
