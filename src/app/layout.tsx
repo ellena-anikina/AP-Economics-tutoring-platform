@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/next';
 import SiteHeader from '@/components/SiteHeader';
 import './globals.css';
 
@@ -87,6 +88,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             not affiliated with, and does not endorse, this website.
           </p>
         </footer>
+        {/* Vercel Analytics — просмотры и посетители без cookie. Поставлена
+            Еленой 10.09 и случайно стёрта 13.09, когда этот файл
+            перезаписывали из устаревшей копии. Не удалять при правках layout. */}
+        <Analytics />
       </body>
     </html>
   );
