@@ -4,6 +4,7 @@ import Portrait from '@/components/Portrait';
 import Reg from '@/components/Reg';
 import Section from '@/components/Section';
 import TestCard from '@/components/TestCard';
+import Testimonials from '@/components/Testimonials';
 import { CTA } from '@/config/cta';
 import { TEACHER } from '@/config/teacher';
 import { TESTS } from '@/config/tests';
@@ -70,6 +71,10 @@ export default function Home() {
           ))}
         </ul>
       </Section>
+
+      {/* Отзывы — между обещанием (список выше) и просьбой (раздел для
+          родителей с кнопкой записи). Почему здесь — в Testimonials.tsx. */}
+      <Testimonials />
 
       {/* Раздел адресован родителю прямо и назван так же прямо: подросток не
           должен читать про «своего ребёнка». Построен как разговор, а не как
