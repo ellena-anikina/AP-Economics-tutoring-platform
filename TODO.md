@@ -28,8 +28,9 @@
 - [x] `P1` `Ольга` **Пускать ли GPTBot** — робота, который собирает тексты для обучения моделей OpenAI.
   OAI-SearchBot (поиск в ChatGPT) пускаем в любом случае (§10).
   _19.09: пускаем — Ольга согласна. Записано в комментарии в `src/app/robots.ts`._
-- [ ] `P1` `Ольга` **Как записываться на консультацию.** На странице `/book-a-free-consultation` оставить WhatsApp, как сейчас,
+- [x] `P1` `Ольга` **Как записываться на консультацию.** На странице `/book-a-free-consultation` оставить WhatsApp, как сейчас,
   или подключить сервис записи вроде Calendly (в `src/config/cta.ts` для этого есть режим `booking`).
+  _20.09: решено — только WhatsApp, без сервиса записи._
 
 ## 1. Техническая основа — неделя 1
 
@@ -65,9 +66,14 @@
 |:-:|---|---|---|---|
 | ☐ | `P0` | `/about-olga-shalamai` | About Olga Shalamai \| Economics and Business Educator | About Olga Shalamai |
 | ☐ | `P0` | `/results` | AP Economics Student Results and Success Stories \| Olganomics | Student Results and Success Stories |
-| ☐ | `P0` | `/book-a-free-consultation` | Book a Free Economics Consultation \| Olganomics | Book a Free 15 Minute Consultation |
+| ☐ | `P0` | `/book-a-free-consultation` | Book a Free Economics Consultation \| Olganomics | Book a free 15-minute consultation |
 | ☐ | `P1` | `/faq` | AP and IGCSE Economics Tutoring FAQ \| Olganomics | Frequently Asked Questions |
 | ☐ | `P1` | `/contact` | Contact Olga Shalamai \| Olganomics | Contact Olganomics |
+
+_20.09: `/book-a-free-consultation` — код готов: WhatsApp, номер текстом, QR-код для компьютера, разметка ContactPage,
+canonical и Open Graph. Ольга утвердила страницу и текст «What happens in the session» (вопрос 49) 20.09.
+Осталось: `npm install`, закоммитить, задеплоить и открыть страницу на живом сайте. Шапка по-прежнему ведёт
+прямо в WhatsApp; на страницу ведёт ссылка из подвала._
 
 - [ ] `P0` `Елена` **Меню в шапке.** Как только появляется хоть одна новая страница, меню нужно (принцип 12 в `CONTEXT.md`).
   Состав по плану: Home · AP Economics · IGCSE · Resources · Results · About Olga и кнопка «Book a Free Consultation» (§3).
@@ -86,6 +92,7 @@
 - [ ] `P1` `Ольга` `Елена` **Форма на `/contact`.** Компонент `ContactForm` есть, но отправка почты выключена:
   включить или обойтись без формы.
 - [ ] `P1` `Елена` **Ссылки в подвале:** Olganomics · AP Economics · IGCSE Economics · IGCSE Business · Resources · Results · About · Contact (§5).
+  - [x] Начато 20.09: Practice tests и Free consultation — страницы, которые уже есть (`layout.tsx`).
   - [x] Дисклеймер College Board на каждой странице — уже в `layout.tsx`.
 
 ## 3. Услуги и новая главная — неделя 3
@@ -231,6 +238,9 @@
   около 8 мест (`grep text-ochre`). Чинить одним токеном, а не по местам: отдельный цвет охры для текста,
   ближайший проходящий — `#93631a` (4,98 на фоне, 4,57 на `surface`), а фирменный оставить для крупных цифр
   и декора. Это меняет вид бренда — показать Ольге. В тёмной теме охра проходит (8,19).
+  Там же — `ink-mute` (`#7a8399`): 3,64 на фоне, а им набраны надзаголовки разделов и мелкие подписи.
+  Для ссылок на странице записи уже сделан вариант без смены бренда: текст `ink`, подчёркивание охрой
+  (как линия она проходит норму 3:1) — его можно взять для всех ссылок сайта.
 
 **Проверять при каждом большом релизе** (здесь не отмечаем):
 светлая и тёмная тема, ширина 390px и широкий экран; один H1 и заголовки по порядку H1 → H2 → H3;

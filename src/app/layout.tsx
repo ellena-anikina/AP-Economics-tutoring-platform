@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import Link from 'next/link';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 import SiteHeader from '@/components/SiteHeader';
@@ -83,6 +84,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             дисклеймера не будет вовсе. Центр же совпадает всегда: обе
             колонки центрированы. */}
         <footer className="border-t border-rule">
+          {/* Ссылки подвала. Пока их две — на страницы, которые есть; план
+              продвижения (§5) расширит список, когда появятся остальные.
+              Смысл не только в удобстве: ссылка с каждой страницы — главный
+              для поисковиков сигнал, что страница важна, и путь, по которому
+              их роботы её находят. Шапку не трогаем: там одно действие. */}
+          <nav
+            aria-label="Footer"
+            className="mx-auto flex max-w-content flex-wrap justify-center gap-x-6 gap-y-2 px-5 pt-6 text-[13px] sm:px-8"
+          >
+            <Link href="/practice-test/ap-microeconomics" className="text-ink-soft hover:text-ink">
+              Practice tests
+            </Link>
+            <Link href="/book-a-free-consultation" className="text-ink-soft hover:text-ink">
+              Free consultation
+            </Link>
+          </nav>
           <p className="mx-auto max-w-content px-5 py-6 text-center text-[11.5px] leading-relaxed text-ink-mute sm:px-8">
             AP® and Advanced Placement® are trademarks registered by the College Board, which is
             not affiliated with, and does not endorse, this website.

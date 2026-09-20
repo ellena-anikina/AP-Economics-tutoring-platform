@@ -9,7 +9,7 @@ import type { TestDefinition } from '@/types';
  * редиректы. Забыть новую страницу не получится: site-pages.test.ts
  * сверяет этот список с папкой src/app и падает, если что-то не сходится.
  */
-export const STATIC_PATHS: string[] = ['/'];
+export const STATIC_PATHS: string[] = ['/', '/book-a-free-consultation'];
 
 /**
  * Страницы, которых в карте сайта быть не должно, — с причиной.

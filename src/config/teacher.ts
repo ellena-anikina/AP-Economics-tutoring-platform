@@ -111,6 +111,18 @@ export const TEACHER = {
     'If you would rather talk first, the first 15-minute session is free — with you, with your child, or with both ' +
     'of you.',
 
+  /** Что происходит на бесплатной консультации — для страницы записи.
+   *
+   *  Дословно её ответ на вопрос 49 из «50 Questions and Answers»
+   *  (QUESTIONS.md). Вопросы 46–49 по тому документу публикуются только после
+   *  её проверки — этот текст вместе со страницей записи она утвердила 20.09.
+   *  Правится только с ней. */
+  consultationWhatHappens:
+    'We’ll talk about your course, what you’re finding difficult and what you want help with. If you have recent ' +
+    'work or diagnostic results, those can make the conversation more useful. The aim is to identify a sensible ' +
+    'next step, whether that’s focused practice or a suitable lesson option. You can also ask me about how the ' +
+    'lessons work.',
+
   outcomesHeading: 'What students achieve with Olganomics',
 
   /** Её список результатов, дословно с её сайта. */

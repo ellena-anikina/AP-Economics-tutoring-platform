@@ -106,7 +106,7 @@
 | [46](#46-what-are-economics-lessons-with-you-like) | What are Economics lessons with you like? | ☐ | ☐ |  |  |
 | [47](#47-how-do-your-online-economics-lessons-work) | How do your online Economics lessons work? | ☐ | ☐ |  |  |
 | [48](#48-can-i-take-lessons-with-you-if-i-dont-live-in-jordan) | Can I take lessons with you if I don't live in Jordan? | ☐ | ☐ |  |  |
-| [49](#49-what-happens-in-my-first-economics-consultation-with-you) | What happens in my first Economics consultation with you? | ☐ | ☐ |  |  |
+| [49](#49-what-happens-in-my-first-economics-consultation-with-you) | What happens in my first Economics consultation with you? | ✅ | ☐ | `/book-a-free-consultation` | Ольга утвердила 20.09; на сайте после деплоя |
 | [50](#50-should-i-choose-individual-lessons-group-lessons-or-a-live-session-for-my-child) | Should I choose individual lessons, group lessons or a live session for my child? | ☐ | ☐ |  | пересекается с 9 |
 
 ---

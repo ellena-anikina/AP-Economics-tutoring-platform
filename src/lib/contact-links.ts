@@ -23,6 +23,20 @@ export function whatsappLink(message?: string): string {
   return message ? `${base}?text=${encodeURIComponent(message)}` : base;
 }
 
+/**
+ * Номер WhatsApp так, как его пишут люди: +962 79 165 5454.
+ *
+ * В конфиге номер хранится цифрами — так требует wa.me. На странице записи
+ * его показывают текстом: его сохраняют в контакты и переписывают, а
+ * поисковики и нейросети берут номер из текста страницы, а не из ссылки.
+ * Иорданский мобильный делится 2-3-4; любой другой номер выводится
+ * цифрами с плюсом, без догадок о чужом формате.
+ */
+export function displayPhone(digits: string = CTA.whatsapp): string {
+  const jo = digits.match(/^962(\d{2})(\d{3})(\d{4})$/);
+  return jo ? `+962 ${jo[1]} ${jo[2]} ${jo[3]}` : `+${digits}`;
+}
+
 /** Общее сообщение — из шапки и с главной, где результата ещё нет. */
 export function whatsappGeneral(): string {
   return whatsappLink(

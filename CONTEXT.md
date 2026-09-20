@@ -41,7 +41,7 @@
 
 ## 3. Стек и запуск
 
-Next.js 15.5 (App Router) · React 19 · TypeScript strict · Tailwind 3.4 · `@vercel/analytics`.
+Next.js 15.5 (App Router) · React 19 · TypeScript strict · Tailwind 3.4 · `@vercel/analytics` · `qrcode-generator`.
 Сайт статический: базы нет, результаты считаются в браузере.
 
 ```bash
@@ -57,6 +57,9 @@ npm run build
 - `/` — главная. Порядок блоков: первый экран (портрет, «Find out how to reach a 5 in AP® Economics»,
   кнопка «Start the free test») → Practice tests → What students achieve → **What former students say**
   (отзывы) → For parents → About.
+- `/book-a-free-consultation` — запись на бесплатную консультацию: ответ текстом в первых строках (для поиска
+  и нейросетей), кнопка WhatsApp, номер, QR-код для компьютера, «What happens in the session» — её ответ
+  на вопрос 49. Шапка ведёт прямо в WhatsApp, на страницу — ссылка из подвала.
 - `/practice-test/ap-microeconomics` — обзор экзамена и список тестов. Формат экзамена сверен
   с College Board: Section I — 60 вопросов, 1 ч 10 мин, 66 %; Section II — 3 вопроса, 1 ч
   (включая 10 минут на чтение), 33 %.
@@ -87,6 +90,7 @@ npm run build
 | `src/components/Results.tsx` | Экран результатов целиком |
 | `src/components/ResultsCta.tsx` · `ShareResults.tsx` · `StayInTouch.tsx` | Три блока экрана результатов |
 | `src/components/SocialButton.tsx` | Кнопка канала (Instagram, Facebook, WhatsApp-канал, почта) — общая для экрана результатов и блока About на главной |
+| `src/components/WhatsAppQr.tsx` | QR-код чата WhatsApp для страницы записи. Считается при сборке (`qrcode-generator`), в браузер уходит готовый SVG |
 | `src/components/Testimonials.tsx` · `ReviewBody.tsx` | Отзывы на главной |
 | `src/components/BookButton.tsx` · `SiteHeader.tsx` | Зелёная кнопка записи и шапка |
 | `src/components/icons.tsx` · `Reg.tsx` | Все значки · надстрочный ® у «AP» |
