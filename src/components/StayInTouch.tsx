@@ -1,6 +1,6 @@
-import { FacebookIcon, InstagramIcon, WhatsAppIcon } from '@/components/icons';
 import { CTA } from '@/config/cta';
 import Reg from '@/components/Reg';
+import SocialButton, { type SocialKind } from '@/components/SocialButton';
 import { TEACHER } from '@/config/teacher';
 
 /**
@@ -25,18 +25,10 @@ import { TEACHER } from '@/config/teacher';
  * Раньше глагол стоял один раз во вводной фразе, теперь он на кнопках, и
  * из абзаца его нужно было убрать — иначе он звучал бы трижды подряд.
  *
- * ЦВЕТ ЖИВЁТ В ЗНАЧКЕ, А НЕ В ЗАЛИВКЕ КНОПКИ. Фирменная заливка с белой
- * надписью здесь невозможна по расчёту: белый на #1877F2 даёт контраст
- * 4,23 при норме 4,5, на зелёном #25D366 — 1,98, а на светлом конце
- * инстаграмного градиента (#FEDA75) — 1,35, то есть надпись физически не
- * читается. Затемнять фирменные цвета до нормы значит потерять именно то,
- * ради чего их берут, — узнавание.
- *
- * Поэтому цвет отдан плитке значка: она графика, а не текст, смысл несёт
- * подпись рядом, и на 32 пикселях фирменный градиент узнаётся мгновенно.
- * Сама кнопка остаётся на фоне страницы. Так блок стал заметно ярче, но
- * охряная рамка записи выше по-прежнему самая громкая на экране — а она и
- * должна быть главной.
+ * ЦВЕТ ЖИВЁТ В ЗНАЧКЕ, А НЕ В ЗАЛИВКЕ КНОПКИ — почему, написано в
+ * SocialButton.tsx: сама кнопка теперь общая с блоком «About» на главной.
+ * Так блок стал заметно ярче, но охряная рамка записи выше по-прежнему
+ * самая громкая на экране — а она и должна быть главной.
  *
  * ПОДПИСИ К ССЫЛКАМ БЕРУТСЯ ИЗ КОНФИГА И ПО УМОЛЧАНИЮ ПУСТЫ. Здесь стояло
  * выдуманное «Where I post for students» и «for parents». Выросло это из
@@ -46,25 +38,13 @@ import { TEACHER } from '@/config/teacher';
  * обещание за преподавателя, которое некому сдержать.
  */
 
-/* Фирменные цвета — только для плитки значка. Классы записаны литералами:
-   Tailwind ищет их в тексте файла и не увидит собранную из кусков строку. */
-const TILE: Record<string, string> = {
-  instagram:
-    'bg-[linear-gradient(135deg,#FEDA75_0%,#FA7E1E_28%,#D62976_58%,#962FBF_80%,#4F5BD5_100%)]',
-  facebook: 'bg-[#1877F2]',
-  // Наш затемнённый зелёный, а не фирменный #25D366: иначе на одном экране
-  // окажутся два разных зелёных — здесь и на кнопке записи.
-  whatsapp: 'bg-wa',
-};
-
 interface Door {
-  id: keyof typeof TILE;
+  id: SocialKind;
   href: string;
   /** Надпись на кнопке — с глаголом. */
   label: string;
   /** Чем полезна эта дверь — из конфига, её словами. Пусто — не выводится. */
   who: string;
-  icon: React.ReactNode;
 }
 
 export default function StayInTouch() {
@@ -79,7 +59,6 @@ export default function StayInTouch() {
             href: wa.url,
             label: 'Follow on WhatsApp',
             who: '',
-            icon: <WhatsAppIcon className="h-[18px] w-[18px]" />,
           },
         ]
       : []),
@@ -88,14 +67,12 @@ export default function StayInTouch() {
       href: TEACHER.instagramUrl,
       label: 'Follow on Instagram',
       who: TEACHER.instagramNote,
-      icon: <InstagramIcon className="h-[18px] w-[18px]" />,
     },
     {
       id: 'facebook' as const,
       href: TEACHER.facebookUrl,
       label: 'Follow on Facebook',
       who: TEACHER.facebookNote,
-      icon: <FacebookIcon className="h-[18px] w-[18px]" />,
     },
   ];
 
@@ -125,35 +102,7 @@ export default function StayInTouch() {
       <ul className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
         {doors.map((door) => (
           <li key={door.id} className="sm:w-auto">
-            <a
-              href={door.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex w-full items-center gap-3 rounded-lg border border-rule-strong bg-ground px-4 py-3 transition-colors hover:border-ink-mute hover:bg-surface sm:w-auto"
-            >
-              <span
-                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-white ${
-                  TILE[door.id]
-                }`}
-              >
-                {door.icon}
-              </span>
-              <span className="flex min-w-0 flex-col gap-0.5">
-                <span className="text-[15px] font-semibold leading-tight">{door.label}</span>
-                {door.who ? (
-                  <span className="text-[13px] leading-snug text-ink-mute">{door.who}</span>
-                ) : null}
-              </span>
-              {/* Стрелка — тот же знак «ведёт наружу», что на карточках
-                  тестов. Охряной она становится под курсором: в покое цвет
-                  бренда уже занят плиткой, и третий акцент был бы лишним. */}
-              <span
-                aria-hidden
-                className="ml-auto shrink-0 pl-3 text-[15px] font-semibold text-ink-mute transition-colors group-hover:text-ochre sm:ml-2 sm:pl-0"
-              >
-                →
-              </span>
-            </a>
+            <SocialButton kind={door.id} href={door.href} label={door.label} note={door.who} />
           </li>
         ))}
       </ul>

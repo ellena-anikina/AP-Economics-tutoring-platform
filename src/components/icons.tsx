@@ -79,3 +79,23 @@ export function FacebookIcon({ className = 'h-[18px] w-[18px]' }: { className?: 
     </svg>
   );
 }
+
+/** Конверт. Скругление рамки то же, что у Instagram и Facebook, чтобы
+ *  в одном ряду с ними значок читался как часть набора. */
+export function MailIcon({ className = 'h-[18px] w-[18px]' }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={`${className} ${BOX}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="5" width="18" height="14" rx="3" />
+      <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
+    </svg>
+  );
+}

@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import BookButton from '@/components/BookButton';
+import { MailIcon } from '@/components/icons';
 import Portrait from '@/components/Portrait';
 import Reg from '@/components/Reg';
 import Section from '@/components/Section';
+import SocialButton from '@/components/SocialButton';
 import TestCard from '@/components/TestCard';
 import Testimonials from '@/components/Testimonials';
 import { CTA } from '@/config/cta';
@@ -135,30 +137,48 @@ export default function Home() {
           {TEACHER.approach}
         </p>
 
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-[14px]">
+        {/* Те же кнопки, что в блоке «Keep AP® Economics in your feed» на экране
+            результатов: одна и та же дверь в Instagram не должна выглядеть на
+            двух страницах по-разному. Раньше здесь были охряные текстовые
+            ссылки, а на телефоне «Facebook» падал на отдельную строку.
+
+            Надписи другие, и это намеренно. На экране результатов блок просит
+            подписаться, поэтому там глагол «Follow». Здесь человек ещё не прошёл
+            тест и читает, кто такая Ольга, — ему нужна справка, а не призыв
+            уйти в ленту. Поэтому название канала и адрес: @olganomics5 можно
+            найти в Instagram с телефона родителя.
+
+            У Facebook второй строки нет: в адресе профиля служебное имя, а
+            придумывать подпись за Ольгу нельзя (принцип 2 в CONTEXT.md).
+            Чтобы кнопки в ряд были одной высоты, li — flex: кнопка
+            растягивается по самой высокой соседке. */}
+        <ul className="flex flex-col gap-2.5 pt-2 sm:flex-row sm:flex-wrap">
+          <li className="flex">
+            <SocialButton
+              kind="instagram"
+              href={TEACHER.instagramUrl}
+              label="Instagram"
+              note={TEACHER.instagram}
+            />
+          </li>
+          <li className="flex">
+            <SocialButton kind="facebook" href={TEACHER.facebookUrl} label="Facebook" />
+          </li>
+        </ul>
+        {/* Почта — строкой, а не третьей кнопкой. Она не соцсеть, фирменной
+            плитки у неё нет, и третья кнопка с адресом не помещается в ряд:
+            на широком экране не хватает 8 пикселей, ряд рвётся на 2 + 1.
+            Стиль — как у той же ссылки в блоке для родителей выше: на одной
+            странице одна ссылка выглядит одинаково. */}
+        <p className="flex items-center gap-2 text-[14px]">
+          <MailIcon className="h-4 w-4 text-ink-mute" />
           <a
             href={`mailto:${CTA.email}`}
             className="font-medium text-ochre underline underline-offset-2"
           >
             {CTA.email}
           </a>
-          <a
-            href={TEACHER.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-ochre underline underline-offset-2"
-          >
-            Instagram
-          </a>
-          <a
-            href={TEACHER.facebookUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-ochre underline underline-offset-2"
-          >
-            Facebook
-          </a>
-        </div>
+        </p>
       </Section>
     </main>
   );

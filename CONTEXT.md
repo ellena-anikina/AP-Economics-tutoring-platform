@@ -66,6 +66,8 @@ npm run build
   WhatsApp с готовым сообщением со счётом) → **«For your parents»** (кнопка «Share this page») →
   разбор всех вопросов → **«Keep AP® Economics in your feed»** (Instagram, Facebook, а позже
   WhatsApp-канал) → «Take the test again».
+- `/robots.txt` и `/sitemap.xml` — для поисковиков (`src/app/robots.ts`, `src/app/sitemap.ts`). Новая страница
+  без строки в `src/lib/site-pages.ts` уронит `npm run test`.
 - Шапка на всех страницах: логотип «5» и зелёная кнопка «Free consultation». Меню нет — это решение, см. §6.
 
 ## 5. Где что лежит
@@ -75,6 +77,8 @@ npm run build
 | `src/config/teacher.ts` | Все тексты про Ольгу: заголовки, для родителей, результаты, соцсети |
 | `src/config/cta.ts` | WhatsApp, почта, режим связи (`contact` / `form` / `booking`), ссылка на WhatsApp-канал |
 | `src/config/tests.ts` | Определения тестов (число вопросов, время, названия) |
+| `src/config/site.ts` | Основной адрес сайта. Берут robots.txt и sitemap.xml, дальше — canonical и JSON-LD |
+| `src/lib/site-pages.ts` | Какие страницы идут в sitemap. Тест сверяет список с папкой `src/app` |
 | `src/config/testimonials.ts` | Отзывы учеников — дословно; в шапке файла описано, что и почему не взято |
 | `src/data/questions-micro-unit{1,2}.ts` | Вопросы, ответы, объяснения, разбор неверных вариантов |
 | `src/lib/share-link.ts` | Ссылка на результат: ответы упакованы в `#r=…` (без сервера) |
@@ -82,6 +86,7 @@ npm run build
 | `src/lib/scoring.ts` | Подсчёт: приоритет темы = (1 − доля верных) × вес темы |
 | `src/components/Results.tsx` | Экран результатов целиком |
 | `src/components/ResultsCta.tsx` · `ShareResults.tsx` · `StayInTouch.tsx` | Три блока экрана результатов |
+| `src/components/SocialButton.tsx` | Кнопка канала (Instagram, Facebook, WhatsApp-канал, почта) — общая для экрана результатов и блока About на главной |
 | `src/components/Testimonials.tsx` · `ReviewBody.tsx` | Отзывы на главной |
 | `src/components/BookButton.tsx` · `SiteHeader.tsx` | Зелёная кнопка записи и шапка |
 | `src/components/icons.tsx` · `Reg.tsx` | Все значки · надстрочный ® у «AP» |
@@ -124,6 +129,9 @@ npm run build
 **Последние коммиты:** `feat: add share the result block` (14.09), `feat: reviews` (19.09) — оба запушены.
 
 ## 8. Открытые задачи
+
+**План продвижения** разбит на задачи с отметками — `TODO.md` в корне; 50 вопросов и ответов Ольги
+(что проверено и что опубликовано) — `QUESTIONS.md`. Ниже — задачи вне этого плана.
 
 **Елене:**
 - [ ] Закоммитить и запушить `src/app/layout.tsx` (возвращена аналитика, см. §9) и этот файл.
