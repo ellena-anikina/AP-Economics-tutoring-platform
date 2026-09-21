@@ -41,10 +41,12 @@
   из `src/config/tests.ts`; остальные страницы — одной строкой в `src/lib/site-pages.ts`, а тест не даст её забыть.
   Готово, когда `/sitemap.xml` отдаёт 200 и содержит все публичные страницы с основным адресом.
   _19.09: на живом сайте, коммит `dd0ba4b`. Все 4 адреса из карты отвечают 200._
-- [ ] `P0` `Елена` **canonical** — `metadataBase` в `layout.tsx` и `alternates.canonical` на каждой странице.
+- [x] `P0` `Елена` **canonical** — `metadataBase` в `layout.tsx` и `alternates.canonical` на каждой странице.
   Готово, когда на каждой индексируемой странице ровно один canonical, указывающий на неё саму.
-  _21.09: у страницы записи и у шести страниц справочного раздела canonical есть — через `src/lib/seo.ts`.
-  Осталось: главная, страница экзамена и два теста._
+  _21.09: сделано на всех шести страницах — главная, `/faq`, запись на консультацию, страница экзамена
+  и два теста. Проверено на собранном сайте, в том числе с мусором в адресе: `/faq?utm_source=instagram&fbclid=123`
+  объявляет каноническим `/faq`. У страницы 404 canonical нет намеренно — её не индексируют.
+  Новая страница получает canonical сама, если метаданные собраны через `src/lib/seo.ts`._
 - [ ] `P0` `Елена` **Заголовок и описание главной** (§5). Сейчас title — «Free AP® Microeconomics Practice Test».
   - title: `Olganomics | AP Economics and IGCSE Business and Economics Support`
   - description: `Exam-focused AP Economics, IGCSE Economics and IGCSE Business support with Olga Shalamai. Take a free diagnostic or book a consultation.`

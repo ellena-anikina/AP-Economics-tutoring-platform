@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import BookButton from '@/components/BookButton';
 import { MailIcon } from '@/components/icons';
@@ -10,6 +11,22 @@ import { CTA } from '@/config/cta';
 import { TEACHER } from '@/config/teacher';
 import { TESTS } from '@/config/tests';
 import { whatsappGeneral } from '@/lib/contact-links';
+
+/**
+ * Только canonical: заголовок и описание главной пока приходят из layout,
+ * их замена — отдельная задача (TODO.md, раздел 1).
+ *
+ * Зачем canonical здесь. Главную открывают по десятку адресов: со слешем
+ * и без, с «?utm_source=instagram» из ссылки в профиле, с «?fbclid=…»
+ * после перехода из Facebook. Для поисковика это разные страницы, и вес
+ * делится между ними. Canonical говорит: настоящий адрес один.
+ */
+export const metadata: Metadata = {
+  // Next приводит адрес к виду без слеша в конце: `https://…vercel.app`.
+  // В карте сайта главная записана со слешем, и это не расхождение — для
+  // корня сайта оба написания означают один и тот же адрес.
+  alternates: { canonical: '/' },
+};
 
 export default function Home() {
   const firstTest = TESTS[0];

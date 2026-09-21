@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: 'Free AP® Microeconomics Unit 1 Practice Test',
   description:
     'Fifteen exam-style questions on Unit 1: scarcity, the production possibilities curve, comparative advantage, cost-benefit and marginal analysis. Free, no account needed.',
+  alternates: { canonical: '/practice-test/ap-microeconomics/unit-1' },
 };
 
 export default function Page() {

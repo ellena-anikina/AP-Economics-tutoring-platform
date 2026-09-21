@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     'Twenty exam-style questions on supply and demand: shifts, elasticity, consumer and producer surplus, price ' +
     'controls, taxes and international trade. Free, no account needed.',
+  alternates: { canonical: '/practice-test/ap-microeconomics/unit-2' },
 };
 
 export default function Page() {

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 import SiteHeader from '@/components/SiteHeader';
+import { SITE_URL } from '@/config/site';
 import './globals.css';
 
 /**
@@ -36,6 +37,15 @@ const serif = localFont({
 });
 
 export const metadata: Metadata = {
+  /**
+   * Базовый адрес сайта: к нему Next достраивает относительные canonical
+   * и Open Graph на страницах. Без него `canonical: '/'` осталась бы
+   * относительной ссылкой, а поисковику нужен полный адрес.
+   *
+   * Сам canonical здесь НЕ ставится: метаданные наследуются, и страница,
+   * забывшая его переопределить, объявила бы себя главной.
+   */
+  metadataBase: new URL(SITE_URL),
   title: 'Free AP® Microeconomics Practice Test',
   description:
     'A free diagnostic test written by a college economics instructor. See exactly which topics are costing you points.',

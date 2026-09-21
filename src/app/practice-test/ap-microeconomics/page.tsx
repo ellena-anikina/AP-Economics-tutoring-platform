@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   description:
     'Free diagnostic tests for AP® Microeconomics, written by a college economics instructor. Each one covers a ' +
     'single unit and ends with a breakdown of which topics are costing you marks. No account needed.',
+  alternates: { canonical: '/practice-test/ap-microeconomics' },
 };
 
 const EXAM_FORMAT = [
