@@ -83,14 +83,27 @@ export default function Home() {
         </div>
       </header>
 
+      {/* СПИСОК РЕЗУЛЬТАТОВ — ОДНОЙ КОЛОНКОЙ, А НЕ ДВУМЯ.
+          Раньше шесть пунктов стояли в две колонки маркированным списком, и
+          блок выглядел бледно. Причина была не в украшениях: в двух колонках
+          пункты разной длины рвали ритм — слева строка, справа две, между
+          ними дыры разной высоты. Одна колонка это убирает, серифный шрифт
+          покрупнее даёт каждой строке вес, тонкая линия отделяет пункты друг
+          от друга.
+          Значков здесь нет намеренно: «уверенность на экзамене» и «меньше
+          стресса» нечем нарисовать, а галочки и звёздочки — украшение,
+          которое ничего не сообщает. Все значки на сайте функциональны.
+          Настоящая слабость блока — не оформление, а то, что это шесть
+          обещаний без доказательств. Поэтому дальше по плану: сократить
+          список и поставить под ним баллы и кейсы (TODO.md, раздел 3). */}
       <Section title={TEACHER.outcomesHeading}>
-        <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+        <ul className="flex max-w-measure flex-col">
           {TEACHER.outcomes.map((outcome) => (
-            <li key={outcome} className="flex gap-2.5 text-[15px] leading-relaxed text-ink-soft">
-              <span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-ochre" />
-              <span>
-                <Reg>{outcome}</Reg>
-              </span>
+            <li
+              key={outcome}
+              className="border-t border-rule py-3.5 font-serif text-[1.0625rem] leading-snug first:border-0 first:pt-0 sm:text-[1.125rem]"
+            >
+              <Reg>{outcome}</Reg>
             </li>
           ))}
         </ul>
