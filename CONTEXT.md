@@ -55,7 +55,7 @@ npm run build
 ## 4. Карта сайта
 
 - `/` — главная. Порядок блоков: первый экран (портрет, «Find out how to reach a 5 in AP® Economics»,
-  кнопка «Start the free test») → Practice tests → What students achieve → **What former students say**
+  кнопка «Start a free test» — ведёт на список тестов, а не в первый юнит) → What students achieve → **What former students say**
   (отзывы) → For parents → About.
 - `/book-a-free-consultation` — запись на бесплатную консультацию: ответ текстом в первых строках (для поиска
   и нейросетей), кнопка WhatsApp, номер, QR-код для компьютера, «What happens in the session» — её ответ

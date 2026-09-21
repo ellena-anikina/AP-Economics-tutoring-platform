@@ -69,8 +69,8 @@ export const TEACHER = {
   /** Заголовок главной. Её фраза с сайта, только «AP» приведено к правилам знака. */
   homeHeadline: 'Find out how to reach a 5 in AP® Economics',
   homeSubhead:
-    'Start with a free diagnostic. Fifteen exam-style questions show exactly which topics are costing you marks — ' +
-    'then we go through them together.',
+    'Start with a free diagnostic. Exam-style questions on your unit show exactly which topics are costing you ' +
+    'marks — then we go through them together.',
 
   /** Предложение звонка школьнику — на экране результатов. И/или родитель:
    *  решение о занятиях принимают вместе, но первый звонок бесплатный,

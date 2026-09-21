@@ -5,7 +5,6 @@ import Portrait from '@/components/Portrait';
 import Reg from '@/components/Reg';
 import Section from '@/components/Section';
 import SocialButton from '@/components/SocialButton';
-import TestCard from '@/components/TestCard';
 import Testimonials from '@/components/Testimonials';
 import { CTA } from '@/config/cta';
 import { TEACHER } from '@/config/teacher';
@@ -14,6 +13,13 @@ import { whatsappGeneral } from '@/lib/contact-links';
 
 export default function Home() {
   const firstTest = TESTS[0];
+  // Время — из определений тестов, чтобы обещание не разошлось с тем, что
+  // человек получит, когда тестов станет больше.
+  const mins = TESTS.map((t) => t.estimatedMinutes);
+  const qs = TESTS.map((t) => t.questionCount);
+  const range = (v: number[]) =>
+    Math.min(...v) === Math.max(...v) ? `${v[0]}` : `${Math.min(...v)}\u2013${Math.max(...v)}`;
+  const examHref = `/practice-test/${firstTest.scope.exam}`;
 
   return (
     <main className="mx-auto flex w-full max-w-content flex-col gap-10 px-5 py-12 sm:px-8 sm:py-16 lg:gap-12 lg:py-20">
@@ -37,29 +43,28 @@ export default function Home() {
             {TEACHER.homeSubhead}
           </p>
           <div className="flex flex-col gap-2 pt-1">
+            {/* КНОПКА ВЕДЁТ НА СПИСОК ТЕСТОВ, А НЕ В ПЕРВЫЙ ЮНИТ.
+                Раньше она открывала сразу Unit 1. Пока юнит один, это было
+                короче на шаг; с двумя и дальше — ошибка: ученик, который
+                проходит Unit 2, попадал не в свой тест, а на странице теста
+                выбора юнита нет. Страница экзамена — тот самый выбор, плюс
+                формат экзамена и подпись преподавателя. Её же должен
+                находить поиск по запросу «AP Microeconomics practice test»,
+                и ссылка с главной работает на неё. */}
             <Link
-              href={firstTest.href}
+              href={examHref}
               className="w-full rounded bg-ink px-6 py-4 text-center text-base font-semibold text-ground hover:opacity-90 sm:w-fit"
             >
-              Start the free test
+              Start a free test
             </Link>
             <p className="text-[13px] text-ink-mute">
-              {firstTest.questionCount} questions · about {firstTest.estimatedMinutes} minutes · no
-              account needed
+              {TESTS.length > 1
+                ? `Pick your unit · ${range(qs)} questions · no account needed`
+                : `${firstTest.questionCount} questions · about ${firstTest.estimatedMinutes} minutes · no account needed`}
             </p>
           </div>
         </div>
       </header>
-
-      <Section eyebrow="Free, no account" title="Practice tests">
-        <ul className="flex flex-col gap-3">
-          {TESTS.map((test) => (
-            <li key={test.slug}>
-              <TestCard test={test} />
-            </li>
-          ))}
-        </ul>
-      </Section>
 
       <Section title={TEACHER.outcomesHeading}>
         <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
@@ -94,9 +99,9 @@ export default function Home() {
         {/* Числа берутся из определения теста, чтобы обещание в тексте не
             разошлось с тем, что человек получит, когда тестов станет больше. */}
         <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
-          The free diagnostic answers that in about {firstTest.estimatedMinutes} minutes:{' '}
-          {firstTest.questionCount} exam-style questions, then a breakdown of exactly which topics
-          are costing marks. No account, nothing to pay, and no call unless you ask for one.
+          The free diagnostic answers that in about {range(mins)} minutes: exam-style questions on
+          the unit your child is studying, then a breakdown of exactly which topics are costing
+          marks. No account, nothing to pay, and no call unless you ask for one.
         </p>
 
         {/* Две кнопки — две степени готовности. Тест ничего не стоит и не
@@ -106,7 +111,7 @@ export default function Home() {
         <div className="flex flex-col gap-3 pt-1">
           <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
             <Link
-              href={firstTest.href}
+              href={examHref}
               className="w-full rounded border border-ink px-5 py-3.5 text-center text-[15px] font-semibold transition-colors hover:bg-surface sm:w-fit"
             >
               Send the free test to your child
