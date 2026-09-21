@@ -43,6 +43,8 @@
   _19.09: на живом сайте, коммит `dd0ba4b`. Все 4 адреса из карты отвечают 200._
 - [ ] `P0` `Елена` **canonical** — `metadataBase` в `layout.tsx` и `alternates.canonical` на каждой странице.
   Готово, когда на каждой индексируемой странице ровно один canonical, указывающий на неё саму.
+  _21.09: у страницы записи и у шести страниц справочного раздела canonical есть — через `src/lib/seo.ts`.
+  Осталось: главная, страница экзамена и два теста._
 - [ ] `P0` `Елена` **Заголовок и описание главной** (§5). Сейчас title — «Free AP® Microeconomics Practice Test».
   - title: `Olganomics | AP Economics and IGCSE Business and Economics Support`
   - description: `Exam-focused AP Economics, IGCSE Economics and IGCSE Business support with Olga Shalamai. Take a free diagnostic or book a consultation.`
@@ -67,7 +69,7 @@
 | ☐ | `P0` | `/about-olga-shalamai` | About Olga Shalamai \| Economics and Business Educator | About Olga Shalamai |
 | ☐ | `P0` | `/results` | AP Economics Student Results and Success Stories \| Olganomics | Student Results and Success Stories |
 | ☐ | `P0` | `/book-a-free-consultation` | Book a Free Economics Consultation \| Olganomics | Book a free 15-minute consultation |
-| ☐ | `P1` | `/faq` | AP and IGCSE Economics Tutoring FAQ \| Olganomics | Frequently Asked Questions |
+| ✅ | `P1` | `/faq` | AP® and IGCSE Economics FAQ \| Olganomics | AP® and IGCSE Economics FAQ — код готов, ждёт проверки Ольгой и деплоя |
 | ☐ | `P1` | `/contact` | Contact Olga Shalamai \| Olganomics | Contact Olganomics |
 
 _20.09: `/book-a-free-consultation` — код готов: WhatsApp, номер текстом, QR-код для компьютера, разметка ContactPage,
@@ -86,13 +88,15 @@ canonical и Open Graph. Ольга утвердила страницу и те�
   - [x] Отзывы текстом на главной (`Testimonials`, 19.09).
   - [ ] `Ольга` Согласие учеников на имена в отзывах — уже в `CONTEXT.md` §8.
   - [ ] `Ольга` Баллы AP учеников: с разрешения или без имён.
-- [ ] `P1` `Ольга` **Для `/faq`:** вопросы 46–50 из `QUESTIONS.md` и то, чего там нет, но о чём спрашивают до записи:
-  цена, длительность урока, расписание и часовые пояса, платформа, размер группы.
-  Разметка FAQPage — только если вопросы и полные ответы видны на странице (§10).
+- [x] `P1` `Ольга` **Для `/faq`:** вопросы 46–50 из `QUESTIONS.md` опубликованы, разметка FAQPage стоит
+  (вопросы и полные ответы видны на странице).
+  - [ ] `Ольга` Дописать то, чего в ответах нет, но о чём спрашивают до записи: цена, длительность урока,
+    расписание и часовые пояса, платформа, размер группы.
 - [ ] `P1` `Ольга` `Елена` **Форма на `/contact`.** Компонент `ContactForm` есть, но отправка почты выключена:
   включить или обойтись без формы.
 - [ ] `P1` `Елена` **Ссылки в подвале:** Olganomics · AP Economics · IGCSE Economics · IGCSE Business · Resources · Results · About · Contact (§5).
-  - [x] Начато 20.09: Practice tests и Free consultation — страницы, которые уже есть (`layout.tsx`).
+  - [x] 20–21.09: Practice tests, FAQ и Free consultation (`layout.tsx`). Ссылка на раздел вопросов одна,
+    и называется так же, как адрес.
   - [x] Дисклеймер College Board на каждой странице — уже в `layout.tsx`.
 
 ## 3. Услуги и новая главная — неделя 3
@@ -118,6 +122,10 @@ canonical и Open Graph. Ольга утвердила страницу и те�
   _21.09: первый шаг сделан — каталог тестов убран с главной, а кнопка первого экрана («Start a free test»)
   и кнопка в родительском блоке ведут на `/practice-test/ap-microeconomics`, где выбор юнита, формат экзамена
   и подпись преподавателя. Главная стала короче на 430 пикселей на компьютере и на 625 на телефоне._
+  _21.09, решение: отдельного рассказа о тесте на главной не будет. Про тест там уже сказано дважды —
+  в первом экране и в родительском блоке; подробности (формат экзамена, список юнитов, оговорка про один
+  юнит) живут на странице экзамена, куда ведёт кнопка. Третий пересказ только удлинил бы главную
+  и заставил две страницы конкурировать за запрос «AP Microeconomics practice test»._
 - [ ] `P1` `Ольга` `Елена` **Чего главной не хватает, чтобы продавать Ольгу** (разобрать вместе с текстом плана, §5):
   - [ ] **Как проходят занятия** — пять шагов «Diagnose · Explain · Practise · Correct · Track» (§5, секция 4).
   - [ ] **Форматы занятий:** индивидуально, в группе, живые сессии — чем отличаются и кому что. Описание даёт Ольга.
@@ -134,44 +142,20 @@ canonical и Open Graph. Ольга утвердила страницу и те�
 
 ## 4. Разделы ресурсов — неделя 4
 
-| Готово | | Адрес | Title | H1 |
-|:-:|---|---|---|---|
-| ☐ | `P0` | `/resources` | Economics Exam Resource Centre \| Olganomics | Economics Exam Resource Centre |
-| ☐ | `P0` | `/resources/ap-microeconomics` | AP Microeconomics Study Guides and Exam Tips \| Olganomics | AP Microeconomics Help |
-| ☐ | `P0` | `/resources/ap-macroeconomics` | AP Macroeconomics Study Guides and Exam Tips \| Olganomics | AP Macroeconomics Help |
-| ☐ | `P1` | `/resources/igcse-economics` | IGCSE Economics Study Guides and Exam Tips \| Olganomics | IGCSE Economics Help |
-| ☐ | `P1` | `/resources/igcse-business` | IGCSE Business Study Guides and Exam Tips \| Olganomics | IGCSE Business Help |
-| ☐ | `P1` | `/resources/for-parents` | Economics Exam Guidance for Parents \| Olganomics | A Parent’s Guide to Economics Exam Preparation |
+_21.09, отступление от плана: все пятьдесят коротких ответов стоят на одной странице `/faq`, а не разложены
+по разделам `/resources/…` (§4 плана). Причин две. «Faq» набирают в поиске вместе с названием бренда,
+а «answers» и «resources» не набирает никто. И раздел вопросов должен отвечать сразу: сначала ответы были
+разложены по пяти страницам, а `/faq` оставался указателем без единого ответа. Домен новый, и одна страница,
+на которую ведут все ссылки, наберёт вес быстрее пяти страниц по шестьсот слов; Google умеет открывать
+длинную страницу на нужном абзаце. Сделано до публикации, редиректы не нужны._
 
-- [ ] `P0` `Ольга` `Елена` **Куда идут статьи `/resources/ap-economics/…`.** В плане 5 из 15 статей лежат в этой папке,
-  а раздела `/resources/ap-economics` в структуре нет. Правило плана — каждая статья связана со своим разделом.
-  Либо добавить такой раздел, либо разнести эти статьи по Micro и Macro.
-- [ ] `P0` `Елена` **Шаблон статьи** (§9): H1 — вопрос так, как его задают; прямой ответ в 2–4 предложения;
-  почему это путают; объяснение; пример; как это выглядит на экзамене; типичная ошибка; метод Ольги;
-  быстрая проверка или ссылка на тест; FAQ из 3–5 вопросов; источники; один призыв к действию;
-  автор, дата публикации и дата проверки.
-- [ ] `P0` `Елена` **Блок об авторе** под каждой статьёй: текст — §6, ссылки на «Об Ольге» и на запись.
-- [ ] `P0` `Елена` **Хлебные крошки** на статьях и подстраницах услуг + разметка BreadcrumbList.
-- [ ] `P0` `Елена` **Тесты и статьи ссылаются друг на друга:** раздел `/resources/ap-microeconomics` ведёт на тесты Unit 1 и 2,
-  а на экране результатов слабая тема ведёт на статью или ответ по ней. Темы и `topicId` — в `QUESTIONS.md`, вопросы 21–30.
-- [ ] `P1` `Елена` **Разметка Article** на статьях: headline, author, datePublished, dateModified, mainEntityOfPage (пример — §10).
-- [ ] `P1` `Елена` **Как сообщить об ошибке:** на справочных страницах — ссылка на контакт (§10).
+_Как устроено: шесть разделов (уроки и консультация, AP® — курс, AP® — стратегия, AP® — понятия и графики,
+IGCSE Economics, IGCSE Business), сверху указатели-ссылки на разделы, у каждого вопроса свой якорь
+(`/faq#scarce-mean-rare-economics`), разметка FAQPage на все 50 вопросов, подпись автора, одно действие
+в конце — записаться. Тексты в `src/config/questions.ts`, статусы проверки — в `QUESTIONS.md`.
+Разделять обратно на страницы по темам стоит тогда, когда у темы наберётся несколько полных статей (§8)._
 
-## Приёмка — до начала статей
-
-План требует закрыть P0 до большого выката контента (§10). Отмечаем, когда проверено на живом сайте.
-
-- [x] **robots.txt** отдаёт 200, обычный текст и ссылку на правильный sitemap. _Проверено 19.09._
-- [x] **sitemap.xml** отдаёт 200, XML и все нужные страницы с основным адресом. _Проверено 19.09;
-  перепроверить, когда появятся новые страницы или свой домен._
-- [ ] **Canonical:** на каждой индексируемой странице один, и он правильный.
-- [ ] **Коды ответа:** публичные страницы — 200, переехавшие — один 301, несуществующие — настоящий 404.
-- [ ] **Метаданные:** у каждой страницы свои title, description и H1.
-- [ ] **Разметка:** JSON-LD проходит валидатор и совпадает с тем, что видно на странице.
-- [ ] **Внутренние ссылки:** каждая статья есть в своём разделе, страниц без входящих ссылок нет.
-- [ ] **Телефон:** меню, кнопки, тесты и статьи работают на ширине 390px.
-- [ ] **Индексация:** личное и служебное закрыто noindex, справочные страницы индексируются.
-- [ ] **Аналитика:** события теста и записи видны в отладке на живом сайте.
+_Таблица ниже — план на будущее: адреса из §4 понадобятся, когда появятся статьи._
 
 ## 5. Статьи — недели 5–12
 
@@ -189,31 +173,31 @@ canonical и Open Graph. Ольга утвердила страницу и те�
 
 | № | Статья | Адрес | Вопрос | Голосовое | Ольга одобрила | На сайте | Соцсети |
 |--:|---|---|:-:|:-:|:-:|:-:|:-:|
-| 1 | Shift vs Movement Along the Demand Curve: A Simple AP Economics Guide | `/resources/ap-microeconomics/shift-vs-movement-demand-curve` | 23 | ☐ | ☐ | ☐ | ☐ |
-| 2 | Scarce vs Rare: The Difference AP Economics Students Must Know | `/resources/ap-microeconomics/scarce-vs-rare` | 21 | ☐ | ☐ | ☐ | ☐ |
-| 3 | How to Know Which Economics Graph to Draw | `/resources/ap-economics/how-to-choose-the-right-graph` | 25 | ☐ | ☐ | ☐ | ☐ |
-| 4 | PPC Questions: Olga’s Three-Step Method | `/resources/ap-microeconomics/ppc-three-step-method` | 29 | ☐ | ☐ | ☐ | ☐ |
-| 5 | The Most Common AP Economics FRQ Mistakes | `/resources/ap-economics/common-frq-mistakes` | 15 | ☐ | ☐ | ☐ | ☐ |
-| 6 | AP Economics MCQ Strategy: How Strong Students Approach Questions | `/resources/ap-economics/mcq-strategy` | 13, 14 | ☐ | ☐ | ☐ | ☐ |
-| 7 | Why Students Lose Marks on Economics Graph Questions | `/resources/ap-economics/graph-mistakes` | 26, 30 | ☐ | ☐ | ☐ | ☐ |
-| 9 | How Hard Is AP Economics? What Students Should Expect | `/resources/ap-economics/how-hard-is-ap-economics` | 1 | ☐ | ☐ | ☐ | ☐ |
+| 1 | Shift vs Movement Along the Demand Curve: A Simple AP Economics Guide | `/faq/ap-microeconomics/shift-vs-movement-demand-curve` | 23 | ☐ | ☐ | ☐ | ☐ |
+| 2 | Scarce vs Rare: The Difference AP Economics Students Must Know | `/faq/ap-microeconomics/scarce-vs-rare` | 21 | ☐ | ☐ | ☐ | ☐ |
+| 3 | How to Know Which Economics Graph to Draw | `/faq/ap-economics/how-to-choose-the-right-graph` | 25 | ☐ | ☐ | ☐ | ☐ |
+| 4 | PPC Questions: Olga’s Three-Step Method | `/faq/ap-microeconomics/ppc-three-step-method` | 29 | ☐ | ☐ | ☐ | ☐ |
+| 5 | The Most Common AP Economics FRQ Mistakes | `/faq/ap-economics/common-frq-mistakes` | 15 | ☐ | ☐ | ☐ | ☐ |
+| 6 | AP Economics MCQ Strategy: How Strong Students Approach Questions | `/faq/ap-economics/mcq-strategy` | 13, 14 | ☐ | ☐ | ☐ | ☐ |
+| 7 | Why Students Lose Marks on Economics Graph Questions | `/faq/ap-economics/graph-mistakes` | 26, 30 | ☐ | ☐ | ☐ | ☐ |
+| 9 | How Hard Is AP Economics? What Students Should Expect | `/faq/ap-economics/how-hard-is-ap-economics` | 1 | ☐ | ☐ | ☐ | ☐ |
 
 **Недели 9–10: вопросы родителей**
 
 | № | Статья | Адрес | Вопрос | Голосовое | Ольга одобрила | На сайте | Соцсети |
 |--:|---|---|:-:|:-:|:-:|:-:|:-:|
-| 8 | When Should Students Start Preparing for AP Economics? | `/resources/for-parents/when-to-start-ap-economics` | 3 | ☐ | ☐ | ☐ | ☐ |
-| 12 | Does My Child Need an AP Economics Tutor? | `/resources/for-parents/does-my-child-need-ap-economics-tutor` | 7 | ☐ | ☐ | ☐ | ☐ |
-| 13 | When Should Students Start Preparing for IGCSE Economics? | `/resources/for-parents/when-to-start-igcse-economics` | 31 | ☐ | ☐ | ☐ | ☐ |
-| 15 | Individual vs Group Economics Tutoring: Which Is Right for Your Child? | `/resources/for-parents/individual-vs-group-economics-tutoring` | 9, 50 | ☐ | ☐ | ☐ | ☐ |
+| 8 | When Should Students Start Preparing for AP Economics? | `/faq/for-parents/when-to-start-ap-economics` | 3 | ☐ | ☐ | ☐ | ☐ |
+| 12 | Does My Child Need an AP Economics Tutor? | `/faq/for-parents/does-my-child-need-ap-economics-tutor` | 7 | ☐ | ☐ | ☐ | ☐ |
+| 13 | When Should Students Start Preparing for IGCSE Economics? | `/faq/for-parents/when-to-start-igcse-economics` | 31 | ☐ | ☐ | ☐ | ☐ |
+| 15 | Individual vs Group Economics Tutoring: Which Is Right for Your Child? | `/faq/for-parents/individual-vs-group-economics-tutoring` | 9, 50 | ☐ | ☐ | ☐ | ☐ |
 
 **Дальше**
 
 | № | Статья | Адрес | Вопрос | Голосовое | Ольга одобрила | На сайте | Соцсети |
 |--:|---|---|:-:|:-:|:-:|:-:|:-:|
-| 10 | How to Get a 5 in AP Microeconomics | `/resources/ap-microeconomics/how-to-get-a-5` | 11 | ☐ | ☐ | ☐ | ☐ |
-| 11 | How to Get a 5 in AP Macroeconomics | `/resources/ap-macroeconomics/how-to-get-a-5` | 12 | ☐ | ☐ | ☐ | ☐ |
-| 14 | Why Knowing the Content Is Not Enough for IGCSE Business | `/resources/igcse-business/content-is-not-enough` | 40 | ☐ | ☐ | ☐ | ☐ |
+| 10 | How to Get a 5 in AP Microeconomics | `/faq/ap-microeconomics/how-to-get-a-5` | 11 | ☐ | ☐ | ☐ | ☐ |
+| 11 | How to Get a 5 in AP Macroeconomics | `/faq/ap-macroeconomics/how-to-get-a-5` | 12 | ☐ | ☐ | ☐ | ☐ |
+| 14 | Why Knowing the Content Is Not Enough for IGCSE Business | `/faq/igcse-business/content-is-not-enough` | 40 | ☐ | ☐ | ☐ | ☐ |
 
 Номера — порядок публикации из плана. Недели 9–10 план отдаёт вопросам родителей (статьи 8, 12, 13, 15),
 поэтому статья 9 идёт раньше статьи 8.
@@ -234,6 +218,10 @@ canonical и Open Graph. Ольга утвердила страницу и те�
 - [ ] `P1` `Елена` **События:** начал тест, закончил тест, нажал «записаться» на экране результатов,
   нажал WhatsApp, почту или запись — с пометкой, с какой страницы пришёл человек.
 - [ ] `P1` `Елена` **Связать аналитику с Search Console** (если выбран GA4).
+- [ ] `P1` `Елена` **Когда появятся события — проверить решения по главной на данных, а не на суждении:**
+  сколько людей доходит до кнопки «Start a free test» и нажимает её, сколько с главной уходит на страницу
+  экзамена и начинает там тест. Если до теста доходят единицы — вернуть на главную короткий рассказ о нём
+  (см. решение от 21.09 в разделе 3) или поднять кнопку выше.
 - [ ] `P1` `Ольга` `Елена` **Смотреть переходы из ChatGPT и других ИИ**; в Bing Webmaster Tools — отчёт AI Performance, когда появится.
 
 ## Скорость и доступность

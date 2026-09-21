@@ -19,7 +19,7 @@
 
 - [ ] **Сначала — разделы 0 и 1 в `TODO.md`:** подпись под ответами (титул), robots.txt, sitemap, canonical,
   заголовок главной. Там же они и отмечаются, здесь не дублируем.
-- [ ] **Первая страница — вопросы 21–30** (AP concepts and graphs), адрес по плану `/resources/ap-microeconomics`.
+- [ ] **Первая страница — вопросы 21–30** (AP concepts and graphs), адрес по плану `/faq`.
   Они про те же темы, что тесты Unit 1 и Unit 2, поэтому работают в обе стороны: слабая тема на экране
   результатов → ответ Ольги, ответ → тест. Ольге проверять только экономику, без обещаний об услугах.
 - [ ] **Вопросы об уроках, 46–50** → страница `/faq`. Документ просит Ольгу особенно внимательно проверить 46–49.
@@ -29,85 +29,89 @@
 
 ## Статус
 
+_21.09: все 50 ответов стоят на одной странице `/faq`, разбитые на шесть разделов; у каждого вопроса
+свой якорь. Код готов, на сайте их ещё нет. До пуша Ольге нужно подтвердить ответы 1–48 и 50: вопрос 49 она уже утвердила, а документ просит
+её проверки для всех. Тексты правятся в `src/config/questions.ts` и здесь одновременно._
+
 **AP Economics for students and parents** (1–10)
 
 | № | Вопрос | Ольга | Сайт | Где | Заметка |
 |--:|---|:-:|:-:|---|---|
-| [1](#1-is-ap-economics-hard) | Is AP Economics hard? | ☐ | ☐ |  |  |
-| [2](#2-which-is-harder-ap-micro-or-ap-macro) | Which is harder: AP Micro or AP Macro? | ☐ | ☐ |  |  |
-| [3](#3-when-should-i-start-studying-for-my-ap-economics-exam) | When should I start studying for my AP Economics exam? | ☐ | ☐ |  |  |
-| [4](#4-how-many-hours-a-week-should-i-study-for-ap-economics) | How many hours a week should I study for AP Economics? | ☐ | ☐ |  |  |
-| [5](#5-can-i-get-a-5-in-ap-economics-without-a-tutor) | Can I get a 5 in AP Economics without a tutor? | ☐ | ☐ |  |  |
-| [6](#6-how-do-i-know-if-my-child-is-falling-behind-in-ap-economics) | How do I know if my child is falling behind in AP Economics? | ☐ | ☐ |  |  |
-| [7](#7-does-my-child-need-an-ap-economics-tutor) | Does my child need an AP Economics tutor? | ☐ | ☐ |  |  |
-| [8](#8-how-do-i-choose-a-good-ap-economics-tutor) | How do I choose a good AP Economics tutor? | ☐ | ☐ |  |  |
-| [9](#9-are-one-to-one-or-group-ap-economics-lessons-better) | Are one-to-one or group AP Economics lessons better? | ☐ | ☐ |  |  |
-| [10](#10-ive-started-ap-economics-late-how-can-i-catch-up) | I've started AP Economics late. How can I catch up? | ☐ | ☐ |  |  |
+| [1](#1-is-ap-economics-hard) | Is AP Economics hard? | ☐ | ☐ | `/faq` |  |
+| [2](#2-which-is-harder-ap-micro-or-ap-macro) | Which is harder: AP Micro or AP Macro? | ☐ | ☐ | `/faq` |  |
+| [3](#3-when-should-i-start-studying-for-my-ap-economics-exam) | When should I start studying for my AP Economics exam? | ☐ | ☐ | `/faq` |  |
+| [4](#4-how-many-hours-a-week-should-i-study-for-ap-economics) | How many hours a week should I study for AP Economics? | ☐ | ☐ | `/faq` |  |
+| [5](#5-can-i-get-a-5-in-ap-economics-without-a-tutor) | Can I get a 5 in AP Economics without a tutor? | ☐ | ☐ | `/faq` |  |
+| [6](#6-how-do-i-know-if-my-child-is-falling-behind-in-ap-economics) | How do I know if my child is falling behind in AP Economics? | ☐ | ☐ | `/faq` |  |
+| [7](#7-does-my-child-need-an-ap-economics-tutor) | Does my child need an AP Economics tutor? | ☐ | ☐ | `/faq` |  |
+| [8](#8-how-do-i-choose-a-good-ap-economics-tutor) | How do I choose a good AP Economics tutor? | ☐ | ☐ | `/faq` |  |
+| [9](#9-are-one-to-one-or-group-ap-economics-lessons-better) | Are one-to-one or group AP Economics lessons better? | ☐ | ☐ | `/faq` |  |
+| [10](#10-ive-started-ap-economics-late-how-can-i-catch-up) | I've started AP Economics late. How can I catch up? | ☐ | ☐ | `/faq` |  |
 
 **AP exam strategy** (11–20)
 
 | № | Вопрос | Ольга | Сайт | Где | Заметка |
 |--:|---|:-:|:-:|---|---|
-| [11](#11-how-can-i-get-a-5-in-ap-microeconomics) | How can I get a 5 in AP Microeconomics? | ☐ | ☐ |  |  |
-| [12](#12-how-can-i-get-a-5-in-ap-macroeconomics) | How can I get a 5 in AP Macroeconomics? | ☐ | ☐ |  |  |
-| [13](#13-whats-the-best-way-to-practise-ap-economics-multiple-choice-questions) | What's the best way to practise AP Economics multiple-choice questions? | ☐ | ☐ |  |  |
-| [14](#14-how-do-i-choose-between-two-answers-in-ap-economics-mcqs) | How do I choose between two answers in AP Economics MCQs? | ☐ | ☐ |  |  |
-| [15](#15-what-mistakes-should-i-avoid-in-ap-economics-frqs) | What mistakes should I avoid in AP Economics FRQs? | ☐ | ☐ |  |  |
-| [16](#16-why-do-i-understand-economics-in-class-but-lose-marks-on-tests) | Why do I understand Economics in class but lose marks on tests? | ☐ | ☐ |  |  |
-| [17](#17-ive-done-an-ap-economics-practice-test-how-should-i-review-my-mistakes) | I've done an AP Economics practice test. How should I review my mistakes? | ☐ | ☐ |  |  |
-| [18](#18-how-often-should-i-do-timed-ap-economics-practice) | How often should I do timed AP Economics practice? | ☐ | ☐ |  |  |
-| [19](#19-can-ai-help-me-study-ap-economics) | Can AI help me study AP Economics? | ☐ | ☐ |  |  |
-| [20](#20-my-ap-economics-exam-is-in-a-month-what-should-i-focus-on) | My AP Economics exam is in a month. What should I focus on? | ☐ | ☐ |  |  |
+| [11](#11-how-can-i-get-a-5-in-ap-microeconomics) | How can I get a 5 in AP Microeconomics? | ☐ | ☐ | `/faq` |  |
+| [12](#12-how-can-i-get-a-5-in-ap-macroeconomics) | How can I get a 5 in AP Macroeconomics? | ☐ | ☐ | `/faq` |  |
+| [13](#13-whats-the-best-way-to-practise-ap-economics-multiple-choice-questions) | What's the best way to practise AP Economics multiple-choice questions? | ☐ | ☐ | `/faq` |  |
+| [14](#14-how-do-i-choose-between-two-answers-in-ap-economics-mcqs) | How do I choose between two answers in AP Economics MCQs? | ☐ | ☐ | `/faq` |  |
+| [15](#15-what-mistakes-should-i-avoid-in-ap-economics-frqs) | What mistakes should I avoid in AP Economics FRQs? | ☐ | ☐ | `/faq` |  |
+| [16](#16-why-do-i-understand-economics-in-class-but-lose-marks-on-tests) | Why do I understand Economics in class but lose marks on tests? | ☐ | ☐ | `/faq` |  |
+| [17](#17-ive-done-an-ap-economics-practice-test-how-should-i-review-my-mistakes) | I've done an AP Economics practice test. How should I review my mistakes? | ☐ | ☐ | `/faq` |  |
+| [18](#18-how-often-should-i-do-timed-ap-economics-practice) | How often should I do timed AP Economics practice? | ☐ | ☐ | `/faq` |  |
+| [19](#19-can-ai-help-me-study-ap-economics) | Can AI help me study AP Economics? | ☐ | ☐ | `/faq` |  |
+| [20](#20-my-ap-economics-exam-is-in-a-month-what-should-i-focus-on) | My AP Economics exam is in a month. What should I focus on? | ☐ | ☐ | `/faq` |  |
 
 **AP concepts and graphs** (21–30)
 
 | № | Вопрос | Ольга | Сайт | Где | Тема теста | Заметка |
 |--:|---|:-:|:-:|---|---|---|
-| [21](#21-does-scarce-mean-rare-in-economics) | Does scarce mean rare in Economics? | ☐ | ☐ |  | Unit 1 · `micro-1-scarcity` |  |
-| [22](#22-whats-the-difference-between-scarcity-and-a-shortage) | What's the difference between scarcity and a shortage? | ☐ | ☐ |  | Unit 1 · `micro-1-scarcity`, Unit 2 · `micro-2-disequilibrium` |  |
-| [23](#23-when-does-the-demand-curve-shift-and-when-do-i-move-along-it) | When does the demand curve shift, and when do I move along it? | ☐ | ☐ |  | Unit 2 · `micro-2-demand` |  |
-| [24](#24-when-does-the-supply-curve-shift-and-when-do-i-move-along-it) | When does the supply curve shift, and when do I move along it? | ☐ | ☐ |  | Unit 2 · `micro-2-supply` |  |
-| [25](#25-how-do-i-know-which-economics-graph-to-draw) | How do I know which Economics graph to draw? | ☐ | ☐ |  | Unit 2 · `micro-2-demand` |  |
-| [26](#26-can-one-word-really-change-my-economics-graph) | Can one word really change my Economics graph? | ☐ | ☐ |  | Unit 2 · `micro-2-demand` |  |
-| [27](#27-how-do-i-calculate-opportunity-cost) | How do I calculate opportunity cost? | ☐ | ☐ |  | Unit 1 · `micro-1-ppc`, `micro-1-comparative-advantage` |  |
-| [28](#28-how-do-i-work-out-who-has-comparative-advantage) | How do I work out who has comparative advantage? | ☐ | ☐ |  | Unit 1 · `micro-1-comparative-advantage` |  |
-| [29](#29-how-do-i-know-if-the-ppc-shifts-or-theres-a-movement-along-it) | How do I know if the PPC shifts or there's a movement along it? | ☐ | ☐ |  | Unit 1 · `micro-1-ppc` |  |
-| [30](#30-how-should-i-label-an-ap-economics-graph) | How should I label an AP Economics graph? | ☐ | ☐ |  | Unit 1 и 2 · все вопросы с графиками |  |
+| [21](#21-does-scarce-mean-rare-in-economics) | Does scarce mean rare in Economics? | ☐ | ☐ | `/faq` | Unit 1 · `micro-1-scarcity` |  |
+| [22](#22-whats-the-difference-between-scarcity-and-a-shortage) | What's the difference between scarcity and a shortage? | ☐ | ☐ | `/faq` | Unit 1 · `micro-1-scarcity`, Unit 2 · `micro-2-disequilibrium` |  |
+| [23](#23-when-does-the-demand-curve-shift-and-when-do-i-move-along-it) | When does the demand curve shift, and when do I move along it? | ☐ | ☐ | `/faq` | Unit 2 · `micro-2-demand` |  |
+| [24](#24-when-does-the-supply-curve-shift-and-when-do-i-move-along-it) | When does the supply curve shift, and when do I move along it? | ☐ | ☐ | `/faq` | Unit 2 · `micro-2-supply` |  |
+| [25](#25-how-do-i-know-which-economics-graph-to-draw) | How do I know which Economics graph to draw? | ☐ | ☐ | `/faq` | Unit 2 · `micro-2-demand` |  |
+| [26](#26-can-one-word-really-change-my-economics-graph) | Can one word really change my Economics graph? | ☐ | ☐ | `/faq` | Unit 2 · `micro-2-demand` |  |
+| [27](#27-how-do-i-calculate-opportunity-cost) | How do I calculate opportunity cost? | ☐ | ☐ | `/faq` | Unit 1 · `micro-1-ppc`, `micro-1-comparative-advantage` |  |
+| [28](#28-how-do-i-work-out-who-has-comparative-advantage) | How do I work out who has comparative advantage? | ☐ | ☐ | `/faq` | Unit 1 · `micro-1-comparative-advantage` |  |
+| [29](#29-how-do-i-know-if-the-ppc-shifts-or-theres-a-movement-along-it) | How do I know if the PPC shifts or there's a movement along it? | ☐ | ☐ | `/faq` | Unit 1 · `micro-1-ppc` |  |
+| [30](#30-how-should-i-label-an-ap-economics-graph) | How should I label an AP Economics graph? | ☐ | ☐ | `/faq` | Unit 1 и 2 · все вопросы с графиками |  |
 
 **IGCSE Economics** (31–38)
 
 | № | Вопрос | Ольга | Сайт | Где | Заметка |
 |--:|---|:-:|:-:|---|---|
-| [31](#31-when-should-i-start-revising-for-igcse-economics) | When should I start revising for IGCSE Economics? | ☐ | ☐ |  |  |
-| [32](#32-is-igcse-economics-difficult) | Is IGCSE Economics difficult? | ☐ | ☐ |  |  |
-| [33](#33-whats-the-best-way-to-revise-for-igcse-economics) | What's the best way to revise for IGCSE Economics? | ☐ | ☐ |  |  |
-| [34](#34-i-know-the-definitions-why-am-i-still-losing-marks-in-igcse-economics) | I know the definitions. Why am I still losing marks in IGCSE Economics? | ☐ | ☐ |  |  |
-| [35](#35-how-do-i-write-better-analysis-in-igcse-economics) | How do I write better analysis in IGCSE Economics? | ☐ | ☐ |  |  |
-| [36](#36-what-does-good-evaluation-look-like-in-igcse-economics) | What does good evaluation look like in IGCSE Economics? | ☐ | ☐ |  |  |
-| [37](#37-do-i-need-to-draw-a-diagram-in-my-igcse-economics-answer) | Do I need to draw a diagram in my IGCSE Economics answer? | ☐ | ☐ |  |  |
-| [38](#38-what-mistakes-should-i-avoid-in-igcse-economics) | What mistakes should I avoid in IGCSE Economics? | ☐ | ☐ |  |  |
+| [31](#31-when-should-i-start-revising-for-igcse-economics) | When should I start revising for IGCSE Economics? | ☐ | ☐ | `/faq` |  |
+| [32](#32-is-igcse-economics-difficult) | Is IGCSE Economics difficult? | ☐ | ☐ | `/faq` |  |
+| [33](#33-whats-the-best-way-to-revise-for-igcse-economics) | What's the best way to revise for IGCSE Economics? | ☐ | ☐ | `/faq` |  |
+| [34](#34-i-know-the-definitions-why-am-i-still-losing-marks-in-igcse-economics) | I know the definitions. Why am I still losing marks in IGCSE Economics? | ☐ | ☐ | `/faq` |  |
+| [35](#35-how-do-i-write-better-analysis-in-igcse-economics) | How do I write better analysis in IGCSE Economics? | ☐ | ☐ | `/faq` |  |
+| [36](#36-what-does-good-evaluation-look-like-in-igcse-economics) | What does good evaluation look like in IGCSE Economics? | ☐ | ☐ | `/faq` |  |
+| [37](#37-do-i-need-to-draw-a-diagram-in-my-igcse-economics-answer) | Do I need to draw a diagram in my IGCSE Economics answer? | ☐ | ☐ | `/faq` |  |
+| [38](#38-what-mistakes-should-i-avoid-in-igcse-economics) | What mistakes should I avoid in IGCSE Economics? | ☐ | ☐ | `/faq` |  |
 
 **IGCSE Business** (39–45)
 
 | № | Вопрос | Ольга | Сайт | Где | Заметка |
 |--:|---|:-:|:-:|---|---|
-| [39](#39-when-should-my-child-start-preparing-for-igcse-business) | When should my child start preparing for IGCSE Business? | ☐ | ☐ |  |  |
-| [40](#40-i-understand-igcse-business-why-arent-my-marks-higher) | I understand IGCSE Business. Why aren't my marks higher? | ☐ | ☐ |  |  |
-| [41](#41-how-do-i-use-the-case-study-in-my-igcse-business-answer) | How do I use the case study in my IGCSE Business answer? | ☐ | ☐ |  |  |
-| [42](#42-whats-the-difference-between-analysis-and-evaluation-in-igcse-business) | What's the difference between analysis and evaluation in IGCSE Business? | ☐ | ☐ |  |  |
-| [43](#43-how-do-i-write-a-good-long-answer-in-igcse-business) | How do I write a good long answer in IGCSE Business? | ☐ | ☐ |  |  |
-| [44](#44-what-mistakes-cost-marks-in-igcse-business) | What mistakes cost marks in IGCSE Business? | ☐ | ☐ |  |  |
-| [45](#45-how-can-i-revise-igcse-business-without-copying-out-the-whole-textbook) | How can I revise IGCSE Business without copying out the whole textbook? | ☐ | ☐ |  |  |
+| [39](#39-when-should-my-child-start-preparing-for-igcse-business) | When should my child start preparing for IGCSE Business? | ☐ | ☐ | `/faq` |  |
+| [40](#40-i-understand-igcse-business-why-arent-my-marks-higher) | I understand IGCSE Business. Why aren't my marks higher? | ☐ | ☐ | `/faq` |  |
+| [41](#41-how-do-i-use-the-case-study-in-my-igcse-business-answer) | How do I use the case study in my IGCSE Business answer? | ☐ | ☐ | `/faq` |  |
+| [42](#42-whats-the-difference-between-analysis-and-evaluation-in-igcse-business) | What's the difference between analysis and evaluation in IGCSE Business? | ☐ | ☐ | `/faq` |  |
+| [43](#43-how-do-i-write-a-good-long-answer-in-igcse-business) | How do I write a good long answer in IGCSE Business? | ☐ | ☐ | `/faq` |  |
+| [44](#44-what-mistakes-cost-marks-in-igcse-business) | What mistakes cost marks in IGCSE Business? | ☐ | ☐ | `/faq` |  |
+| [45](#45-how-can-i-revise-igcse-business-without-copying-out-the-whole-textbook) | How can I revise IGCSE Business without copying out the whole textbook? | ☐ | ☐ | `/faq` |  |
 
 **Lessons and decision questions** (46–50)
 
 | № | Вопрос | Ольга | Сайт | Где | Заметка |
 |--:|---|:-:|:-:|---|---|
-| [46](#46-what-are-economics-lessons-with-you-like) | What are Economics lessons with you like? | ☐ | ☐ |  |  |
-| [47](#47-how-do-your-online-economics-lessons-work) | How do your online Economics lessons work? | ☐ | ☐ |  |  |
-| [48](#48-can-i-take-lessons-with-you-if-i-dont-live-in-jordan) | Can I take lessons with you if I don't live in Jordan? | ☐ | ☐ |  |  |
-| [49](#49-what-happens-in-my-first-economics-consultation-with-you) | What happens in my first Economics consultation with you? | ✅ | ☐ | `/book-a-free-consultation` | Ольга утвердила 20.09; на сайте после деплоя |
-| [50](#50-should-i-choose-individual-lessons-group-lessons-or-a-live-session-for-my-child) | Should I choose individual lessons, group lessons or a live session for my child? | ☐ | ☐ |  | пересекается с 9 |
+| [46](#46-what-are-economics-lessons-with-you-like) | What are Economics lessons with you like? | ☐ | ☐ | `/faq` |  |
+| [47](#47-how-do-your-online-economics-lessons-work) | How do your online Economics lessons work? | ☐ | ☐ | `/faq` |  |
+| [48](#48-can-i-take-lessons-with-you-if-i-dont-live-in-jordan) | Can I take lessons with you if I don't live in Jordan? | ☐ | ☐ | `/faq` |  |
+| [49](#49-what-happens-in-my-first-economics-consultation-with-you) | What happens in my first Economics consultation with you? | ✅ | ☐ | `/faq` и `/book-a-free-consultation` | Ольга утвердила 20.09; на сайте после деплоя |
+| [50](#50-should-i-choose-individual-lessons-group-lessons-or-a-live-session-for-my-child) | Should I choose individual lessons, group lessons or a live session for my child? | ☐ | ☐ | `/faq` | пересекается с 9 |
 
 ---
 

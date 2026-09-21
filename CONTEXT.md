@@ -57,6 +57,9 @@ npm run build
 - `/` — главная. Порядок блоков: первый экран (портрет, «Find out how to reach a 5 in AP® Economics»,
   кнопка «Start a free test» — ведёт на список тестов, а не в первый юнит) → What students achieve → **What former students say**
   (отзывы) → For parents → About.
+- `/faq` — все 50 вопросов и ответов Ольги на одной странице: шесть разделов, сверху указатели-ссылки
+  на них, у каждого вопроса свой якорь (`/faq#scarce-mean-rare-economics`), разметка FAQPage.
+  Тексты — `src/config/questions.ts`, статусы проверки — `QUESTIONS.md`. В подвале ссылка «FAQ».
 - `/book-a-free-consultation` — запись на бесплатную консультацию: ответ текстом в первых строках (для поиска
   и нейросетей), кнопка WhatsApp, номер, QR-код для компьютера, «What happens in the session» — её ответ
   на вопрос 49. Шапка ведёт прямо в WhatsApp, на страницу — ссылка из подвала.
@@ -90,6 +93,8 @@ npm run build
 | `src/components/Results.tsx` | Экран результатов целиком |
 | `src/components/ResultsCta.tsx` · `ShareResults.tsx` · `StayInTouch.tsx` | Три блока экрана результатов |
 | `src/components/SocialButton.tsx` | Кнопка канала (Instagram, Facebook, WhatsApp-канал, почта) — общая для экрана результатов и блока About на главной |
+| `src/config/questions.ts` | 50 вопросов и ответов Ольги: тексты, порядок, заголовки и якоря страниц раздела |
+| `src/lib/seo.ts` | Метаданные страницы: title, description, canonical и Open Graph в одном месте |
 | `src/components/WhatsAppQr.tsx` | QR-код чата WhatsApp для страницы записи. Считается при сборке (`qrcode-generator`), в браузер уходит готовый SVG |
 | `src/components/Testimonials.tsx` · `ReviewBody.tsx` | Отзывы на главной |
 | `src/components/BookButton.tsx` · `SiteHeader.tsx` | Зелёная кнопка записи и шапка |

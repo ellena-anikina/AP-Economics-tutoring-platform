@@ -96,6 +96,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/practice-test/ap-microeconomics" className="text-ink-soft hover:text-ink">
               Practice tests
             </Link>
+            {/* Одна ссылка на весь раздел вопросов. Слово «FAQ» выбрано не
+                по вкусу: его набирают в поиске вместе с названием бренда
+                («olganomics faq»), а «answers» не ищет никто. Вопросы об
+                уроках — карточка внутри раздела. */}
+            <Link href="/faq" className="text-ink-soft hover:text-ink">
+              FAQ
+            </Link>
             <Link href="/book-a-free-consultation" className="text-ink-soft hover:text-ink">
               Free consultation
             </Link>
