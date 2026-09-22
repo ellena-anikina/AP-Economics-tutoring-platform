@@ -8,25 +8,32 @@ import Section from '@/components/Section';
 import SocialButton from '@/components/SocialButton';
 import Testimonials from '@/components/Testimonials';
 import { CTA } from '@/config/cta';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/config/site';
 import { TEACHER } from '@/config/teacher';
 import { TESTS } from '@/config/tests';
 import { whatsappGeneral } from '@/lib/contact-links';
+import { pageMetadata } from '@/lib/seo';
 
 /**
- * Только canonical: заголовок и описание главной пока приходят из layout,
- * их замена — отдельная задача (TODO.md, раздел 1).
+ * Заголовок, описание, canonical и Open Graph главной.
  *
- * Зачем canonical здесь. Главную открывают по десятку адресов: со слешем
+ * Тексты лежат в src/config/site.ts: ими же подписаны страницы без
+ * собственных метаданных, и расходиться эти подписи не должны.
+ *
+ * Зачем canonical. Главную открывают по десятку адресов: со слешем
  * и без, с «?utm_source=instagram» из ссылки в профиле, с «?fbclid=…»
  * после перехода из Facebook. Для поисковика это разные страницы, и вес
  * делится между ними. Canonical говорит: настоящий адрес один.
+ *
+ * Next приводит адрес главной к виду без слеша в конце: `https://…vercel.app`.
+ * В карте сайта она записана со слешем, и это не расхождение — для корня
+ * сайта оба написания означают один и тот же адрес.
  */
-export const metadata: Metadata = {
-  // Next приводит адрес к виду без слеша в конце: `https://…vercel.app`.
-  // В карте сайта главная записана со слешем, и это не расхождение — для
-  // корня сайта оба написания означают один и тот же адрес.
-  alternates: { canonical: '/' },
-};
+export const metadata: Metadata = pageMetadata({
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  path: '/',
+});
 
 export default function Home() {
   const firstTest = TESTS[0];

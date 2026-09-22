@@ -47,12 +47,36 @@
   и два теста. Проверено на собранном сайте, в том числе с мусором в адресе: `/faq?utm_source=instagram&fbclid=123`
   объявляет каноническим `/faq`. У страницы 404 canonical нет намеренно — её не индексируют.
   Новая страница получает canonical сама, если метаданные собраны через `src/lib/seo.ts`._
-- [ ] `P0` `Елена` **Заголовок и описание главной** (§5). Сейчас title — «Free AP® Microeconomics Practice Test».
-  - title: `Olganomics | AP Economics and IGCSE Business and Economics Support`
-  - description: `Exam-focused AP Economics, IGCSE Economics and IGCSE Business support with Olga Shalamai. Take a free diagnostic or book a consultation.`
+- [x] `P0` `Елена` **Заголовок и описание главной** (§5).
+  - title: `AP® Economics, IGCSE Economics and Business | Olganomics`
+  - description: `Exam-focused AP® Economics, IGCSE Economics and IGCSE Business support with Dr. Olga Shalamai. Take a free diagnostic or book a consultation.`
+  _22.09: тексты плана взяты дословно, с двумя уточнениями. ® — при каждом упоминании AP (принцип 4).
+  «Dr.» — имя подставляется из `TEACHER.name`, чтобы решение из раздела 0 меняло его во всех описаниях
+  разом; заодно то же имя теперь в описании `/faq` (на странице записи оно уже было оттуда). Сами строки
+  лежат в `src/config/site.ts` — `SITE_TITLE` и `SITE_DESCRIPTION`: главная ставит их себе через
+  `pageMetadata` (вместе с canonical и Open Graph), а layout — запасными для страниц без своих
+  метаданных. Раньше такой запасной была подпись «Free AP® Microeconomics Practice Test» — её видела
+  страница 404, то есть «страница не найдена» обещала тест. Порядок слов в заголовке отличается
+  от плана — почему, написано в пункте ниже и в комментарии к `SITE_TITLE`. Проверено на собранном сайте._
+- [x] `P1` `Елена` **Заголовок главной укорочен, чтобы влезать в выдачу.**
+  _22.09: было «Olganomics | AP® Economics and IGCSE Business and Economics Support» — 677px при лимите
+  ~600px (Arial 20px, как рисует Google), обрезалось на «…IGCSE Business and Econom…», то есть пропадал
+  целый предмет. Стало «AP® Economics, IGCSE Economics and Business | Olganomics» — 569px, видно целиком.
+  Слова те же, что в плане, переставлен порядок: вперёд то, что набирают в поиске, бренд в конец —
+  «Olganomics» пока никто не ищет, а начало строки читают первым. Елена согласовала 22.09._
+  - [x] `Ольга` Сказать Ольге: заголовок из плана (§5) на сайте стоит в другом порядке и без слова
+    Support — причина выше. Если захочет вернуть как в плане, это одна строка `SITE_TITLE`
+    в `src/config/site.ts`, но в выдаче он будет обрезан. _22.09: закрыто Еленой._
 - [ ] `P0` `Елена` **Бренд в заголовках остальных страниц:** `title.template: '%s | Olganomics'` в `layout.tsx`,
   тогда тест станет «Free AP® Microeconomics Unit 1 Practice Test | Olganomics» (§4).
+  _Подвох: шаблон применяется и к страницам, которые задают свой заголовок. У `/faq` и страницы записи
+  бренд уже дописан руками — получится «… | Olganomics | Olganomics», его надо убрать из их заголовков.
+  В layout нужна форма `title: { default: SITE_TITLE, template: '%s | Olganomics' }`, а главной —
+  `title: { absolute: SITE_TITLE }`, иначе бренд удвоится и там. Заголовки тестов после шаблона
+  проверить на длину: 415px + « | Olganomics» — в лимит ~600px влезают._
 - [ ] `P0` `Елена` **Open Graph:** заголовок, описание и картинка для превью ссылки на каждой странице (§10).
+  _22.09: на главной, `/faq` и странице записи Open Graph уже есть — их метаданные собраны через
+  `src/lib/seo.ts`. Не хватает картинки (нигде) и самих тегов на страницах тестов._
 - [ ] `P0` `Елена` **Search Console и Bing Webmaster Tools:** подтвердить сайт, отправить sitemap,
   проверить главную и тесты. Bing умеет импортировать сайт из Search Console. Ольгу добавить владельцем в оба.
 - [ ] `P0` `Елена` **Роботов ничего не блокирует:** в настройках Vercel (Firewall, защита от ботов) не закрыты

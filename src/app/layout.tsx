@@ -3,7 +3,7 @@ import Link from 'next/link';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 import SiteHeader from '@/components/SiteHeader';
-import { SITE_URL } from '@/config/site';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '@/config/site';
 import './globals.css';
 
 /**
@@ -46,9 +46,19 @@ export const metadata: Metadata = {
    * забывшая его переопределить, объявила бы себя главной.
    */
   metadataBase: new URL(SITE_URL),
-  title: 'Free AP® Microeconomics Practice Test',
-  description:
-    'A free diagnostic test written by a college economics instructor. See exactly which topics are costing you points.',
+  /**
+   * Запасные заголовок и описание — для страниц, которые своих не поставили.
+   * Сейчас такая одна, 404: раньше она подписывалась «Free AP® Microeconomics
+   * Practice Test», то есть обещала тест на странице «страница не найдена».
+   * Свои метаданные есть у всех остальных страниц, главная в том числе.
+   *
+   * Когда появится `title.template: '%s | Olganomics'` (TODO.md, раздел 1),
+   * шаблон применится и к заголовкам страниц, которые задают свой, — включая
+   * главную. Чтобы бренд не повторился дважды, здесь понадобится форма
+   * `title: { default: SITE_TITLE, template: … }`, а главной — `absolute`.
+   */
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
 };
 
 export const viewport: Viewport = {

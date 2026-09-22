@@ -44,8 +44,10 @@ const PATH = '/faq';
 
 export const metadata: Metadata = pageMetadata({
   title: 'AP® and IGCSE Economics FAQ | Olganomics',
+  // Имя — из TEACHER: в описании главной оно тоже оттуда, и решение
+  // про «Dr.» (TODO.md, раздел 0) не должно разойтись между страницами.
   description:
-    'Fifty answers from Olga Shalamai: lessons and the free 15-minute consultation, AP® Economics and exam ' +
+    `Fifty answers from ${TEACHER.name}: lessons and the free 15-minute consultation, AP® Economics and exam ` +
     'strategy, AP® Microeconomics concepts and graphs, IGCSE Economics and IGCSE Business.',
   path: PATH,
   ogTitle: 'AP® and IGCSE Economics FAQ',
