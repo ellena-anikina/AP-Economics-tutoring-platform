@@ -79,6 +79,11 @@
   `src/lib/seo.ts`. Не хватает картинки (нигде) и самих тегов на страницах тестов._
 - [ ] `P0` `Елена` **Search Console и Bing Webmaster Tools:** подтвердить сайт, отправить sitemap,
   проверить главную и тесты. Bing умеет импортировать сайт из Search Console. Ольгу добавить владельцем в оба.
+  _23.09: в Search Console заведён ресурс «Префикс URL» на `https://olga-shalamai.vercel.app/`: «Домен»
+  требует записи в DNS, а к DNS домена vercel.app у нас доступа нет. Подтверждение файлом
+  `public/googleb4a385b2fea67218.html`, файл не удалять (пояснение у `SITE_URL` в `src/config/site.ts`).
+  Осталось: нажать Verify после выката, отправить `sitemap.xml`, «Проверка URL» для главной и тестов,
+  Ольгу — «Владелец»; в Bing — импорт из Search Console и Ольгу — Administrator._
 - [ ] `P0` `Елена` **Роботов ничего не блокирует:** в настройках Vercel (Firewall, защита от ботов) не закрыты
   Googlebot, Bingbot и OAI-SearchBot (§10).
 - [x] `P0` **noindex для личных результатов** — не нужен. Результат хранится в адресе после `#r=`,
