@@ -44,7 +44,54 @@ export interface PlanWeek {
   isFinal: boolean;
 }
 
-export const WEEK_OPTIONS = [2, 4, 6, 8, 12] as const;
+export const WEEK_OPTIONS = [2, 4, 8, 12, 20, 30] as const;
+
+/**
+ * Дольше этого срока недельного плана не бывает — и это не ограничение, а
+ * содержание. Экзамен в мае; человек, который начинает осенью, ещё не прошёл
+ * в школе половину курса, и «повторять» ему нечего. Расписать ему тридцать
+ * недель по темам значит выдумать занятие: пять недель подряд на Unit 1.
+ *
+ * Поэтому длинный срок делится на два куска. Пока идёт курс — своя работа:
+ * закрывать пробелы сразу, юнит за юнитом, по мере того как класс их
+ * заканчивает. И только последние девять недель — обычное повторение.
+ */
+export const REVISION_WEEKS = 9;
+
+/** Занятия по ходу курса: один кусок расписания вместо десятка недель. */
+export interface CoursePhase {
+  fromWeek: number;
+  toWeek: number;
+  units: ExamUnit[];
+}
+
+export interface Schedule {
+  /** Есть только у длинных сроков: пока курс ещё идёт. */
+  course: CoursePhase | null;
+  weeks: PlanWeek[];
+}
+
+/**
+ * Полное расписание: короткий срок — только недели, длинный — сначала работа
+ * по ходу курса, потом те же девять недель повторения в конце.
+ */
+export function buildSchedule(totalWeeks: number, units: ExamUnit[]): Schedule {
+  const weeks = Math.max(2, Math.round(totalWeeks));
+  if (weeks <= 12) return { course: null, weeks: buildPlan(weeks, units) };
+
+  const courseWeeks = weeks - REVISION_WEEKS;
+  const offset = courseWeeks;
+  return {
+    course: { fromWeek: 1, toWeek: courseWeeks, units },
+    // Недели повторения нумеруются подряд с концом курса, а не с единицы:
+    // человек считает недели до экзамена, а не до начала подготовки.
+    weeks: buildPlan(REVISION_WEEKS, units).map((w) => ({
+      ...w,
+      number: w.number + offset,
+      weeksLeft: weeks - (w.number + offset) + 1,
+    })),
+  };
+}
 
 export function buildPlan(totalWeeks: number, units: ExamUnit[]): PlanWeek[] {
   const weeks = Math.max(2, Math.round(totalWeeks));

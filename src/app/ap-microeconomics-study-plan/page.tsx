@@ -28,7 +28,7 @@ const PATH = '/ap-microeconomics-study-plan';
 export const metadata: Metadata = pageMetadata({
   title: 'AP® Microeconomics Study Plan | Olganomics',
   description:
-    'A week-by-week AP® Microeconomics study plan for however long you have left — 2, 4, 6, 8 or 12 weeks. ' +
+    'An AP® Microeconomics study plan for however long you have left — from a full 30 weeks down to two. ' +
     'Units weighted by how much of the exam they carry, with a free diagnostic for each.',
   path: PATH,
   ogTitle: 'AP® Microeconomics Study Plan',
@@ -45,8 +45,9 @@ export default function StudyPlanPage() {
           <Reg>AP® Microeconomics study plan</Reg>
         </h1>
         <p className="max-w-measure text-pretty text-[17px] leading-relaxed text-ink-soft lg:text-[18px]">
-          Say how long you have left and get the weeks laid out — heavier units getting more of
-          them, and the last week kept for a full paper.
+          Say how long you have left. A month out, the plan is a week-by-week sprint. A term out,
+          it is something better: catching each gap in the week it appears, while there is still
+          time to fix it properly.
         </p>
         <div className="pt-1">
           <TeacherByline />
@@ -54,6 +55,21 @@ export default function StudyPlanPage() {
       </header>
 
       <StudyPlan />
+
+      <Section eyebrow="Why it changes shape" title="Starting early is not more revision">
+        <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
+          The exam is in May. Someone starting in the autumn has not been taught half the course
+          yet, so there is nothing for them to revise — and a plan that hands them five weeks on
+          Unit 1 is inventing work. What an early start actually buys is different: every gap gets
+          found in the week the class creates it, when fixing it costs an evening rather than a
+          weekend of April you needed for something else.
+        </p>
+        <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
+          So the plan has two shapes. From thirteen weeks out it is one block of work alongside the
+          course, and then the last nine weeks turn into week-by-week revision. Twelve weeks or
+          fewer, it is week-by-week from the start.
+        </p>
+      </Section>
 
       <Section eyebrow="How it is built" title="Time goes where the marks are">
         <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
