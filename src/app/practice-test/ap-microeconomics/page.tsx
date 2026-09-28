@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Reg from '@/components/Reg';
 import Section from '@/components/Section';
 import { TeacherByline } from '@/components/TeacherCard';
@@ -38,6 +39,19 @@ const EXAM_FORMAT = [
     section: 'Section II · Free response',
     detail: '3 questions · 1 hour, including a 10-minute reading period',
     weight: '33% of the score',
+  },
+];
+
+const TOOLS = [
+  {
+    href: '/ap-microeconomics-score-calculator',
+    title: 'Score calculator',
+    detail: 'Turn a practice-exam raw score into the 1–5 it points to, and see what the next one would take.',
+  },
+  {
+    href: '/ap-microeconomics-study-plan',
+    title: 'Study plan',
+    detail: 'However many weeks you have left, laid out week by week — heavier units getting more of them.',
   },
 ];
 
@@ -102,6 +116,36 @@ export default function ExamIndex() {
           ones worth a quarter each. Those answers are handwritten in a paper booklet. The tests on
           this page are multiple choice — the section worth two thirds of the score.
         </p>
+      </Section>
+
+      {/* Два инструмента стоят под разбором устройства экзамена, а не над
+          выбором юнита: человек, пришедший на эту страницу, пришёл решать
+          тест, и уводить его отсюда кнопкой нельзя. Но тот, кто дочитал до
+          того, как считается балл, — как раз тот, кому нужен калькулятор. */}
+      <Section eyebrow="Also free" title="Two more tools">
+        <ul className="flex flex-col">
+          {TOOLS.map((tool, i) => (
+            <li key={tool.href}>
+              <Link
+                href={tool.href}
+                className={`group flex items-center gap-3.5 border-t border-rule py-4 transition-colors hover:bg-surface ${
+                  i === TOOLS.length - 1 ? 'border-b' : ''
+                }`}
+              >
+                <span className="flex min-w-0 flex-col gap-0.5">
+                  <span className="text-[15px] font-semibold leading-tight">{tool.title}</span>
+                  <span className="text-[14px] leading-snug text-ink-soft">{tool.detail}</span>
+                </span>
+                <span
+                  aria-hidden
+                  className="ml-auto shrink-0 pl-3 text-[15px] font-semibold text-ink-mute transition-colors group-hover:text-ochre"
+                >
+                  →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </Section>
     </main>
   );

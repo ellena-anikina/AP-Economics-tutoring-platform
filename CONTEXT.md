@@ -67,6 +67,10 @@ npm run build
   с College Board: Section I — 60 вопросов, 1 ч 10 мин, 66 %; Section II — 3 вопроса, 1 ч
   (включая 10 минут на чтение), 33 %.
 - `/practice-test/ap-microeconomics/unit-1` — **15** вопросов, `/unit-2` и `/unit-3` — по **20**. Числа не вписывать в текст руками: брать из `config/tests.ts`.
+- `/ap-microeconomics-score-calculator` — сырые баллы за пробник → оценка 1–5. Пороги лежат в
+  `config/exam-scoring.ts`, там же расписано, что в них точно, а что оценка; ждут подтверждения Ольги.
+- `/ap-microeconomics-study-plan` — план по неделям. Недели раздаются по весу юнитов на экзамене
+  (`config/exam-units.ts`), логика в `lib/study-plan.ts` и покрыта юнит-тестом.
 - Экран результатов (та же страница после теста): счёт → слабые темы → все темы → навыки →
   **призыв к записи** (карточка Ольги, «Let's work through X and Y together», зелёная кнопка
   WhatsApp с готовым сообщением со счётом) → **«For your parents»** (кнопка «Share this page») →

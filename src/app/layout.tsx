@@ -104,11 +104,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             дисклеймера не будет вовсе. Центр же совпадает всегда: обе
             колонки центрированы. */}
         <footer className="border-t border-rule">
-          {/* Ссылки подвала. Пока их две — на страницы, которые есть; план
-              продвижения (§5) расширит список, когда появятся остальные.
-              Смысл не только в удобстве: ссылка с каждой страницы — главный
-              для поисковиков сигнал, что страница важна, и путь, по которому
-              их роботы её находят. Шапку не трогаем: там одно действие. */}
+          {/* Ссылки подвала — на все самостоятельные страницы сайта. Смысл не
+              только в удобстве: ссылка с каждой страницы — главный для
+              поисковиков сигнал, что страница важна, и путь, по которому их
+              роботы её находят. Страница, на которую не ведёт ни одна
+              внутренняя ссылка, выглядит для Google как забытая, даже если
+              она есть в sitemap. Шапку не трогаем: там одно действие. */}
           <nav
             aria-label="Footer"
             className="mx-auto flex max-w-content flex-wrap justify-center gap-x-6 gap-y-2 px-5 pt-6 text-[13px] sm:px-8"
@@ -120,6 +121,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 по вкусу: его набирают в поиске вместе с названием бренда
                 («olganomics faq»), а «answers» не ищет никто. Вопросы об
                 уроках — карточка внутри раздела. */}
+            <Link
+              href="/ap-microeconomics-score-calculator"
+              className="text-ink-soft hover:text-ink"
+            >
+              Score calculator
+            </Link>
+            <Link href="/ap-microeconomics-study-plan" className="text-ink-soft hover:text-ink">
+              Study plan
+            </Link>
             <Link href="/faq" className="text-ink-soft hover:text-ink">
               FAQ
             </Link>
