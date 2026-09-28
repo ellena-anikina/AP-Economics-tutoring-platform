@@ -16,6 +16,7 @@ export function pageMetadata({
   description,
   path,
   ogTitle,
+  titleHasBrand = false,
 }: {
   /** Заголовок вкладки и ссылки в поиске — с названием бренда. */
   title: string;
@@ -24,10 +25,16 @@ export function pageMetadata({
   path: string;
   /** Заголовок для превью в мессенджерах, если бренд в нём лишний. */
   ogTitle?: string;
+  /**
+   * Заголовок уже содержит «| Olganomics» целиком — шаблон из layout
+   * применять не нужно. Нужно ровно одной странице, главной: её заголовок
+   * и есть SITE_TITLE. Без этого вышло бы «… | Olganomics | Olganomics».
+   */
+  titleHasBrand?: boolean;
 }): Metadata {
   const url = new URL(path, SITE_URL).toString();
   return {
-    title,
+    title: titleHasBrand ? { absolute: title } : title,
     description,
     alternates: { canonical: url },
     openGraph: {

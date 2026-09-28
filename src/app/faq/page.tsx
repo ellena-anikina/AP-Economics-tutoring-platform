@@ -43,7 +43,7 @@ import { whatsappGeneral } from '@/lib/contact-links';
 const PATH = '/faq';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'AP® and IGCSE Economics FAQ | Olganomics',
+  title: 'AP® and IGCSE Economics FAQ',
   // Имя — из TEACHER: в описании главной оно тоже оттуда, и решение
   // про «Dr.» (TODO.md, раздел 0) не должно разойтись между страницами.
   description:

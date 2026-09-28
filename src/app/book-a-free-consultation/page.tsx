@@ -48,7 +48,7 @@ import { displayPhone, whatsappGeneral } from '@/lib/contact-links';
 
 const PATH = '/book-a-free-consultation';
 const URL_ABS = new URL(PATH, SITE_URL).toString();
-const TITLE = 'Book a Free Economics Consultation | Olganomics';
+const TITLE = 'Book a Free Economics Consultation';
 const DESCRIPTION =
   `The first 15-minute session with ${TEACHER.name} is free — for a student, a parent, or both. ` +
   'Book it on WhatsApp. AP® Economics exam preparation.';

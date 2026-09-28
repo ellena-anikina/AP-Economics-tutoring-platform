@@ -26,7 +26,7 @@ import { whatsappGeneral } from '@/lib/contact-links';
 const PATH = '/ap-microeconomics-study-plan';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'AP® Microeconomics Study Plan | Olganomics',
+  title: 'AP® Microeconomics Study Plan',
   description:
     'An AP® Microeconomics study plan for however long you have left — from a full 30 weeks down to two. ' +
     'Units weighted by how much of the exam they carry, with a free diagnostic for each.',

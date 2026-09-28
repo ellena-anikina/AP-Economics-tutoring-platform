@@ -31,6 +31,8 @@ import { pageMetadata } from '@/lib/seo';
  */
 export const metadata: Metadata = pageMetadata({
   title: SITE_TITLE,
+  // Бренд внутри SITE_TITLE, шаблон из layout дописал бы его второй раз.
+  titleHasBrand: true,
   description: SITE_DESCRIPTION,
   path: '/',
 });

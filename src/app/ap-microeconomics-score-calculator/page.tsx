@@ -38,7 +38,7 @@ import { whatsappGeneral } from '@/lib/contact-links';
 const PATH = '/ap-microeconomics-score-calculator';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'AP® Microeconomics Score Calculator | Olganomics',
+  title: 'AP® Microeconomics Score Calculator',
   description:
     'Turn your practice-exam raw score into an estimated AP® Microeconomics score of 1–5. Official section ' +
     'weights, honest cut-offs, and what it would take to reach the next score.',
