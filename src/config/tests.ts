@@ -32,6 +32,20 @@ export const TESTS: TestDefinition[] = [
     estimatedMinutes: 30,
     timeLimitSeconds: null,
   },
+  {
+    slug: 'ap-microeconomics-unit-3',
+    href: '/practice-test/ap-microeconomics/unit-3',
+    scope: { kind: 'unit', exam: 'ap-microeconomics', unitId: 'micro-3' },
+    title: 'AP® Microeconomics · Unit 3',
+    shortTitle: 'Unit 3 · Costs and Perfect Competition',
+    unitLabel: 'Unit 3',
+    blurb:
+      'Twenty exam-style questions on production and costs, accounting and economic profit, profit maximisation, ' +
+      'the shutdown rule and the perfectly competitive firm in the short and long run.',
+    questionCount: 20,
+    estimatedMinutes: 30,
+    timeLimitSeconds: null,
+  },
 ];
 
 export function getTest(slug: string): TestDefinition | undefined {

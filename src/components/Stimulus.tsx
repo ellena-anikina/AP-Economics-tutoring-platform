@@ -1,3 +1,4 @@
+import CostCurves, { type CostCurvesProps } from '@/components/diagrams/CostCurves';
 import PPF, { type PPFProps } from '@/components/diagrams/PPF';
 import SupplyDemand, { type SupplyDemandProps } from '@/components/diagrams/SupplyDemand';
 import type { Stimulus as StimulusData } from '@/types';
@@ -55,6 +56,9 @@ function StimulusTable({
 
 /** Диаграммы подключаются по имени из данных вопроса. */
 const DIAGRAMS = {
+  CostCurves: (props: Record<string, unknown>) => (
+    <CostCurves {...(props as unknown as CostCurvesProps)} />
+  ),
   PPF: (props: Record<string, unknown>) => <PPF {...(props as PPFProps)} />,
   SupplyDemand: (props: Record<string, unknown>) => (
     <SupplyDemand {...(props as unknown as SupplyDemandProps)} />
