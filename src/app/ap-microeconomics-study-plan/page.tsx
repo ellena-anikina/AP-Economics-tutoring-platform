@@ -31,6 +31,7 @@ export const metadata: Metadata = pageMetadata({
     'An AP® Microeconomics study plan for however long you have left — from a full 30 weeks down to two. ' +
     'Units weighted by how much of the exam they carry, with a free diagnostic for each.',
   path: PATH,
+  image: '/og/study-plan.png',
   ogTitle: 'AP® Microeconomics Study Plan',
 });
 

@@ -50,6 +50,7 @@ export const metadata: Metadata = pageMetadata({
     `Fifty answers from ${TEACHER.name}: lessons and the free 15-minute consultation, AP® Economics and exam ` +
     'strategy, AP® Microeconomics concepts and graphs, IGCSE Economics and IGCSE Business.',
   path: PATH,
+  image: '/og/faq.png',
   ogTitle: 'AP® and IGCSE Economics FAQ',
 });
 

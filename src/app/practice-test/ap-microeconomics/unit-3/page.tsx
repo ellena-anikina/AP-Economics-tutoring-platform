@@ -2,16 +2,18 @@ import type { Metadata } from 'next';
 import TestRunner from '@/components/TestRunner';
 import { getTest } from '@/config/tests';
 import { microUnit3Questions, microUnit3TopicTitles } from '@/data/questions-micro-unit3';
+import { pageMetadata } from '@/lib/seo';
 
 const SLUG = 'ap-microeconomics-unit-3';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Free AP® Microeconomics Unit 3 Practice Test',
   description:
     'Twenty exam-style questions on production and costs, accounting and economic profit, profit maximisation, ' +
     'the shutdown rule and perfect competition. Free, no account needed.',
-  alternates: { canonical: '/practice-test/ap-microeconomics/unit-3' },
-};
+  path: '/practice-test/ap-microeconomics/unit-3',
+  image: `/og/${SLUG}.png`,
+});
 
 export default function Page() {
   const test = getTest(SLUG);

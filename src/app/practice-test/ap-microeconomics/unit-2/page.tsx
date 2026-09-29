@@ -2,16 +2,18 @@ import type { Metadata } from 'next';
 import TestRunner from '@/components/TestRunner';
 import { getTest } from '@/config/tests';
 import { microUnit2Questions, microUnit2TopicTitles } from '@/data/questions-micro-unit2';
+import { pageMetadata } from '@/lib/seo';
 
 const SLUG = 'ap-microeconomics-unit-2';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Free AP® Microeconomics Unit 2 Practice Test',
   description:
     'Twenty exam-style questions on supply and demand: shifts, elasticity, consumer and producer surplus, price ' +
     'controls, taxes and international trade. Free, no account needed.',
-  alternates: { canonical: '/practice-test/ap-microeconomics/unit-2' },
-};
+  path: '/practice-test/ap-microeconomics/unit-2',
+  image: `/og/${SLUG}.png`,
+});
 
 export default function Page() {
   const test = getTest(SLUG);

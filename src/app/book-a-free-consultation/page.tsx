@@ -7,6 +7,7 @@ import { CTA } from '@/config/cta';
 import { SITE_URL } from '@/config/site';
 import { TEACHER } from '@/config/teacher';
 import { displayPhone, whatsappGeneral } from '@/lib/contact-links';
+import { pageMetadata } from '@/lib/seo';
 
 /**
  * Страница записи на бесплатную консультацию — /book-a-free-consultation.
@@ -53,20 +54,17 @@ const DESCRIPTION =
   `The first 15-minute session with ${TEACHER.name} is free — for a student, a parent, or both. ` +
   'Book it on WhatsApp. AP® Economics exam preparation.';
 
-export const metadata: Metadata = {
+// Превью ссылки в WhatsApp и соцсетях: этой страницей Ольга будет делиться
+// сама, и без Open Graph мессенджер покажет голый адрес. Заголовок карточки
+// отличается от заголовка вкладки нарочно — в мессенджере бренд и слово
+// Economics лишние, там важно действие.
+export const metadata: Metadata = pageMetadata({
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: URL_ABS },
-  // Превью ссылки в WhatsApp и соцсетях: этой страницей Ольга будет
-  // делиться сама, и без Open Graph мессенджер покажет голый адрес.
-  openGraph: {
-    type: 'website',
-    url: URL_ABS,
-    siteName: TEACHER.brand,
-    title: 'Book a free 15-minute consultation',
-    description: DESCRIPTION,
-  },
-};
+  path: PATH,
+  ogTitle: 'Book a free 15-minute consultation',
+  image: '/og/consultation.png',
+});
 
 export default function BookConsultation() {
   const wa = whatsappGeneral();

@@ -5,6 +5,7 @@ import Section from '@/components/Section';
 import { TeacherByline } from '@/components/TeacherCard';
 import TestCard from '@/components/TestCard';
 import { getTestsByExam } from '@/config/tests';
+import { pageMetadata } from '@/lib/seo';
 
 /**
  * Страница экзамена: все тесты по AP® Microeconomics.
@@ -21,13 +22,14 @@ import { getTestsByExam } from '@/config/tests';
  * Цифры формата сверены по apcentral.collegeboard.org и должны сверяться
  * заново перед каждым учебным годом.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Free AP® Microeconomics Practice Tests',
   description:
     'Free diagnostic tests for AP® Microeconomics, written by a college economics instructor. Each one covers a ' +
     'single unit and ends with a breakdown of which topics are costing you marks. No account needed.',
-  alternates: { canonical: '/practice-test/ap-microeconomics' },
-};
+  path: '/practice-test/ap-microeconomics',
+  image: '/og/practice-tests.png',
+});
 
 const EXAM_FORMAT = [
   {

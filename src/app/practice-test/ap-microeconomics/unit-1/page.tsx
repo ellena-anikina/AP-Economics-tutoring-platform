@@ -2,15 +2,22 @@ import type { Metadata } from 'next';
 import TestRunner from '@/components/TestRunner';
 import { getTest } from '@/config/tests';
 import { microUnit1Questions, microUnit1TopicTitles } from '@/data/questions-micro-unit1';
+import { pageMetadata } from '@/lib/seo';
 
 const SLUG = 'ap-microeconomics-unit-1';
 
-export const metadata: Metadata = {
+/* Метаданные собраны через pageMetadata, а не руками: страницам тестов
+   нужнее всего Open Graph, потому что именно их ссылку школьник отправляет
+   родителю с экрана результатов. Имя файла карточки совпадает со слагом
+   теста — их рисует scripts/og-images.mjs из того же каталога, так что
+   новый юнит не может остаться без картинки незаметно. */
+export const metadata: Metadata = pageMetadata({
   title: 'Free AP® Microeconomics Unit 1 Practice Test',
   description:
     'Fifteen exam-style questions on Unit 1: scarcity, the production possibilities curve, comparative advantage, cost-benefit and marginal analysis. Free, no account needed.',
-  alternates: { canonical: '/practice-test/ap-microeconomics/unit-1' },
-};
+  path: '/practice-test/ap-microeconomics/unit-1',
+  image: `/og/${SLUG}.png`,
+});
 
 export default function Page() {
   const test = getTest(SLUG);

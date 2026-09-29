@@ -33,6 +33,10 @@ export const metadata: Metadata = pageMetadata({
   title: SITE_TITLE,
   // Бренд внутри SITE_TITLE, шаблон из layout дописал бы его второй раз.
   titleHasBrand: true,
+  // А в карточке превью бренд лишний в третий раз: мессенджер и так
+  // показывает его отдельной строкой из og:site_name, и получалось бы
+  // «Olganomics» дважды в одной карточке размером с ладонь.
+  ogTitle: 'AP® Economics, IGCSE Economics and Business',
   description: SITE_DESCRIPTION,
   path: '/',
 });

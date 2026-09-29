@@ -50,6 +50,7 @@ npm run dev         # http://localhost:3000
 npm run typecheck   # tsc --noEmit
 npm run test        # подсчёт результатов, выбор почтового провайдера
 npm run build
+npm run og          # перерисовать карточки превью в public/og (нужен chromium Playwright)
 ```
 
 ## 4. Карта сайта
@@ -98,7 +99,8 @@ npm run build
 | `src/components/ResultsCta.tsx` · `ShareResults.tsx` · `StayInTouch.tsx` | Три блока экрана результатов |
 | `src/components/SocialButton.tsx` | Кнопка канала (Instagram, Facebook, WhatsApp-канал, почта) — общая для экрана результатов и блока About на главной |
 | `src/config/questions.ts` | 50 вопросов и ответов Ольги: тексты, порядок, заголовки и якоря страниц раздела |
-| `src/lib/seo.ts` | Метаданные страницы: title, description, canonical и Open Graph в одном месте |
+| `src/lib/seo.ts` | Метаданные страницы: title, description, canonical, Open Graph и карточка превью в одном месте |
+| `scripts/og-images.mjs` | Рисует карточки превью 1200×630 в `public/og`. Тексты берёт из `config/tests.ts` и `config/questions.ts`, поэтому расходиться с сайтом им нечем. Запускать после правок этих конфигов и при добавлении теста |
 | `src/components/WhatsAppQr.tsx` | QR-код чата WhatsApp для страницы записи. Считается при сборке (`qrcode-generator`), в браузер уходит готовый SVG |
 | `src/components/Testimonials.tsx` · `ReviewBody.tsx` | Отзывы на главной |
 | `src/components/BookButton.tsx` · `SiteHeader.tsx` | Зелёная кнопка записи и шапка |

@@ -43,6 +43,7 @@ export const metadata: Metadata = pageMetadata({
     'Turn your practice-exam raw score into an estimated AP® Microeconomics score of 1–5. Official section ' +
     'weights, honest cut-offs, and what it would take to reach the next score.',
   path: PATH,
+  image: '/og/score-calculator.png',
   ogTitle: 'AP® Microeconomics Score Calculator',
 });
 

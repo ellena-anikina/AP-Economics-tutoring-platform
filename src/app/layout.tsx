@@ -4,6 +4,8 @@ import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 import SiteHeader from '@/components/SiteHeader';
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '@/config/site';
+import { TEACHER } from '@/config/teacher';
+import { OG_DEFAULT } from '@/lib/seo';
 import './globals.css';
 
 /**
@@ -67,6 +69,27 @@ export const metadata: Metadata = {
    */
   title: { default: SITE_TITLE, template: '%s | Olganomics' },
   description: SITE_DESCRIPTION,
+  /**
+   * Запасная карточка превью — то, что видит человек, которому прислали
+   * ссылку, ещё до того как её открыл. Своя карточка есть у каждой
+   * страницы: их собирает pageMetadata, и она заменяет этот блок целиком
+   * (Next подменяет openGraph одним объектом, а не по полям). Так что
+   * реально сюда попадает только 404 — и любая будущая страница, которая
+   * забудет про pageMetadata; пусть уж у неё будет карточка сайта, чем
+   * голый адрес.
+   *
+   * og:url здесь нет намеренно, по той же причине, что и canonical:
+   * метаданные наследуются, и страница, забывшая его переопределить,
+   * объявила бы себя главной.
+   */
+  openGraph: {
+    type: 'website',
+    siteName: TEACHER.brand,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [{ url: OG_DEFAULT, width: 1200, height: 630, alt: SITE_TITLE }],
+  },
+  twitter: { card: 'summary_large_image', images: [OG_DEFAULT] },
 };
 
 export const viewport: Viewport = {
