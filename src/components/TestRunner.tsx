@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import QuestionNav from '@/components/QuestionNav';
 import QuestionView from '@/components/QuestionView';
 import Reg from '@/components/Reg';
 import { TeacherByline } from '@/components/TeacherCard';
@@ -35,10 +36,28 @@ export default function TestRunner({
   const [attempt, setAttempt] = useState<Attempt>(() => emptyAttempt(test.slug));
   const [index, setIndex] = useState(0);
   const [resumable, setResumable] = useState<Attempt | null>(null);
+  /* Человек нажал «показать результаты», а пустые вопросы остались: нижняя
+     панель на один шаг превращается в вопрос «точно?». Не модалка нарочно —
+     ловушка фокуса, Escape и блокировка прокрутки ради ответа «да/нет» не
+     окупаются, тем более что номера пропущенных видно тут же наверху. */
+  const [confirming, setConfirming] = useState(false);
 
   // Время на текущем вопросе. Таймер не показываем, но пишем с первого
   // запуска — иначе на следующей итерации нечем будет считать тайминг.
   const enteredAt = useRef<number>(Date.now());
+
+  /* Нижняя панель подменяет свои же кнопки, и кнопка, на которую человек
+     только что нажал, исчезает. Если не перевести фокус, он упадёт на body:
+     тот, кто идёт по странице с клавиатуры, окажется в начале документа и
+     не узнает, что его о чём-то спросили. */
+  const confirmRef = useRef<HTMLButtonElement>(null);
+  const finishRef = useRef<HTMLButtonElement>(null);
+  const wasConfirming = useRef(false);
+  useEffect(() => {
+    if (confirming) confirmRef.current?.focus();
+    else if (wasConfirming.current) finishRef.current?.focus();
+    wasConfirming.current = confirming;
+  }, [confirming]);
 
   /**
    * Первое, что делаем на клиенте, — смотрим, не результат ли у нас в адресе.
@@ -116,6 +135,27 @@ export default function TestRunner({
     [commitTime, index, questions],
   );
 
+  /** Зачесть время текущего вопроса и сохранить. Возвращает новую попытку. */
+  function commitCurrent(): Attempt {
+    const updated = commitTime(attempt, questions[index].id);
+    saveAttempt(updated);
+    enteredAt.current = Date.now();
+    return updated;
+  }
+
+  /**
+   * Переход по номеру сверху. Работает через тот же goTo, что и «вперёд» с
+   * «назад»: он и так умеет любой индекс — засчитывает время на покинутом
+   * вопросе и отмечает заход на новый.
+   */
+  const jumpTo = useCallback(
+    (next: number) => {
+      setConfirming(false);
+      if (next !== index) goTo(next);
+    },
+    [goTo, index],
+  );
+
   function start(fresh: Attempt) {
     setAttempt(fresh);
     setIndex(0);
@@ -138,8 +178,7 @@ export default function TestRunner({
   }
 
   function finish() {
-    const q = questions[index];
-    const updated: Attempt = { ...commitTime(attempt, q.id), finishedAt: Date.now() };
+    const updated: Attempt = { ...commitCurrent(), finishedAt: Date.now() };
     setAttempt(updated);
     saveAttempt(updated);
 
@@ -158,6 +197,7 @@ export default function TestRunner({
 
   function retake() {
     clearAttempt(test.slug);
+    setConfirming(false);
     // Без этого обновление страницы вернуло бы старый результат из адреса.
     window.history.replaceState(null, '', window.location.pathname);
     start(emptyAttempt(test.slug));
@@ -166,6 +206,12 @@ export default function TestRunner({
   const result = useMemo(
     () => scoreAttempt(attempt, questions, topicTitles),
     [attempt, questions, topicTitles],
+  );
+
+  /** Номера вопросов без ответа, от нуля. */
+  const blanks = questions.reduce<number[]>(
+    (acc, q, i) => (attempt.answers[q.id]?.choiceId ? acc : [...acc, i]),
+    [],
   );
 
   if (phase === 'done') {
@@ -279,60 +325,113 @@ export default function TestRunner({
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Полоса прогресса и панель навигации выходят за колонку ровно на её
-          отступы, поэтому эти значения обязаны совпадать с padding страницы:
+      {/* Верхняя и нижняя панели выходят за колонку ровно на её отступы,
+          поэтому эти значения обязаны совпадать с padding страницы:
           px-5 на телефоне, px-8 от sm. */}
-      <div className="sticky top-0 z-10 -mx-5 flex flex-col gap-2 border-b border-rule bg-ground px-5 py-3 sm:-mx-8 sm:px-8">
+      {/* Липкая только от sm. На телефоне три ряда номеров съели бы пятую
+          часть экрана у каждого вопроса, а у вопросов с таблицей и графиком
+          её и так впритык. Потери нет: переход на любой вопрос прокручивает
+          страницу наверх, поэтому номера человек видит в начале каждого. */}
+      <div className="z-10 -mx-5 flex flex-col gap-2.5 border-b border-rule bg-ground px-5 py-3 sm:sticky sm:top-0 sm:-mx-8 sm:px-8">
         <div className="flex items-baseline justify-between gap-4 text-[13px]">
           <span className="font-medium">
             Question {index + 1} of {questions.length}
           </span>
+          {/* Счётчик дублирует то, что видно по номерам, и не зря: сосчитать
+              двадцать чипов взглядом нельзя, а число в подтверждении внизу
+              должно с чем-то сходиться. */}
           <span className="text-ink-mute">{answeredCount} answered</span>
         </div>
-        <div
-          className="h-1.5 w-full overflow-hidden rounded-full bg-surface-alt"
-          role="progressbar"
-          aria-valuenow={index + 1}
-          aria-valuemin={1}
-          aria-valuemax={questions.length}
-          aria-label="Test progress"
-        >
-          <div
-            className="h-full rounded-full bg-ochre transition-[width] duration-200"
-            style={{ width: `${((index + 1) / questions.length) * 100}%` }}
-          />
-        </div>
+        <QuestionNav
+          questions={questions}
+          answers={attempt.answers}
+          index={index}
+          onJump={jumpTo}
+        />
       </div>
 
       <QuestionView question={question} selected={selected} onSelect={select} />
 
-      <div className="sticky bottom-0 -mx-5 flex items-center justify-between gap-3 border-t border-rule bg-ground px-5 py-3 sm:-mx-8 sm:px-8">
-        <button
-          type="button"
-          onClick={() => goTo(index - 1)}
-          disabled={index === 0}
-          className="rounded border border-rule-strong px-4 py-2.5 text-sm font-medium disabled:opacity-40 enabled:hover:bg-surface"
+      {confirming ? (
+        /* Панель на один шаг становится вопросом «точно?». Занимает то же
+           место, а не всплывает поверх: подтверждение относится к кнопке, на
+           которую только что нажали, и стоять должно там же. Объяснять здесь
+           почти нечего — какие вопросы пустые, видно наверху. */
+        <div
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') setConfirming(false);
+          }}
+          className="sticky bottom-0 -mx-5 flex flex-col gap-3 border-t border-rule bg-ground px-5 py-3 sm:-mx-8 sm:px-8"
         >
-          Back
-        </button>
-        {isLast ? (
+          <p id="blank-warning" className="text-[13px] leading-relaxed text-ink-soft">
+            <span className="font-medium text-ink">
+              {blanks.length === 1
+                ? 'One question is still blank.'
+                : `${blanks.length} questions are still blank.`}
+            </span>{' '}
+            {blanks.length === 1 ? 'It scores' : 'They score'} the same as a wrong answer. Use the
+            numbers at the top to go back.
+          </p>
+          <div className="flex items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => setConfirming(false)}
+              className="rounded border border-rule-strong px-4 py-2.5 text-sm font-medium hover:bg-surface"
+            >
+              Keep going
+            </button>
+            <button
+              ref={confirmRef}
+              type="button"
+              onClick={finish}
+              /* Кнопка получает фокус, а предупреждение привязано к ней
+                 описанием: тот, кто читает страницу голосом, услышит и
+                 действие, и почему его переспрашивают. */
+              aria-describedby="blank-warning"
+              className="rounded bg-ochre px-6 py-2.5 text-sm font-semibold text-ground hover:opacity-90"
+            >
+              Show results anyway
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="sticky bottom-0 -mx-5 flex items-center justify-between gap-3 border-t border-rule bg-ground px-5 py-3 sm:-mx-8 sm:px-8">
           <button
             type="button"
-            onClick={finish}
-            className="rounded bg-ochre px-6 py-2.5 text-sm font-semibold text-ground hover:opacity-90"
+            onClick={() => goTo(index - 1)}
+            disabled={index === 0}
+            className="rounded border border-rule-strong px-4 py-2.5 text-sm font-medium disabled:opacity-40 enabled:hover:bg-surface"
           >
-            See my results
+            Back
           </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => goTo(index + 1)}
-            className="rounded bg-ink px-6 py-2.5 text-sm font-semibold text-ground hover:opacity-90"
-          >
-            Next
-          </button>
-        )}
-      </div>
+          {isLast ? (
+            <button
+              ref={finishRef}
+              type="button"
+              /* Есть пропуски — сначала переспросить. Нет — сверять нечего.
+                 Прокрутка наверх нужна, чтобы номера пропущенных, на которые
+                 ссылается предупреждение, оказались на экране: на телефоне
+                 верхняя панель не липкая. */
+              onClick={() => {
+                if (blanks.length === 0) return finish();
+                setConfirming(true);
+                window.scrollTo({ top: 0 });
+              }}
+              className="rounded bg-ochre px-6 py-2.5 text-sm font-semibold text-ground hover:opacity-90"
+            >
+              See my results
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => goTo(index + 1)}
+              className="rounded bg-ink px-6 py-2.5 text-sm font-semibold text-ground hover:opacity-90"
+            >
+              Next
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

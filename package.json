@@ -12,7 +12,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "node --test --experimental-strip-types src/lib/*.test.ts",
-    "og": "node --experimental-strip-types scripts/og-images.mjs"
+    "og": "node --experimental-strip-types scripts/og-images.mjs",
+    "e2e": "node scripts/e2e-test-flow.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
