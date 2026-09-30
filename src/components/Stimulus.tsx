@@ -1,4 +1,5 @@
 import CostCurves, { type CostCurvesProps } from '@/components/diagrams/CostCurves';
+import GameMatrix, { type GameMatrixProps } from '@/components/diagrams/GameMatrix';
 import PPF, { type PPFProps } from '@/components/diagrams/PPF';
 import SupplyDemand, { type SupplyDemandProps } from '@/components/diagrams/SupplyDemand';
 import type { Stimulus as StimulusData } from '@/types';
@@ -58,6 +59,9 @@ function StimulusTable({
 const DIAGRAMS = {
   CostCurves: (props: Record<string, unknown>) => (
     <CostCurves {...(props as unknown as CostCurvesProps)} />
+  ),
+  GameMatrix: (props: Record<string, unknown>) => (
+    <GameMatrix {...(props as unknown as GameMatrixProps)} />
   ),
   PPF: (props: Record<string, unknown>) => <PPF {...(props as PPFProps)} />,
   SupplyDemand: (props: Record<string, unknown>) => (

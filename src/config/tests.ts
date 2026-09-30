@@ -46,6 +46,20 @@ export const TESTS: TestDefinition[] = [
     estimatedMinutes: 30,
     timeLimitSeconds: null,
   },
+  {
+    slug: 'ap-microeconomics-unit-4',
+    href: '/practice-test/ap-microeconomics/unit-4',
+    scope: { kind: 'unit', exam: 'ap-microeconomics', unitId: 'micro-4' },
+    title: 'AP® Microeconomics · Unit 4',
+    shortTitle: 'Unit 4 · Imperfect Competition',
+    unitLabel: 'Unit 4',
+    blurb:
+      'Twenty exam-style questions on monopoly, price discrimination, monopolistic competition, oligopoly and ' +
+      'game theory — the unit where the firm sets the price instead of taking it.',
+    questionCount: 20,
+    estimatedMinutes: 30,
+    timeLimitSeconds: null,
+  },
 ];
 
 export function getTest(slug: string): TestDefinition | undefined {
