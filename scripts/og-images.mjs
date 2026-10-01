@@ -78,6 +78,13 @@ const CARDS = [
     facts: `${t.questionCount} questions · ~${t.estimatedMinutes} min · every answer explained`,
   })),
   {
+    file: 'about',
+    eyebrow: 'About',
+    title: 'About Dr. Olga Shalamai',
+    facts: 'More than ten years teaching economics',
+    tag: 'AP® Micro and Macro',
+  },
+  {
     file: 'faq',
     eyebrow: 'Questions and answers',
     title: 'AP® and IGCSE Economics FAQ',

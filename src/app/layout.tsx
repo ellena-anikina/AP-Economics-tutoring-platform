@@ -164,6 +164,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/faq" className="text-ink-soft hover:text-ink">
               FAQ
             </Link>
+            <Link href="/about-olga-shalamai" className="text-ink-soft hover:text-ink">
+              About
+            </Link>
             <Link href="/book-a-free-consultation" className="text-ink-soft hover:text-ink">
               Free consultation
             </Link>

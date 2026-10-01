@@ -123,6 +123,50 @@ export const TEACHER = {
     'next step, whether that’s focused practice or a suitable lesson option. You can also ask me about how the ' +
     'lessons work.',
 
+  /* ── Страница «Об Ольге» ────────────────────────────────────────────────
+   * Тексты ниже взяты дословно со страницы «About Olganomics» её сайта на
+   * Wix — то есть это её собственные слова, а не наш пересказ. Правило то
+   * же, что и для всего остального в этом файле: за Ольгу ничего не
+   * придумываем. Если она захочет сказать иначе — правится здесь, и
+   * страница меняется сама.
+   *
+   * ЧЕГО ЗДЕСЬ НЕТ И ПОЧЕМУ. Образования, университета, статуса
+   * докторантуры, публикаций, подготовки как AP-преподавателя, языков и
+   * работы с учениками из других стран на её сайте не указано нигде.
+   * Выдумать их нельзя, поэтому на странице их и нет — и это главная
+   * причина, по которой страница пока неполная. Поля ниже ждут её ответа:
+   * пустая строка — блок не выводится вовсе. */
+
+  /** Открывающий абзац: опыт и предметы. */
+  aboutLead:
+    'I have spent more than 10 years teaching economics and preparing students for the AP® Microeconomics and ' +
+    'AP® Macroeconomics exams.',
+
+  /** Её формулировка о том, что получили ученики. Утверждение её, не наше. */
+  aboutStudents:
+    'I have helped hundreds of students build strong economic thinking, achieve high AP® scores and strengthen ' +
+    'their university applications.',
+
+  /** Её кредо, первым лицом. */
+  aboutBelief:
+    'I believe success in AP® Economics is not built through memorisation. It comes from understanding economic ' +
+    'thinking, practising consistently, and receiving expert guidance throughout the entire preparation journey.',
+
+  /** Зачем это нужно после экзамена. */
+  aboutBeyondExam:
+    'My goal goes further than the score itself: the analytical thinking students build here keeps working for ' +
+    'them at university and beyond.',
+
+  /** Образование и степень — ЖДЁТ ОТВЕТА ОЛЬГИ. Пустая строка — блока нет.
+   *  От этого же ответа зависит решение про «Dr.» в подписи (TODO, раздел 0). */
+  aboutEducation: '',
+
+  /** Публикации со ссылками — ЖДЁТ ОТВЕТА ОЛЬГИ. Пустой массив — блока нет. */
+  aboutPublications: [] as readonly { title: string; url: string; where: string }[],
+
+  /** Языки преподавания и страны учеников — ЖДЁТ ОТВЕТА ОЛЬГИ. */
+  aboutReach: '',
+
   outcomesHeading: 'What students achieve with Olganomics',
 
   /** Её список результатов, дословно с её сайта. */

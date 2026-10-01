@@ -150,7 +150,7 @@
 
 | Готово | | Адрес | Title | H1 |
 |:-:|---|---|---|---|
-| ☐ | `P0` | `/about-olga-shalamai` | About Olga Shalamai \| Economics and Business Educator | About Olga Shalamai |
+| ✅ | `P0` | `/about-olga-shalamai` | About Dr. Olga Shalamai \| Olganomics | About Dr. Olga Shalamai — выложена, ждёт материалов Ольги |
 | ☐ | `P0` | `/results` | AP Economics Student Results and Success Stories \| Olganomics | Student Results and Success Stories |
 | ☐ | `P0` | `/book-a-free-consultation` | Book a Free Economics Consultation \| Olganomics | Book a free 15-minute consultation |
 | ✅ | `P1` | `/faq` | AP® and IGCSE Economics FAQ \| Olganomics | AP® and IGCSE Economics FAQ — код готов, ждёт проверки Ольгой и деплоя |
@@ -167,7 +167,19 @@ canonical и Open Graph. Ольга утвердила страницу и те�
 - [ ] `P0` `Ольга` **Материалы для страницы «Об Ольге»:** образование, статус докторантуры, публикации со ссылками,
   подготовка как AP-преподавателя (без намёка на одобрение College Board), языки, работа с учениками из других стран.
   Начало текста уже есть в плане (§6).
-- [ ] `P1` `Елена` **Разметка страницы «Об Ольге»:** ProfilePage + Person.
+  _01.10: страница `/about-olga-shalamai` выложена на том, что нашлось на её сайте на Wix (страница
+  «About Olganomics») — опыт, кредо, подход, её фраза про сотни учеников. Всё дословно, лежит в
+  `teacher.ts`. Но ничего из списка выше на её сайте нет вообще, поэтому страница пока без главного:
+  без образования, степени и публикаций. **Поля уже заведены пустыми** (`aboutEducation`,
+  `aboutPublications`, `aboutReach`) — как только она ответит, блоки появятся сами, править разметку
+  не придётся._
+  _Проверить у неё два утверждения, перенесённые с её сайта: «более 10 лет» и «сотни учеников,
+  высокие баллы AP». Они её собственные, но принцип 2 требует подтверждения от неё, а не от копии._
+- [x] `P1` `Елена` **Разметка страницы «Об Ольге»:** ProfilePage + Person.
+  _01.10: сделано вместе со страницей. `@id` у Person тот же, что на странице записи
+  (`#olga-shalamai`), чтобы Google склеил обе в одного человека. В разметке только то, что видно
+  текстом: `knowsAbout`, `jobTitle`, `sameAs` на соцсети, `worksFor` на Organization. Выдуманных
+  полей нет намеренно — несовпадение разметки с видимым текстом обесценивает её целиком._
 - [ ] `P0` **Материалы для `/results`** (картинки — только в дополнение к тексту):
   - [x] Отзывы текстом на главной (`Testimonials`, 19.09).
   - [ ] `Ольга` Согласие учеников на имена в отзывах — уже в `CONTEXT.md` §8.
@@ -181,6 +193,8 @@ canonical и Open Graph. Ольга утвердила страницу и те�
 - [ ] `P1` `Елена` **Ссылки в подвале:** Olganomics · AP Economics · IGCSE Economics · IGCSE Business · Resources · Results · About · Contact (§5).
   - [x] 20–21.09: Practice tests, FAQ и Free consultation (`layout.tsx`). Ссылка на раздел вопросов одна,
     и называется так же, как адрес.
+  - [x] 01.10: добавлена ссылка About. В подвале стало семь ссылок — пора делать меню в шапке
+    (пункт выше), подвал на это число уже не рассчитан.
   - [x] Дисклеймер College Board на каждой странице — уже в `layout.tsx`.
 
 ## 3. Услуги и новая главная — неделя 3
