@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
+import Reg from '@/components/Reg';
 import SiteHeader from '@/components/SiteHeader';
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '@/config/site';
 import { TEACHER } from '@/config/teacher';
@@ -145,6 +146,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             aria-label="Footer"
             className="mx-auto flex max-w-content flex-wrap justify-center gap-x-6 gap-y-2 px-5 pt-6 text-[13px] sm:px-8"
           >
+            {/* Первой — страница услуги: ради неё сайт и существует, а ссылка
+                с каждой страницы с текстом «AP® Economics tutor» — самый
+                сильный внутренний сигнал, какой у неё может быть. */}
+            <Link href="/ap-economics-tutor" className="text-ink-soft hover:text-ink">
+              <Reg>AP® Economics tutor</Reg>
+            </Link>
             <Link href="/practice-test/ap-microeconomics" className="text-ink-soft hover:text-ink">
               Practice tests
             </Link>

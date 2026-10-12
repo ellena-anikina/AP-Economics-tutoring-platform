@@ -212,11 +212,16 @@ export default function Home() {
         </p>
         <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
           {TEACHER.lessonsFormat}{' '}
+          {/* Вела в /faq на ответ 47. С 12.10 ведёт на страницу услуги: там
+              тот же ответ плюс форматы, курсы и запись, а главная — пока
+              единственная страница в индексе, и ссылка из её текста — лучший
+              способ показать роботу новую страницу. Текст ссылки — фраза,
+              по которой страницу ищут. */}
           <Link
-            href="/faq#online-economics-lessons-work"
+            href="/ap-economics-tutor"
             className="font-medium text-ink underline decoration-ochre underline-offset-2"
           >
-            How an online lesson works
+            <Reg>How my AP® Economics lessons work</Reg>
           </Link>
           {' · '}
           <Link

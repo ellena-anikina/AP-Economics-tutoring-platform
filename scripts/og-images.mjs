@@ -81,6 +81,17 @@ const CARDS = [
     facts: `${t.questionCount} questions · ~${t.estimatedMinutes} min · every answer explained`,
   })),
   {
+    // Страница услуги. Заголовок — её title без бренда. В плашке
+    // «Free consultation» — так бесплатная 15-минутная встреча называется
+    // везде на сайте; рядом со словом «lessons» любое другое «free»
+    // читается как «уроки бесплатные».
+    file: 'ap-economics-tutor',
+    eyebrow: 'Online lessons',
+    title: 'AP® Economics Tutor for Micro and Macro',
+    facts: 'Individual lessons, groups and live sessions',
+    tag: 'Free consultation',
+  },
+  {
     file: 'about',
     eyebrow: 'About',
     title: 'About Dr. Olga Shalamai',

@@ -12,6 +12,7 @@ import type { TestDefinition } from '@/types';
 export const STATIC_PATHS: string[] = [
   '/',
   '/about-olga-shalamai',
+  '/ap-economics-tutor',
   '/ap-microeconomics-score-calculator',
   '/ap-microeconomics-study-plan',
   '/book-a-free-consultation',
