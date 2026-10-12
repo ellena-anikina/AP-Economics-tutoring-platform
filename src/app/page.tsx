@@ -36,7 +36,7 @@ export const metadata: Metadata = pageMetadata({
   // А в карточке превью бренд лишний в третий раз: мессенджер и так
   // показывает его отдельной строкой из og:site_name, и получалось бы
   // «Olganomics» дважды в одной карточке размером с ладонь.
-  ogTitle: 'AP® Economics, IGCSE Economics and Business',
+  ogTitle: 'Online Economics Tutor for AP® and IGCSE',
   description: SITE_DESCRIPTION,
   path: '/',
 });
@@ -61,8 +61,10 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-5 md:col-start-1 md:row-start-1">
+          {/* Надзаголовок называет услугу словами поиска. Бренд отсюда ушёл:
+              он и так стоит в шапке, а место рядом с H1 дороже. */}
           <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-ochre">
-            {TEACHER.brand} · <Reg>AP® Economics</Reg>
+            <Reg>{TEACHER.homeEyebrow}</Reg>
           </p>
           {/* text-balance выравнивает строки заголовка по длине — иначе
               последнее слово повисает в одиночестве на своей строке. */}
@@ -146,6 +148,30 @@ export default function Home() {
           the unit your child is studying, then a breakdown of exactly which topics are costing
           marks. No account, nothing to pay, and no call unless you ask for one.
         </p>
+        {/* ВНУТРЕННИЕ ССЫЛКИ ИЗ ТЕЛА СТРАНИЦЫ. Главная — единственная страница
+            в индексе, и только через неё робот доходит до остальных. До этой
+            правки в теле стояли две ссылки, обе на страницу тестов; к
+            калькулятору, плану, разделу вопросов и странице «Об Ольге» вёл
+            только подвал — самый слабый сигнал из возможных. Ссылки —
+            текстом, а не кнопками: действие в блоке одно (принцип 1), а это
+            навигация. Текст ссылки называет страницу так, как её ищут. */}
+        <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
+          Two more free tools you can pass on: an{' '}
+          <Link
+            href="/ap-microeconomics-score-calculator"
+            className="font-medium text-ink underline decoration-ochre underline-offset-2"
+          >
+            <Reg>AP® Microeconomics score calculator</Reg>
+          </Link>{' '}
+          that turns a practice-exam result into the 1–5 it points to, and a{' '}
+          <Link
+            href="/ap-microeconomics-study-plan"
+            className="font-medium text-ink underline decoration-ochre underline-offset-2"
+          >
+            week-by-week study plan
+          </Link>{' '}
+          for however long is left before the exam.
+        </p>
 
         {/* Две кнопки — две степени готовности. Тест ничего не стоит и не
             требует решения, поэтому он идёт первым и контурной кнопкой.
@@ -165,7 +191,7 @@ export default function Home() {
             {TEACHER.parentSessionOffer} You can also write to me at{' '}
             <a
               href={`mailto:${CTA.email}`}
-              className="font-medium text-ochre underline underline-offset-2"
+              className="font-medium text-ink underline decoration-ochre underline-offset-2"
             >
               {CTA.email}
             </a>
@@ -183,6 +209,22 @@ export default function Home() {
         </p>
         <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
           {TEACHER.approach}
+        </p>
+        <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
+          {TEACHER.lessonsFormat}{' '}
+          <Link
+            href="/faq#online-economics-lessons-work"
+            className="font-medium text-ink underline decoration-ochre underline-offset-2"
+          >
+            How an online lesson works
+          </Link>
+          {' · '}
+          <Link
+            href="/about-olga-shalamai"
+            className="font-medium text-ink underline decoration-ochre underline-offset-2"
+          >
+            More about my background
+          </Link>
         </p>
 
         {/* Те же кнопки, что в блоке «Keep AP® Economics in your feed» на экране
@@ -222,7 +264,7 @@ export default function Home() {
           <MailIcon className="h-4 w-4 text-ink-mute" />
           <a
             href={`mailto:${CTA.email}`}
-            className="font-medium text-ochre underline underline-offset-2"
+            className="font-medium text-ink underline decoration-ochre underline-offset-2"
           >
             {CTA.email}
           </a>

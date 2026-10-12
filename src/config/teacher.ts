@@ -66,6 +66,17 @@ export const TEACHER = {
     'My teaching combines clear explanations, structured preparation, continuous support and proven exam strategies — ' +
     'understanding rather than memorisation.',
 
+  /** Надзаголовок первого экрана: кто она, словами, которыми её ищут.
+   *  Слова «tutor» на главной не было нигде, а главная — единственная
+   *  страница сайта в индексе Google. Пояснение у SITE_TITLE в site.ts. */
+  homeEyebrow: 'Online tutor · AP® and IGCSE Economics',
+
+  /** Формат уроков и география. Уроки вживую онлайн — её ответ 47 из
+   *  QUESTIONS.md. Живёт в Иордании, учеников берёт по всему миру —
+   *  подтвердила Елена 12.10. Сказано так, чтобы не утверждать «только
+   *  онлайн»: про очные уроки Ольга не писала ни да, ни нет. */
+  lessonsFormat: 'I’m based in Jordan and teach live online lessons for students around the world.',
+
   /** Заголовок главной. Её фраза с сайта, только «AP» приведено к правилам знака. */
   homeHeadline: 'Find out how to reach a 5 in AP® Economics',
   homeSubhead:
@@ -164,8 +175,9 @@ export const TEACHER = {
   /** Публикации со ссылками — ЖДЁТ ОТВЕТА ОЛЬГИ. Пустой массив — блока нет. */
   aboutPublications: [] as readonly { title: string; url: string; where: string }[],
 
-  /** Языки преподавания и страны учеников — ЖДЁТ ОТВЕТА ОЛЬГИ. */
-  aboutReach: '',
+  /** Где она и где её ученики. География подтверждена Еленой 12.10.
+   *  Языки преподавания — ЖДУТ ОТВЕТА ОЛЬГИ: когда пришлёт, дописать сюда. */
+  aboutReach: 'I’m based in Jordan and teach students around the world in live online lessons.',
 
   outcomesHeading: 'What students achieve with Olganomics',
 

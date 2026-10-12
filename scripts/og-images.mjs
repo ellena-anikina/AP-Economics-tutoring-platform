@@ -57,9 +57,12 @@ const totalQuestions = TESTS.reduce((sum, t) => sum + t.questionCount, 0);
 const CARDS = [
   {
     file: 'default',
-    eyebrow: 'Exam preparation',
-    title: 'AP® Economics, IGCSE Economics and Business',
-    facts: 'Diagnostics, exam tools and online lessons',
+    // Те же слова, что в заголовке главной (SITE_TITLE): карточка — это то,
+    // что человек видит до перехода, и обещать она должна то же самое.
+    // «Tutor» уже в заголовке карточки — надзаголовок его не повторяет.
+    eyebrow: 'Online lessons',
+    title: 'Economics Tutor for AP® and IGCSE',
+    facts: 'Based in Jordan, teaching students worldwide',
     // Не «Free · no account needed»: на карточке главной рядом со словом
     // lessons это читается как «уроки бесплатные». Бесплатны тесты.
     tag: 'Free practice tests',

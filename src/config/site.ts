@@ -34,17 +34,41 @@ export const SITE_URL = 'https://olga-shalamai.vercel.app';
  * Имя берётся из TEACHER, чтобы решение про «Dr.» (TODO.md, раздел 0)
  * менялось в одном месте, а не расходилось с остальным сайтом.
  *
- * ЗАГОЛОВОК СОБРАН ИЗ СЛОВ ПЛАНА, НО В ДРУГОМ ПОРЯДКЕ. В плане он записан
- * как «Olganomics | AP Economics and IGCSE Business and Economics Support» —
- * это 677px, а Google обрезает заголовок примерно на 600px (Arial 20px) и
- * съел бы «IGCSE Economics» вместе с хвостом. Нынешние 569px влезают целиком.
- * Порядок тоже не косметика: первыми читаются слова, которые люди набирают
- * в поиске, а бренд «Olganomics» пока не ищет никто — ему место в конце,
- * где он работает подписью, а не тратит начало строки. Длину новой версии
- * проверять так же: Arial 20px, лимит ~600px (на телефоне ~580px).
+ * ПОЧЕМУ В ЗАГОЛОВКЕ «TUTOR» (12.10). До этого он был «AP® Economics, IGCSE
+ * Economics and Business | Olganomics», и слова «tutor» не было ни в нём, ни
+ * где-либо ещё на главной. А главная — единственная страница сайта, которую
+ * Google на тот момент проиндексировал (остальные десять стояли в
+ * «Discovered – currently not indexed»). То есть сайт репетитора был виден
+ * поиску одной страницей, и на ней не было слова, которым репетитора ищут.
+ *
+ * Разбор выдачи 12.10 показал, куда целиться. По запросам школьника
+ * («AP Microeconomics unit 4 practice test») сидят Fiveable и Varsity Tutors —
+ * новый домен их не обгонит. По запросам того, кто платит, — родителя,
+ * ищущего репетитора («AP economics tutor Jordan», «IGCSE economics tutor
+ * Jordan»), — выдача слабая: агрегаторы, анкеты из других стран и страница
+ * лондонского агентства, где «Amman» повторено ради поиска, а местных
+ * преподавателей нет. Настоящего репетитора из Иордании там нет вообще.
+ *
+ * ГЛАВНАЯ БЕРЁТ ШИРОКИЙ ЗАПРОС, ОТДЕЛЬНЫЕ СТРАНИЦЫ — УЗКИЕ. Здесь «Online
+ * Economics Tutor» плюс оба экзамена. Будущая /ap-economics-tutor (TODO,
+ * раздел 3) возьмёт «AP® Economics Tutor», страницы IGCSE — свои. Если две
+ * страницы сайта целятся в одну фразу, Google не показывает уверенно ни
+ * одну: они делят между собой то немногое, что у сайта есть.
+ *
+ * Страны в заголовке нет намеренно: Ольга живёт в Иордании, но учит онлайн
+ * учеников по всему миру (подтвердила Елена 12.10; то же следует из её
+ * ответа 48 в QUESTIONS.md). Страна в заголовке отрезала бы всех, кто ищет
+ * репетитора не из Иордании. «Based in Jordan, teaching worldwide» стоит в
+ * описании и в тексте страницы — там, где это правда и где это прочтут.
+ *
+ * ДЛИНА. Google рисует заголовок шрифтом Arial 20px и обрезает около 600px,
+ * на телефоне около 580px. Мерить Liberation Sans 20px — он метрически равен
+ * Arial. Сейчас 516px. Бренд в конце: «Olganomics» пока никто не ищет, ему
+ * место подписи, а не начала строки. Описание Google режет около 920px
+ * (Arial 14px): нынешнее — 136 знаков, 880px, показывается целиком.
  */
-export const SITE_TITLE = 'AP® Economics, IGCSE Economics and Business | Olganomics';
+export const SITE_TITLE = 'Online Economics Tutor for AP® and IGCSE | Olganomics';
 
 export const SITE_DESCRIPTION =
-  `Exam-focused AP® Economics, IGCSE Economics and IGCSE Business support with ${TEACHER.name}. ` +
-  'Take a free diagnostic or book a consultation.';
+  `Online AP® and IGCSE Economics and Business tutoring with ${TEACHER.name}, ` +
+  'based in Jordan and teaching worldwide. Free first session.';
