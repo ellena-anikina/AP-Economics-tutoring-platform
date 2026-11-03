@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 import Reg from '@/components/Reg';
 import SiteHeader from '@/components/SiteHeader';
+import WhatsAppClicks from '@/components/WhatsAppClicks';
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '@/config/site';
 import { TEACHER } from '@/config/teacher';
 import { OG_DEFAULT } from '@/lib/seo';
@@ -171,6 +172,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/faq" className="text-ink-soft hover:text-ink">
               FAQ
             </Link>
+            <Link href="/blog" className="text-ink-soft hover:text-ink">
+              Blog
+            </Link>
             <Link href="/about-olga-shalamai" className="text-ink-soft hover:text-ink">
               About
             </Link>
@@ -187,6 +191,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Еленой 10.09 и случайно стёрта 13.09, когда этот файл
             перезаписывали из устаревшей копии. Не удалять при правках layout. */}
         <Analytics />
+        <WhatsAppClicks />
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ import Portrait from '@/components/Portrait';
 import Reg from '@/components/Reg';
 import Section from '@/components/Section';
 import Testimonials from '@/components/Testimonials';
+import { getArticle } from '@/config/articles';
 import { CTA } from '@/config/cta';
 import { ALL_ANSWERS } from '@/config/questions';
 import { SITE_URL } from '@/config/site';
@@ -84,6 +85,8 @@ function Para({ children }: { children: string }) {
 }
 
 const LINK = 'font-medium text-ink underline decoration-ochre underline-offset-2';
+
+const signsArticle = getArticle('does-my-child-need-ap-economics-tutor');
 
 export default function ApEconomicsTutor() {
   const wa = whatsappGeneral();
@@ -191,7 +194,11 @@ export default function ApEconomicsTutor() {
             <Link href="/practice-test/ap-microeconomics" className={LINK}>
               <Reg>free AP® Microeconomics unit tests</Reg>
             </Link>{' '}
-            show which topics are costing marks.
+            show which topics are costing marks. More on this question:{' '}
+            <Link href={signsArticle.href} className={LINK}>
+              {signsArticle.card.facts}
+            </Link>
+            .
           </p>
         </Section>
 

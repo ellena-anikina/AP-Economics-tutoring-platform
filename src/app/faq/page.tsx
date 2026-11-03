@@ -3,6 +3,7 @@ import Link from 'next/link';
 import BookButton from '@/components/BookButton';
 import Reg from '@/components/Reg';
 import { TeacherByline } from '@/components/TeacherCard';
+import { ARTICLES } from '@/config/articles';
 import { ALL_ANSWERS, ANSWER_SECTIONS, type Answer } from '@/config/questions';
 import { SITE_URL } from '@/config/site';
 import { TEACHER } from '@/config/teacher';
@@ -55,6 +56,10 @@ export const metadata: Metadata = pageMetadata({
 });
 
 function QuestionItem({ answer }: { answer: Answer }) {
+  // Короткий ответ — основа статьи: кому его мало, тот идёт читать дальше.
+  // В разметку FAQPage ссылка не входит, там только сам ответ.
+  const article = ARTICLES.find((a) => a.answerId === answer.id);
+
   return (
     <li className="flex flex-col gap-2 border-t border-rule pt-6 first:border-0 first:pt-0">
       {/* scroll-mt: при переходе по якорю заголовок не должен прилипать
@@ -68,6 +73,17 @@ function QuestionItem({ answer }: { answer: Answer }) {
       <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
         <Reg>{answer.a}</Reg>
       </p>
+      {article ? (
+        <p className="max-w-measure text-[15px] leading-relaxed text-ink-soft">
+          Read more:{' '}
+          <Link
+            href={article.href}
+            className="font-medium text-ink underline decoration-ochre underline-offset-2"
+          >
+            <Reg>{article.card.facts}</Reg>
+          </Link>
+        </p>
+      ) : null}
     </li>
   );
 }

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readdirSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { test } from 'node:test';
+import { ARTICLES } from '../config/articles.ts';
 import { TESTS } from '../config/tests.ts';
 import { NOT_IN_SITEMAP, publicPaths } from './site-pages.ts';
 
@@ -20,13 +21,13 @@ function routesFromFiles(dir: string = APP_DIR): string[] {
 
 test('в sitemap только существующие страницы', () => {
   const routes = new Set(routesFromFiles());
-  for (const path of publicPaths(TESTS)) {
+  for (const path of publicPaths(TESTS, ARTICLES)) {
     assert.ok(routes.has(path), `${path} есть в sitemap, но страницы src/app${path}/page.tsx нет`);
   }
 });
 
 test('каждая страница либо в sitemap, либо исключена с причиной', () => {
-  const listed = new Set(publicPaths(TESTS));
+  const listed = new Set(publicPaths(TESTS, ARTICLES));
   for (const route of routesFromFiles()) {
     assert.ok(
       listed.has(route) || route in NOT_IN_SITEMAP,
@@ -36,7 +37,7 @@ test('каждая страница либо в sitemap, либо исключе
 });
 
 test('адреса в sitemap записаны единообразно', () => {
-  for (const path of publicPaths(TESTS)) {
+  for (const path of publicPaths(TESTS, ARTICLES)) {
     assert.match(path, /^\/([a-z0-9-]+(\/[a-z0-9-]+)*)?$/, `${path}: строчные буквы, цифры и дефисы, без слеша в конце`);
   }
 });

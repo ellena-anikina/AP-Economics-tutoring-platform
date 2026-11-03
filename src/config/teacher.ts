@@ -20,6 +20,8 @@ export const TEACHER = {
   shortName: 'Dr. Shalamai',
   initials: 'OS',
   role: 'AP® Economics instructor',
+  /** Её подпись под статьями — из присланной ею статьи 03.11, ® добавлен. */
+  articleRole: 'AP® Microeconomics & AP® Macroeconomics Teacher, Olganomics',
   brand: 'Olganomics',
   program: 'Econ5',
 

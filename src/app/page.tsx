@@ -7,6 +7,7 @@ import Reg from '@/components/Reg';
 import Section from '@/components/Section';
 import SocialButton from '@/components/SocialButton';
 import Testimonials from '@/components/Testimonials';
+import { getArticle } from '@/config/articles';
 import { CTA } from '@/config/cta';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/config/site';
 import { TEACHER } from '@/config/teacher';
@@ -40,6 +41,8 @@ export const metadata: Metadata = pageMetadata({
   description: SITE_DESCRIPTION,
   path: '/',
 });
+
+const signsArticle = getArticle('does-my-child-need-ap-economics-tutor');
 
 export default function Home() {
   const firstTest = TESTS[0];
@@ -171,6 +174,18 @@ export default function Home() {
             week-by-week study plan
           </Link>{' '}
           for however long is left before the exam.
+        </p>
+        {/* Ссылка на статью — отсюда же: главная пока единственная страница в
+            индексе, и ссылка из её текста показывает роботу новую страницу
+            быстрее любой другой. */}
+        <p className="max-w-measure text-pretty text-[16px] leading-relaxed text-ink-soft">
+          Not sure your child needs a tutor at all? Read{' '}
+          <Link
+            href={signsArticle.href}
+            className="font-medium text-ink underline decoration-ochre underline-offset-2"
+          >
+            <Reg>{signsArticle.card.title}</Reg>
+          </Link>
         </p>
 
         {/* Две кнопки — две степени готовности. Тест ничего не стоит и не

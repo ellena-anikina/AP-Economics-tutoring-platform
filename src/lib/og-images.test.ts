@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { test } from 'node:test';
+import { ARTICLES } from '../config/articles.ts';
 import { TESTS } from '../config/tests.ts';
 
 /**
@@ -51,6 +52,16 @@ test('у каждого теста есть своя карточка', () => {
     assert.ok(
       cards.has(`${t.slug}.png`),
       `у теста ${t.slug} нет карточки public/og/${t.slug}.png: npm run og`,
+    );
+  }
+});
+
+test('у каждой статьи есть своя карточка', () => {
+  // То же самое: ArticleLayout собирает имя файла из слага.
+  for (const a of ARTICLES) {
+    assert.ok(
+      cards.has(`${a.slug}.png`),
+      `у статьи ${a.slug} нет карточки public/og/${a.slug}.png: npm run og`,
     );
   }
 });

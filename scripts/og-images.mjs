@@ -46,6 +46,8 @@ const HEIGHT = 630;
 // с тем, что человек увидит, открыв ссылку.
 const { TESTS } = await import('../src/config/tests.ts');
 const { ALL_ANSWERS } = await import('../src/config/questions.ts');
+const { ARTICLES } = await import('../src/config/articles.ts');
+const { TEACHER } = await import('../src/config/teacher.ts');
 
 const totalQuestions = TESTS.reduce((sum, t) => sum + t.questionCount, 0);
 
@@ -125,6 +127,22 @@ const CARDS = [
     title: 'AP® Microeconomics Study Plan',
     facts: 'From thirty weeks down to two, week by week',
   },
+  {
+    // Плашка — её слова из подписи статьи. Обычная «Free · no account needed»
+    // здесь не к месту: регистрироваться негде и не на что.
+    file: 'blog',
+    eyebrow: 'Blog',
+    title: 'Economics answers for parents and students',
+    facts: `Articles by ${TEACHER.name}`,
+    tag: 'Economics Made Clear',
+  },
+  ...ARTICLES.map((a) => ({
+    file: a.slug,
+    eyebrow: a.card.eyebrow,
+    title: a.card.title,
+    facts: a.card.facts,
+    tag: `By ${TEACHER.name}`,
+  })),
 ];
 
 const escapeHtml = (s) =>

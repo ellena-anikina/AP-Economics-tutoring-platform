@@ -68,6 +68,9 @@ npm run e2e         # прохождение теста в браузере; с�
   Всё о ней — её слова: первый экран из `teacher.ts`, разделы — её ответы из `questions.ts`, взятые по
   якорю, а не скопированные, плюс отзывы с главной. Разметка Service. Ссылки сюда — первая в подвале и
   «How my AP® Economics lessons work» в блоке About на главной. Цен и расписания нет, пока их не даст Ольга.
+- `/blog` — список статей (с 03.11), ссылка в подвале. В шапке меню по-прежнему нет: принцип 12.
+- `/blog/does-my-child-need-ap-economics-tutor` — первая статья, текст и заголовки Ольги. Разметка BlogPosting,
+  настоящая дата в sitemap, одно действие — зелёная кнопка в конце. Ссылки на неё: главная, страница услуги, ответ 7 в `/faq`.
 - `/about-olga-shalamai` — страница об Ольге: её опыт, кредо и подход — всё её словами, перенесено
   с её сайта на Wix и лежит в `config/teacher.ts`. Разметка ProfilePage + Person, `@id` человека общий
   со страницей записи. Блоки «образование», «публикации» и «география учеников» появятся сами, когда
@@ -120,6 +123,9 @@ npm run e2e         # прохождение теста в браузере; с�
 | `src/components/ResultsCta.tsx` · `ShareResults.tsx` · `StayInTouch.tsx` | Три блока экрана результатов |
 | `src/components/SocialButton.tsx` | Кнопка канала (Instagram, Facebook, WhatsApp-канал, почта) — общая для экрана результатов и блока About на главной |
 | `src/config/questions.ts` | 50 вопросов и ответов Ольги: тексты, порядок, заголовки и якоря страниц раздела |
+| `src/config/articles.ts` | Каталог статей: заголовки, описание, даты, карточка, связь с ответом в FAQ. Отсюда берут `/blog`, sitemap и `npm run og`. Новая статья — запись здесь плюс `src/app/blog/<slug>/page.tsx` |
+| `src/components/ArticleLayout.tsx` | Каркас статьи: подпись с датой, разметка, абзацы, блок «What parents can do» |
+| `src/components/WhatsAppClicks.tsx` | Счётчик нажатий на ссылки wa.me: просмотр адреса `/whatsapp-click/<страница>`. Почему так — комментарий в файле |
 | `src/lib/seo.ts` | Метаданные страницы: title, description, canonical, Open Graph и карточка превью в одном месте |
 | `scripts/og-images.mjs` | Рисует карточки превью 1200×630 в `public/og`. Тексты берёт из `config/tests.ts` и `config/questions.ts`, поэтому расходиться с сайтом им нечем. Запускать после правок этих конфигов и при добавлении теста |
 | `src/components/WhatsAppQr.tsx` | QR-код чата WhatsApp для страницы записи. Считается при сборке (`qrcode-generator`), в браузер уходит готовый SVG |
@@ -234,6 +240,9 @@ npm run e2e         # прохождение теста в браузере; с�
   `suppressHydrationWarning`. Не убирать.
 - **Playwright:** `getByRole('button', { name: 'Next', exact: true })`. Без `exact` находится
   кнопка Next.js Dev Tools. Chromium: `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`.
+- **Vercel Analytics молчит под Playwright:** скрипт ничего не шлёт при `navigator.webdriver` и «Headless» в user agent,
+  а на localhost файла `/_vercel/insights/script.js` нет вовсе. Проверяя счётчик, подменить всё это в тесте;
+  «запросов нет» в обычном автотесте ни о чём не говорит.
 - **Скриншоты — только с загруженными шрифтами** (`document.fonts.ready`). Однажды все проверки
   шли в окружении, где шрифты не грузились, и не совпадали с тем, что видела Елена.
 
