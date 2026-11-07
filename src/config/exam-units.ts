@@ -51,7 +51,13 @@ export const MICRO_UNITS: ExamUnit[] = [
     weightMax: 22,
     testSlug: 'ap-microeconomics-unit-4',
   },
-  { number: 5, title: 'Factor Markets', weightMin: 10, weightMax: 13 },
+  {
+    number: 5,
+    title: 'Factor Markets',
+    weightMin: 10,
+    weightMax: 13,
+    testSlug: 'ap-microeconomics-unit-5',
+  },
   { number: 6, title: 'Market Failure and the Role of Government', weightMin: 8, weightMax: 13 },
 ];
 

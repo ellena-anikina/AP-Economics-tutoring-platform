@@ -60,6 +60,20 @@ export const TESTS: TestDefinition[] = [
     estimatedMinutes: 30,
     timeLimitSeconds: null,
   },
+  {
+    slug: 'ap-microeconomics-unit-5',
+    href: '/practice-test/ap-microeconomics/unit-5',
+    scope: { kind: 'unit', exam: 'ap-microeconomics', unitId: 'micro-5' },
+    title: 'AP® Microeconomics · Unit 5',
+    shortTitle: 'Unit 5 · Factor Markets',
+    unitLabel: 'Unit 5',
+    blurb:
+      'Fifteen exam-style questions on labor and other factor markets: marginal revenue product, the hiring ' +
+      'rule, the least-cost mix of inputs and monopsony — the unit where firms are the buyers, not the sellers.',
+    questionCount: 15,
+    estimatedMinutes: 25,
+    timeLimitSeconds: null,
+  },
 ];
 
 export function getTest(slug: string): TestDefinition | undefined {
